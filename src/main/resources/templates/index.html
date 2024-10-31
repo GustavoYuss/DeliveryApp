@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fucking Eats Home</title>
+    <!-- Styles Css -->
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <!-- Icons Pack -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+
+        <div class="options-bar-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="logo">
+            <h1>Delivery <span>Eats</span></h1>
+        </div>
+
+        <div class="option-bar">
+            <div class="option active">Entrega a domicilio</div>
+            <div class="option">Recolectar</div>
+        </div>
+
+        <div class="currentDetails">
+            <div class="header-option">
+                <i data-feather="map-pin"></i>
+                <span class="space-right">Xalapa-Enriquez</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <label>
+                <input type="text" placeholder="Buscar en Delivery Eats" class="search-input">
+            </label>
+        </div>
+
+        <div class="cart-icon">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="notification">0</span>
+        </div>
+
+        <div class="login-buttons">
+            <button class="options-btn selected">
+                <span class="">Iniciar Sesión</span>
+            </button>
+            <button class="options-btn">
+                <span>Registrarme</span>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<section class="category-container">
+    <button class="arrow-btn left-arrow" id="leftArrow">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <div class="category-list" id="categoryList"></div>
+    <button class="arrow-btn right-arrow" id="rightArrow">
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</section>
+
+<section class="ads-section">
+    <button class="arrow-btn arrow-left">&#9664;</button>
+    <div class="ads-carousel">
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>¡Te presentamos una experiencia Cool&Deli!</h2>
+                <p>Prueba lo nuevo</p>
+                <button>Únete!</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="Cool & Deli">
+            </div>
+        </div>
+
+        <!-- Agrega más anuncios aquí según necesites -->
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>¡Te presentamos una experiencia Cool&Deli!</h2>
+                <p>Prueba lo nuevo</p>
+                <button>Únete!</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="Cool & Deli">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>¡Te presentamos una experiencia Cool&Deli!</h2>
+                <p>Prueba lo nuevo</p>
+                <button>Únete!</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="Cool & Deli">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>¡Te presentamos una experiencia Cool&Deli!</h2>
+                <p>Prueba lo nuevo</p>
+                <button>Únete!</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="Cool & Deli">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+    </div>
+    <button class="arrow-btn arrow-right">&#9654;</button>
+</section>
+
+<section id="restaurants" >
+
+    <!-- Recienes -->
+    <div class="restaurants-Section">
+        <div class="header">
+            <div class="header-title">
+                <h2 class="subtitle-restaurants">Restauranes Recientes</h2>
+                <span>Los restauranes visitados recientemente.</span>
+            </div>
+        </div>
+
+        <button class="arrow-btn left-arrow-restaurants">&#9664;</button>
+        <div class="restaurants-carousel">
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="arrow-btn right-arrow-restaurants" >&#9654;</button>
+    </div>
+
+    <!-- Parte de las mas puntuadas -->
+    <div class="restaurants-Section">
+        <div class="header">
+            <div class="header-title">
+                <h2 class="subtitle-restaurants">Mayor Calificación</h2>
+                <span>Las mejores calificaciones y un servicio excelente en todo momento.</span>
+            </div>
+        </div>
+
+        <button class="arrow-btn left-arrow-restaurants" id="arrow1">&#9664;</button>
+        <div class="restaurants-carousel">
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="arrow-btn right-arrow-restaurants" id="arrow2">&#9654;</button>
+    </div>
+
+    <!-- Parte de las mas bara -->
+    <div class="restaurants-Section">
+        <div class="header">
+            <div class="header-title">
+                <h2 class="subtitle-restaurants">Buenas comidas a excelentes precios</h2>
+                <span>Las mejores calificaciones y un precio muy razonable.</span>
+            </div>
+        </div>
+
+        <button class="arrow-btn left-arrow-restaurants" >&#9664;</button>
+        <div class="restaurants-carousel">
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | 20-30 MINS</span>
+                    <span class="rating">4.2 ★</span>
+                    <p>Hamburguesa | Comida Rápida | Alta Caloría</p>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=8" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Pizza Italiana</h3>
+                    <span>$50.00 MXM | 15-20 MINS</span>
+                    <span class="rating">4.5 ★</span>
+                    <p>Pepperoni | Masa Delgada | Extra Queso</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="arrow-btn right-arrow-restaurants" >&#9654;</button>
+    </div>
+
+    <div class="restaurants-All-Section">
+        <div class="header">
+            <h2>Todos los Restaurantes</h2>
+        </div>
+
+        <div class="restaurants-table" id="restaurantsTable">
+        </div>
+
+        <button class="load-more-btn" id="loadMoreBtn">Ver más</button>
+    </div>
+</section>
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

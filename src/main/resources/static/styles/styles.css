@@ -1,0 +1,512 @@
+:root {
+    --font-family: sans-serif;
+    font-size: 16px;
+    --color-green: #06c167;
+    --color-grey: rgb(255, 255, 255);
+    --color-greyDarker: rgb(84, 84, 84);
+}
+* {
+    box-sizing: border-box;
+}
+.smallText {
+    font-size: 0.7rem;
+    font-weight: 300;
+}
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+.container {
+    display: flex;
+    width: calc(100% - 120px);
+    margin: auto;
+}
+
+/* Estilos De la Barra Superior */
+header .logo {
+    display:flex;
+}
+header .logo h1 {
+    font-size: 1.2rem;
+    margin-left: 20px;
+    color: rgb(0, 0, 0);
+}
+header .logo h1 span {
+    font-weight: 600;
+    color: var(--color-green);
+}
+header .container {
+    height: 60px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    background-color: #f4f3f3;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+}
+header .header-option {
+    padding-left: 1rem;
+    letter-spacing: 0.6px;
+    display: flex;
+    align-items: center;
+}
+header .header-option svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5;
+    display: inline-flex;
+}
+header .currentDetails,
+header .searchBar {
+    display: flex;
+}
+.options {
+    padding: 1.2rem 0;
+}
+.options .options-btn {
+    background: var(--color-grey);
+    padding: 0.6rem 0.8rem;
+    border-radius: 30px;
+    border: 0;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    letter-spacing: 0.6px;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.1rem;
+}
+.options .options-btn svg {
+    max-width: 20px;
+    margin-right: 0rem;
+}
+.options .options-btn.selected {
+    background: black;
+    color: white;
+}
+.option-bar {
+    display: inline-flex;
+    border-radius: 25px;
+    background-color: #dad9d9;
+    padding: 3px;
+    margin-left: 15px;
+}
+.option {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #010000;
+    transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+.option.active {
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.option:not(.active):hover {
+    color: #666;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #e9e9e9;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    width: 600px;
+    margin-left: 25px;
+}
+.search-input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+    color: #000000;
+    background-color: transparent;
+    margin-left: 10px;
+}
+.options-bar-icon {
+    margin-left: 20px;
+    font-size: 20px;
+}
+.cart-icon {
+    position: relative;
+    display: inline-block;
+    font-size: 17px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 9px;
+}
+.cart-icon .notification {
+    position: absolute;
+    top: -12px;
+    right: -11px;
+    background-color: #06c167;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.cart-icon:hover .notification {
+    background-color: #ff6347;
+    transform: scale(1.1);
+}
+.cart-icon:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+.space-right {
+    margin-left: 4px;
+    margin-right: 6px;
+}
+.login-buttons .options-btn {
+    background: var(--color-grey);
+    padding: 0.6rem 0.8rem;
+    border-radius: 30px;
+    border: 0;
+    font-family: var(--font-family);
+    font-size: 15px;
+    letter-spacing: 0.6px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.login-buttons .options-btn.selected {
+    background: #000000;
+    color: rgb(255, 255, 255);
+    margin-right: 5px;
+}
+
+
+/* Estilos del filtro de las categorias */
+.category-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    padding: 10px 0;
+}
+.category-list {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-left: 65px;
+}
+.category-list::-webkit-scrollbar {
+    display: none;
+}
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+}
+.category-item img {
+    width: 50px;
+    height: 50px;
+}
+.category-item span {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+.arrow-btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    z-index: 10;
+}
+.arrow-btn:hover {
+    background-color: #e0e0e0;
+}
+.left-arrow {
+    margin-left: 20px;
+}
+.right-arrow {
+    right: 10px;
+}
+.category-item:hover {
+    transform: scale(1.1);
+}
+
+
+/* Estilos de la seccion de ads */
+.ads-section {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.ads-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    scrollbar-width: none;
+}
+.ad {
+    display: flex;
+    flex: 0 0 auto;
+    width: 30%;
+    border-radius: 8px;
+    background-color: #FFD166;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    scroll-snap-align: start;
+}
+.ad-content {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFCC80;
+}
+.ad-content h2 {
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+}
+.ad-content p {
+    font-size: 14px;
+    color: #666;
+}
+.ad-content button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #FF7F50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.ad-content button:hover {
+    background-color: #FF6347;
+}
+.ad-image {
+    width: 229px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF;
+}
+.ad-image img {
+    max-width: 100%;
+    height: auto;
+}
+.btn-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    border-radius: 50%;
+}
+.arrow-left {
+    left: 10px;
+    top: 130px;
+}
+.arrow-right {
+    right: 10px;
+    top: 130px;
+}
+
+
+/* Estilos */
+.restaurants-Section {
+    width: 93%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    left: 50px;
+}
+.restaurants-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    scrollbar-width: none;
+}
+.header {
+    text-align: left;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+.restaurants-items {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.restaurants-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 0.3rem;
+    flex: 0 0 300px;
+    overflow: hidden;
+}
+.restaurants-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.restaurants-content {
+    padding: 1rem;
+    text-align: center;
+}
+.restaurants-content h3 {
+    margin: 0.5rem 0;
+    font-weight: bold;
+}
+.restaurants-content span {
+    display: block;
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+.restaurants-content .rating {
+    color: #ffb400;
+    font-weight: bold;
+}
+.restaurants-content p {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #888;
+}
+.left-arrow-restaurants {
+    left: 21px;
+    bottom: 205px;
+}
+.right-arrow-restaurants {
+    right: 21px;
+    bottom: 205px;
+}
+.subtitle-restaurants {
+    margin-bottom: 7px;
+}
+
+
+/* Tabla de Restaurantes */
+.restaurants-table {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 90%;
+}
+.restaurants-table {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 374px;
+    margin-right: 1217px;
+}
+.restaurant-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.restaurant-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex: 0 0 300px;
+    margin-right: 0.3rem;
+    text-align: left;
+}
+.restaurant-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.restaurant-content {
+    padding: 1rem;
+}
+.restaurant-content h3 {
+    margin: 0.5rem 0;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.restaurant-content span {
+    display: block;
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+.restaurant-content p {
+    font-size: 0.85rem;
+    color: #888;
+}
+.load-more-btn {
+    padding: 10px 20px;
+    margin-top: 1000px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+.load-more-btn:hover {
+    background-color: #0056b3;
+}
+.restaurants-All-Section {
+    width: 93%;
+    margin-left: 40px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
