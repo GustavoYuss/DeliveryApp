@@ -362,6 +362,7 @@ header .searchBar {
     align-items: center;
     gap: 10px;
     left: 50px;
+    overflow: hidden;
 }
 .restaurants-carousel {
     display: flex;
@@ -373,6 +374,7 @@ header .searchBar {
     max-width: 100%;
     box-sizing: border-box;
     scrollbar-width: none;
+    transition: transform 0.3s ease-in-out;
 }
 .header {
     text-align: left;
