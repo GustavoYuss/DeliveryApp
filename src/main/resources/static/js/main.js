@@ -41,37 +41,31 @@ categories.forEach(category => {
     categoryList.appendChild(item);
 });
 
-// Desplazamiento del categorias de izquierda a derecha
-const leftArrow = document.getElementById('leftArrow');
-const rightArrow = document.getElementById('rightArrow');
+function enableCarouselScroll(containerSelector, leftButtonSelector, rightButtonSelector, scrollAmount = 300) {
+    const container = document.querySelector(containerSelector);
+    const leftButton = document.querySelector(leftButtonSelector);
+    const rightButton = document.querySelector(rightButtonSelector);
 
-leftArrow.addEventListener('click', () => {
-    categoryList.scrollBy({ left: -300, behavior: 'smooth' });
-});
+    if (container && leftButton && rightButton) {
+        leftButton.addEventListener('click', () => {
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
 
-rightArrow.addEventListener('click', () => {
-    categoryList.scrollBy({ left: 300, behavior: 'smooth' });
-});
+        rightButton.addEventListener('click', () => {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    } else {
+        console.error(`Error: No se encontraron elementos para ${containerSelector}, ${leftButtonSelector} o ${rightButtonSelector}`);
+    }
+}
 
-
-// Desplazamiento del anuncios de izquierda a derecha
-const carousel = document.querySelector('.ads-carousel');
-const arrowLeft = document.querySelector('.arrow-left');
-const arrowRight = document.querySelector('.arrow-right');
-const scrollAmount = 300;
-
-arrowRight.addEventListener('click', () => {
-    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-});
-
-arrowLeft.addEventListener('click', () => {
-    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-});
+enableCarouselScroll('#categoryList', '#leftArrow', '#rightArrow');
+enableCarouselScroll('.ads-carousel', '.arrow-left', '.arrow-right');
+enableCarouselScroll('#recentRestaurants', '#arrow1', '#arrow2');
+enableCarouselScroll('.recent-restaurants', '.left-arrow-rr', '.right-arrow-rr');
+enableCarouselScroll('#Cheap', '#leftArrow2', '#rightArrow2');
 
 
-
-
-// Lista simulada de restaurantes (puedes reemplazarlo con datos dinámicos).
 const restaurants = [
     { name: 'Comida Mexicana', img: 'https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1', desc: 'Hamburguesa | Comida Rápida', price: '$25.00 MXM' },
     { name: 'Pizza Italiana', img: 'https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1', desc: 'Pepperoni | Extra Queso', price: '$50.00 MXM' },
@@ -82,13 +76,11 @@ const restaurants = [
 ];
 
 let currentRow = 0;
-const ROW_SIZE = 5; // Número de restaurantes por fila
+const ROW_SIZE = 5;
 
-// Referencias a elementos del DOM
 const restaurantsTable = document.getElementById('restaurantsTable');
 const loadMoreBtn = document.getElementById('loadMoreBtn');
 
-// Función para crear un item de restaurante
 function createRestaurantItem(restaurant) {
     const item = document.createElement('div');
     item.classList.add('restaurant-item');
@@ -103,14 +95,12 @@ function createRestaurantItem(restaurant) {
     return item;
 }
 
-// Función para cargar más filas de restaurantes
 function loadMoreRows() {
     const endRow = currentRow + ROW_SIZE;
 
     const row = document.createElement('div');
     row.classList.add('restaurant-row');
 
-    // Crear los items para esta fila
     for (let i = currentRow; i < endRow && i < restaurants.length; i++) {
         const restaurantItem = createRestaurantItem(restaurants[i]);
         row.appendChild(restaurantItem);
@@ -119,16 +109,11 @@ function loadMoreRows() {
     restaurantsTable.appendChild(row);
     currentRow += ROW_SIZE;
 
-    // Ocultar botón si ya no hay más restaurantes
     if (currentRow >= restaurants.length) {
         loadMoreBtn.style.display = 'none';
     }
 }
-
-// Cargar la primera fila al inicio
 loadMoreRows();
-
-// Evento para cargar más filas al hacer clic en el botón
 loadMoreBtn.addEventListener('click', loadMoreRows);
 
 
