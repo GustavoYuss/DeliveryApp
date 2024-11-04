@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles/loginStyles.css">
+  <!-- Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+<div class="container">
+  <div class="form-box login">
+    <form action="">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input type="text" placeholder="Username" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Password" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="forgot-link">
+        <a href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+      <button type="submit" class="btn">Ingresar</button>
+    </form>
+  </div>
+
+  <div class="form-box register">
+    <form action="">
+      <h1>Registrate</h1>
+      <div class="input-box2">
+        <input type="text" placeholder="Nombre Completo" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box2">
+        <input type="Number" placeholder="Numero Telefonico" required>
+        <i class='bx bx-phone'></i>
+      </div>
+      <div class="input-box2">
+        <input type="email" placeholder="Email" required>
+        <i class='bx bxs-envelope'></i>
+      </div>
+      <div class="input-box2">
+        <input type="text" placeholder="Contraseña" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="input-box2">
+        <input type="text" placeholder="Confirmar Contraseña" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <button type="submit" class="btn">Registrar</button>
+    </form>
+  </div>
+
+  <div class="toggle-box">
+    <div class="toggle-panel toggle-left">
+      <h1 class="margin-left">Hola, Bienvenido a <span>Delivery Eats</span></h1>
+      <p>Aun no tienes cuenta?</p>
+      <button class="btn register-btn">Registrarse</button>
+    </div>
+    <div class="toggle-panel toggle-right">
+      <h1>Hola de nuevo!</h1>
+      <span>¿Ya tienes una cuenta?</span>
+        <button class="btn login-btn">Login</button>
+    </div>
+  </div>
+</div>
+</body>
+
+<script src="/js/login.js"></script>
+</html>

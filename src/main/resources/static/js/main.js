@@ -116,4 +116,8 @@ function loadMoreRows() {
 loadMoreRows();
 loadMoreBtn.addEventListener('click', loadMoreRows);
 
+function redirectToLogin() {
+    window.location.href = "/login";
+}
+
 
