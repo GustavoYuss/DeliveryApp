@@ -10,20 +10,21 @@
   <link rel="stylesheet" href="/styles/loginStyles.css">
   <!-- Icons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
 <div class="container">
   <div class="form-box login">
-    <form action="">
+    <form th:action="@{/startSession} " th:object="${UserNew}" method="post">
       <h1>Login</h1>
       <div class="input-box">
-        <input type="text" placeholder="Username" required>
+        <input type="text" th:field="*{email}" name="email" placeholder="Email" required>
         <i class='bx bxs-user'></i>
       </div>
       <div class="input-box">
-        <input type="text" placeholder="Password" required>
+        <input type="text" th:field="*{password}" name="password"  placeholder="Password" required>
         <i class='bx bxs-lock-alt'></i>
       </div>
       <div class="forgot-link">
@@ -34,22 +35,22 @@
   </div>
 
   <div class="form-box register">
-    <form action="">
+    <form th:action="@{/registerUser}" th:object="${UserNew}" method="post">
       <h1>Registrate</h1>
       <div class="input-box2">
-        <input type="text" placeholder="Nombre Completo" required>
+        <input type="text" placeholder="Nombre Completo" id="name" required th:field="*{name}">
         <i class='bx bxs-user'></i>
       </div>
       <div class="input-box2">
-        <input type="Number" placeholder="Numero Telefonico" required>
+        <input type="text" placeholder="Numero Telefonico" id="phoneNumber" required th:field="*{phoneNumber}">
         <i class='bx bx-phone'></i>
       </div>
       <div class="input-box2">
-        <input type="email" placeholder="Email" required>
+        <input type="email" placeholder="Email" id="email" required th:field="*{email}">
         <i class='bx bxs-envelope'></i>
       </div>
       <div class="input-box2">
-        <input type="text" placeholder="Contraseña" required>
+        <input type="text" placeholder="Contraseña" id="password" required th:field="*{password}">
         <i class='bx bxs-lock-alt'></i>
       </div>
       <div class="input-box2">
@@ -74,6 +75,22 @@
   </div>
 </div>
 </body>
+
+<script th:if="${success}">
+  Swal.fire({
+    icon: "success",
+    title: "¡Registro Exitoso!",
+    text: "Se registro correctamente el usuario, pase al login"
+  });
+</script>
+
+<script th:if="${error}">
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "Lo siento, hubo un problema con el servidor, intente nuevamente"
+  });
+</script>
 
 <script src="/js/login.js"></script>
 </html>

@@ -1,0 +1,261 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.restaurant-banner {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 60px;
+}
+
+.restaurant-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.restaurant-image {
+    position: absolute;
+    bottom: -40px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+    overflow: hidden;
+}
+
+.restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.restaurant-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -15px;
+    margin-bottom: -12px;
+    padding: 0 20px;
+}
+
+.restaurant-info h1 {
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.restaurant-info-details {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.rating {
+    font-weight: bold;
+    color: #333;
+}
+
+.uber-one {
+    color: #f5a623;
+    font-weight: bold;
+}
+
+.actions-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.optionButtons-container {
+    display: inline-flex;
+    background-color: #dad9d9;
+    border-radius: 25px;
+    padding: 8px;
+    margin-left: -8px;
+}
+
+.optionButtons {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #010000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.optionButtons.active {
+    background-color: #ffffff;
+    color: #000;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.optionButtons:not(.active):hover {
+    color: #666;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #e9e9e9;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 14px;
+    width: 474px;
+    height: 40px;
+}
+
+.search-bar input[type="text"] {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background-color: transparent;
+    width: 250px;
+    margin-left: 5px;
+}
+
+.delivery-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 6px;
+    width: 72%;
+}
+
+.delivery-info > div {
+    text-align: center;
+}
+
+.cost-info, .time-info {
+    font-size: 14px;
+    color: #666;
+}
+
+.subtext {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.actions {
+    width: 25%;
+}
+
+
+.restaurants-Section {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+}
+.restaurants-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    transition: transform 0.3s ease-in-out;
+}
+.header {
+    text-align: left;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+.restaurants-items {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.restaurants-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 0.3rem;
+    flex: 0 0 300px;
+    overflow: hidden;
+}
+.restaurants-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.restaurants-content {
+    padding: 0.6rem;
+    text-align: center;
+}
+.restaurants-content h3 {
+    margin: 0.2rem 0;
+    font-weight: bold;
+}
+.restaurants-content span {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+.restaurants-content .rating {
+    color: #ffb400;
+    font-weight: bold;
+}
+.restaurants-content p {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.arrow-btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    z-index: 10;
+}
+
+.left-arrow-restaurants {
+    right: 74px;
+    top: 46px;
+}
+.right-arrow-restaurants {
+    right: 27px;
+    top: 46px;
+}
+.subtitle-restaurants {
+    margin-bottom: 7px;
+}
