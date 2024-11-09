@@ -33,6 +33,7 @@ CREATE TABLE Restaurant (
     NameRestaurant NVARCHAR(50),
     OpenTime TIME,
     CloseTime TIME,
+    ImagePath String,
 	idUser int,
 	FOREIGN KEY (idUser) REFERENCES [User](idUser)
 );

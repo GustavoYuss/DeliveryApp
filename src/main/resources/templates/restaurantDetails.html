@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway Page</title>
+    <link rel="stylesheet" href="/styles/restaurantDetailsStyles.css">
+</head>
+<body>
+
+<div th:replace="fragments/bar :: header"></div>
+
+<div class="page-container">
+
+    <div class="restaurant-banner">
+        <img src="/images/LittleCaesars.jpg" alt="Restaurant Banner">
+        <div class="restaurant-image">
+            <img src="https://www.kindpng.com/picc/m/745-7453251_little-caesars-pizza-little-caesars-pizza-logo-png.png" alt="Subway Logo">
+        </div>
+    </div>
+
+    <div class="restaurant-info">
+        <div>
+            <h1>Subway</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar en Subway">
+        </div>
+    </div>
+
+    <div class="actions-container">
+        <div class="actions">
+            <p class="restaurant-info-details">
+                <span class="rating">4.1 ★</span> (1,500+) • Costo de envío: $23 •
+                <span class="uber-one">Uber One</span> • <a href="#">Información</a>
+            </p>
+        </div>
+        <div class="delivery-info">
+            <div class="optionButtons-container">
+                <div class="optionButtons active">Entrega a domicilio</div>
+                <div class="optionButtons">Recolectar</div>
+                <div class="optionButtons">Pedido grupal</div>
+            </div>
+            <div class="cost-info">
+                <p>Costo de envío: $23</p>
+                <span class="subtext">Precios y tarifas</span>
+            </div>
+            <div class="time-info">
+                <p>10 min</p>
+                <span class="subtext">Llegada más temprana</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="restaurants-Section">
+        <div class="header">
+            <div class="header-title">
+                <h2 class="subtitle-restaurants">Restauranes Recientes</h2>
+                <span>Los restauranes visitados recientemente.</span>
+            </div>
+        </div>
+
+        <button class="arrow-btn left-arrow-restaurants">&#9664;</button>
+
+        <div class="restaurants-carousel recent-restaurants">
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+        </div>
+
+        <button class="arrow-btn right-arrow-restaurants">&#9654;</button>
+
+</div>
+
+
+</div>
+
+
+</body>
+</html>
