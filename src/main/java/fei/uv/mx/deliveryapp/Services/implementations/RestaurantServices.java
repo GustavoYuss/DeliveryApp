@@ -5,11 +5,12 @@ import fei.uv.mx.deliveryapp.Repositories.RestaurantRepository;
 import fei.uv.mx.deliveryapp.Repositories.UserRepository;
 import fei.uv.mx.deliveryapp.Services.interfaces.IRestaurantServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RestaurantServices implements IRestaurantServices {
-
     @Autowired
     RestaurantRepository restaurantRepository;
 

@@ -115,13 +115,6 @@ function loadMoreRows() {
 loadMoreRows();
 loadMoreBtn.addEventListener('click', loadMoreRows);
 
-function redirectToLogin() {
-    window.location.href = "/login";
-}
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     fetch("/home/recent")
         .then(response => response.json())
