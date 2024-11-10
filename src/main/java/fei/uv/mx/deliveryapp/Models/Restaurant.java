@@ -6,6 +6,7 @@ import org.hibernate.annotations.Nationalized;
 import java.time.LocalTime;
 
 @Entity
+@Table(name = "\"Restaurant\"")
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -3,6 +3,7 @@ package fei.uv.mx.deliveryapp.Models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "\"Address\"")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
