@@ -25,6 +25,14 @@ public class Dish {
     @Column(name = "OfferPrice")
     private BigDecimal offerPrice;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdRestaurant")
+    private Restaurant idRestaurant;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdDishType")
+    private Dish idDishType;
+
     public Integer getId() {
         return id;
     }
@@ -65,4 +73,19 @@ public class Dish {
         this.offerPrice = offerPrice;
     }
 
+    public Restaurant getIdRestaurant() {
+        return idRestaurant;
+    }
+
+    public void setIdRestaurant(Restaurant idRestaurant) {
+        this.idRestaurant = idRestaurant;
+    }
+
+    public Dish getIdDishType() {
+        return idDishType;
+    }
+
+    public void setIdDishType(Dish idDishType) {
+        this.idDishType = idDishType;
+    }
 }
