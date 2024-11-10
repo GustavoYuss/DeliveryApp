@@ -63,3 +63,12 @@ function onPlaceChanged() {
 function closeMap() {
     document.getElementById("mapModal").style.display = "none";
 }
+
+
+function redirectToIndex(){
+    window.location.href = "/home";
+}
+
+function redirectToLogin() {
+    window.location.href = "/login";
+}

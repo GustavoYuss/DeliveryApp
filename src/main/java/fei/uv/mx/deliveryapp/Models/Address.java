@@ -3,7 +3,6 @@ package fei.uv.mx.deliveryapp.Models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "\"Address\"")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +17,22 @@ public class Address {
 
     @Column(name = "ZipCode", length = 10)
     private String zipCode;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCity")
+    private City idCity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idState")
+    private State idState;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idUser")
+    private User idUser;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idRestaurant")
+    private Restaurant idRestaurant;
 
     public Integer getId() {
         return id;
@@ -49,6 +64,38 @@ public class Address {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public City getIdCity() {
+        return idCity;
+    }
+
+    public void setIdCity(City idCity) {
+        this.idCity = idCity;
+    }
+
+    public State getIdState() {
+        return idState;
+    }
+
+    public void setIdState(State idState) {
+        this.idState = idState;
+    }
+
+    public User getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
+    }
+
+    public Restaurant getIdRestaurant() {
+        return idRestaurant;
+    }
+
+    public void setIdRestaurant(Restaurant idRestaurant) {
+        this.idRestaurant = idRestaurant;
     }
 
 }
