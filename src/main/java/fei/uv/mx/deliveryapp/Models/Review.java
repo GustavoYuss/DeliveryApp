@@ -21,6 +21,10 @@ public class Review {
     @JoinColumn(name = "idDish")
     private Dish idDish;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdUser")
+    private User idUser;
+
     public Integer getId() {
         return id;
     }
@@ -53,4 +57,11 @@ public class Review {
         this.idDish = idDish;
     }
 
+    public User getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
+    }
 }

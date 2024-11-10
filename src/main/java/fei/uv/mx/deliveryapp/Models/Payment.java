@@ -27,6 +27,10 @@ public class Payment {
     @Column(name = "ExpirationDate")
     private LocalDate expirationDate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "IdUser")
+    private User idUser;
+
     public Integer getId() {
         return id;
     }
@@ -67,4 +71,11 @@ public class Payment {
         this.expirationDate = expirationDate;
     }
 
+    public User getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
+    }
 }
