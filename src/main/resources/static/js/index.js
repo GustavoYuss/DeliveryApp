@@ -1,5 +1,4 @@
 
-// Contenido dinamico del filtro de categorias
 const categories = [
     { name: "Súper", icon: "/images/Super.png" },
     { name: "Pizza", icon: "/images/piza.png" },
@@ -18,8 +17,8 @@ const categories = [
     { name: "Panadería", icon: "/images/pan.png" },
     { name: "Helado", icon: "/images/ice-cream.png" },
     { name: "China", icon: "/images/china.png" },
-    { name: "Sopas", icon: "/images/ramen.png" },
-    { name: "Vino", icon: "/images/pan.png" },
+    { name: "Sopas", icon: "/images/soup.png" },
+    { name: "Vino", icon: "/images/wine.png" },
     { name: "Vegana", icon: "/images/Vegetarian.png" },
 ];
 
@@ -116,4 +115,73 @@ function loadMoreRows() {
 loadMoreRows();
 loadMoreBtn.addEventListener('click', loadMoreRows);
 
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("/home/recent")
+        .then(response => response.json())
+        .then(data => {
+            const recentSection = document.querySelector(".recent-restaurants");
+            recentSection.innerHTML = data.map(restaurant => createRestaurantHTML(restaurant)).join('');
+        });
+});
+
+function loadPopularRestaurants() {
+    fetch("/home/popular")
+        .then(response => response.json())
+        .then(data => {
+            const popularSection = document.querySelector("#recentRestaurants");
+            popularSection.innerHTML = data.map(restaurant => createRestaurantHTML(restaurant)).join('');
+        });
+}
+loadPopularRestaurants();
+
+function loadCheapRestaurants() {
+    fetch("/home/cheap")
+        .then(response => response.json())
+        .then(data => {
+            const cheapSection = document.querySelector("#Cheap");
+            cheapSection.innerHTML = data.map(restaurant => createRestaurantHTML(restaurant)).join('');
+        });
+}
+loadCheapRestaurants();
+
+function createRestaurantHTML(restaurant) {
+    const openTimeFormatted = formatTime12Hour(restaurant.openTime);
+    const closeTimeFormatted = formatTime12Hour(restaurant.closeTime);
+    const isOpen = checkIfOpen(restaurant.openTime, restaurant.closeTime);
+
+    return `
+        <div class="restaurants-item">
+            <img src="${restaurant.imagePath}" alt="${restaurant.nameRestaurant}">
+            <div class="restaurants-content">
+                <h3>${restaurant.nameRestaurant}</h3>
+                <span>Apertura: ${openTimeFormatted} | Cierre: ${closeTimeFormatted}</span>
+                <span class="rating">${restaurant.rating} ★</span>
+                <span class="status" style="color: ${isOpen ? 'green' : 'red'};">
+                    ${isOpen ? 'Abierto' : 'Cerrado'}
+                </span>
+            </div>
+        </div>
+    `;
+}
+
+function formatTime12Hour(time24) {
+    const [hours, minutes] = time24.split(':').map(Number);
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const hours12 = hours % 12 || 12; 
+    return `${hours12}:${minutes.toString().padStart(2, '0')} ${period}`;
+}
+
+function checkIfOpen(openTime, closeTime) {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+
+    const [openHour, openMinute] = openTime.split(':').map(Number);
+    const [closeHour, closeMinute] = closeTime.split(':').map(Number);
+
+    const isAfterOpen = (currentHour > openHour) || (currentHour === openHour && currentMinute >= openMinute);
+    const isBeforeClose = (currentHour < closeHour) || (currentHour === closeHour && currentMinute < closeMinute);
+
+    return isAfterOpen && isBeforeClose;
+}
 

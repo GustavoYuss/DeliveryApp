@@ -1,0 +1,69 @@
+package fei.uv.mx.deliveryapp.Models;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.Nationalized;
+
+import java.time.LocalTime;
+
+@Entity
+@Table(name = "\"Restaurant\"")
+public class Restaurant {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idRestaurant", nullable = false)
+    private Integer id;
+
+    @Nationalized
+    @Column(name = "NameRestaurant", length = 230)
+    private String nameRestaurant;
+
+    @Column(name = "OpenTime")
+    private LocalTime openTime;
+
+    @Column(name = "CloseTime")
+    private LocalTime closeTime;
+
+    @Column(name = "ImagePath", length = 130)
+    private String imagePath;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNameRestaurant() {
+        return nameRestaurant;
+    }
+
+    public void setNameRestaurant(String nameRestaurant) {
+        this.nameRestaurant = nameRestaurant;
+    }
+
+    public LocalTime getOpenTime() {
+        return openTime;
+    }
+
+    public void setOpenTime(LocalTime openTime) {
+        this.openTime = openTime;
+    }
+
+    public LocalTime getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(LocalTime closeTime) {
+        this.closeTime = closeTime;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+}
