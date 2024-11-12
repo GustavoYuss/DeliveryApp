@@ -259,3 +259,140 @@ body {
 .subtitle-restaurants {
     margin-bottom: 7px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container-Products {
+    max-width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 29px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    /* gap: 45px; */
+    width: 100%;
+    height: 189px;
+}
+
+.product-info {
+    flex: 1;
+    top: 10px;
+    margin-bottom: 39px;
+}
+
+.product-card img {
+    display: flex;
+    width: 212px;
+    height: 170px;
+    border-radius: 8px;
+    position: relative;
+    left: 39px;
+}
+
+.product-info h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.product-info .price-rating {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.product-info .price {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.product-info .rating {
+    display: flex;
+    align-items: center;
+    color: #666;
+}
+
+.product-info p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.add-to-cart {
+    color: #483c3c;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    right: 11px;
+    position: relative;
+    top: 55px;
+}
+
+.add-to-cart:hover {
+    background-color: #333333;
+}
+
+
+
+
+
+
+
+
+
+
