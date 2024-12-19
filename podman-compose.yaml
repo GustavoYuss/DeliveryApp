@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Admin#2024sql"
+
+    ports:
+      - "1433:1433"
+
+  app:
+    image: deliveryapp:latest
+    container_name: deliveryapp
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:sqlserver://db:1433;databaseName=DeliveryApp"
+      SPRING_DATASOURCE_USERNAME: "sa"
+      SPRING_DATASOURCE_PASSWORD: "Admin#2024sql"
+    command: ["sh", "-c", "./wait-for-it.sh db:1433 -- java -jar app.jar"]
+    ports:
+      - "8080:8080"
