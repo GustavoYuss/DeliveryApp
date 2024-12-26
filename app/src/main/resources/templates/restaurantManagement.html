@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uber Eats para Restaurantes</title>
+  <link rel="stylesheet" href="/styles/restaurantManagementStyles.css">
+  <link rel="stylesheet" href="/styles/orderSectionStyles.css">
+  <link rel="stylesheet" href="/styles/reportsStyles.css">
+  <link rel="stylesheet" href="/styles/paymentsStyles.css">
+  <link rel="stylesheet" href="/styles/menuStyles.css">
+  <link rel="stylesheet" href="/styles/schedulesStyles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header class="header">
+  <h1 id="title">Uber Eats para Restaurantes</h1>
+</header>
+<div class="container">
+  <aside class="sidebar">
+    <ul>
+      <li data-section="inicio" class="active">Inicio</li>
+      <li data-section="pedidos">Pedidos</li>
+      <li data-section="reportes-section">Informes</li>
+      <li data-section="pagos-section">Pagos</li>
+      <li data-section="articulos-section">Menú</li>
+      <li data-section="horarios">Horario de feriados</li>
+    </ul>
+  </aside>
+  <main class="main-content">
+
+    <section id="inicio" class="section active">
+
+      <div class="restaurant-banner">
+        <img src="/images/Starbucks.jpg" alt="Restaurant Banner">
+        <div class="restaurant-image">
+          <img src="/images/Startbucks-Logo.png" alt="Subway Logo">
+        </div>
+      </div>
+
+      <div class="restaurant-info">
+        <div>
+          <h1>StarBucks</h1>
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Buscar en Subway">
+        </div>
+      </div>
+
+      <div class="actions-container">
+
+        <div class="actions">
+          <p class="restaurant-info-details">
+            <span class="rating">4.1 ★</span> (1,500+) • Costo de envío: $23 •
+            <span class="uber-one">Uber One</span> • <a href="#">Información</a>
+          </p>
+        </div>
+
+        <div class="delivery-info">
+          <div class="optionButtons-container">
+            <div class="optionButtons active">Entrega a domicilio</div>
+            <div class="optionButtons">Recolectar</div>
+            <div class="optionButtons">Pedido grupal</div>
+          </div>
+          <div class="cost-info">
+            <p>Costo de envío: $23</p>
+            <span class="subtext">Precios y tarifas</span>
+          </div>
+          <div class="time-info">
+            <p>10 min</p>
+            <span class="subtext">Llegada más temprana</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-Products">
+        <h1>Subway productos</h1>
+        <div id="product-container" class="product-grid"></div>
+        <div class="pagination">
+          <button id="prevPage" class="pagination-btn">Anterior</button>
+          <button id="nextPage" class="pagination-btn">Siguiente</button>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="pedidos" class="section">
+
+      <div class="pedidos-section">
+        <div class="pedidos-header">
+          <h1 class="pedidos-title">Pedidos</h1>
+          <div class="pedidos-filters">
+            <input type="date" class="filter-date" />
+            <input type="date" class="filter-date" />
+            <select class="filter-dropdown">
+              <option>Ordena</option>
+            </select>
+            <select class="filter-dropdown">
+              <option>Problema con el pedido...</option>
+            </select>
+            <button class="filter-eats-pass">Eats Pass</button>
+          </div>
+          <p class="last-update">Última actualización: 5 de ago. de 2021 13:00</p>
+        </div>
+        <div class="pedidos-list">
+          <div class="pedido-item" onclick="openSidebar('C7E14', 'Mario F', '4:19 PM', 'Ceviche de Pescado', 'Medio litro', 100, 230)">
+            <div class="pedido-user">
+              <img src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="Mario F" class="user-avatar" />
+              <span class="user-name">Miguel Camo Rincon</span>
+            </div>
+            <span class="pedido-id">C7E14</span>
+            <span class="pedido-status" onclick="openStatusForm(event, 'C7E14')">En espera</span>
+            <span class="pedido-restaurant">Cevichi Bichi</span>
+            <span class="pedido-time">8/1/2021, 4:19 PM</span>
+            <span class="pedido-price">MX$230.00</span>
+          </div>
+          <!-- Más pedidos aquí -->
+        </div>
+      </div>
+
+      <!-- Modal para cambiar estado -->
+      <div class="status-modal" id="statusModal">
+        <div class="modal-content">
+          <h2>Cambiar estado del pedido</h2>
+          <div class="status-buttons">
+            <button onclick="changeStatus('En espera')">En espera</button>
+            <button onclick="changeStatus('En proceso')">En proceso</button>
+            <button onclick="changeStatus('Enviado')">Enviado</button>
+            <button onclick="changeStatus('Enviado y cobrado')">Enviado y cobrado</button>
+            <button onclick="changeStatus('Terminado')">Terminado</button>
+            <button onclick="changeStatus('Cancelado')">Cancelado</button>
+          </div>
+          <button class="close-modal" onclick="closeStatusForm()">Cerrar</button>
+        </div>
+      </div>
+
+      <!-- Barra lateral -->
+      <div class="sidebar2" id="sidebar2">
+        <div class="sidebar2-content">
+          <button class="close-sidebar2" onclick="closeSidebar()">✕</button>
+          <div class="sidebar2-header">
+            <img src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="Avatar" class="user-avatar">
+            <div>
+              <p class="user-name">Mario F</p>
+              <p class="user-orders">1 pedido</p>
+            </div>
+          </div>
+          <h2 class="sidebar2-title">Pedido C7E14</h2>
+          <p class="sidebar2-date">Aug 1, 2021</p>
+          <div class="timeline">
+            <p><strong>04:19 PM</strong> Pedido hecho por el cliente</p>
+            <p><strong>04:19 PM</strong> Pedido aceptado por el restaurante</p>
+            <p><strong>05:06 PM</strong> Pedido entregado al cliente</p>
+          </div>
+          <div class="order-details">
+            <div class="order-item">
+              <span>1</span>
+              <p>Ceviche de Pescado 🐟</p>
+              <p class="item-details">Medio litro</p>
+              <p class="item-price">MX$100.00</p>
+            </div>
+            <div class="order-item">
+              <span>1</span>
+              <p>Clamato Preparado (Sin Alcohol)</p>
+              <p class="item-price">MX$70.00</p>
+            </div>
+            <div class="order-item">
+              <span>1</span>
+              <p>Tostadas (Paq. con 20)</p>
+              <p class="item-price">MX$60.00</p>
+            </div>
+          </div>
+          <div class="order-summary">
+            <p><span>Venta de comida (con IVA):</span> MX$230.00</p>
+            <p><span>Impuesto sobre la renta retenido:</span> -MX$1.98</p>
+            <p><span>IVA retenido:</span> -MX$15.86</p>
+            <p><span>Tasa de servicio (con IVA):</span> MX$80.04</p>
+            <p><strong>Total:</strong> MX$292.20</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="reportes-section" class="section">
+        <h2 id="reportes-title">📊 Reportes</h2>
+        <p id="reportes-description">
+          En esta sección se presentan las estadísticas clave relacionadas con los pedidos. Observa el comportamiento diario, el rendimiento mensual y el progreso acumulado desde el inicio de la actividad.
+        </p>
+        <div id="reportes-charts">
+          <div class="reporte-grafica">
+            <canvas id="grafica-pedidos-dia"></canvas>
+            <h3>Total de pedidos del día</h3>
+            <p class="grafica-detalle">
+              Este gráfico muestra la cantidad de pedidos realizados hoy, desglosados en completados y en progreso.
+            </p>
+          </div>
+          <div class="reporte-grafica">
+            <canvas id="grafica-pedidos-exito-mes"></canvas>
+            <h3>Total de pedidos vendidos con éxito este mes</h3>
+            <p class="grafica-detalle">
+              Analiza el porcentaje de éxito y fallos en los pedidos procesados durante este mes.
+            </p>
+          </div>
+          <div class="reporte-grafica">
+            <canvas id="grafica-avance-pedidos"></canvas>
+            <h3>Progreso acumulado</h3>
+            <p class="grafica-detalle">
+              Representa el avance semanal desde el primer pedido hasta ahora, mostrando una tendencia acumulativa.
+            </p>
+          </div>
+          <div class="reporte-grafica">
+            <canvas id="grafica-pedidos-pagados-cancelados"></canvas>
+            <h3>Pedidos pagados y cancelados</h3>
+            <p class="grafica-detalle">
+              Este gráfico detalla el número de pedidos que han sido pagados y los que han sido cancelados durante el mes actual.
+            </p>
+          </div>
+
+          <div class="reporte-grafica">
+            <canvas id="grafica-pedidos-categorias"></canvas>
+            <h3>Pedidos pendientes por categorías</h3>
+            <p class="grafica-detalle">
+              Esta gráfica clasifica los pedidos pendientes según su nivel de prioridad, ayudando a visualizar dónde se necesita más atención.
+            </p>
+          </div>
+
+          <div class="reporte-grafica">
+            <canvas id="grafica-ingresos-mensuales"></canvas>
+            <h3>Ingresos totales por mes</h3>
+            <p class="grafica-detalle">
+              Observa la evolución de los ingresos en los últimos meses para identificar tendencias financieras.
+            </p>
+          </div>
+
+        </div>
+    </section>
+
+
+    <section id="pagos-section" class="section">
+      <div class="pagos-header">
+        <h1 class="pagos-titulo">Pagos</h1>
+        <p class="pagos-periodo">Período de pago: <span>Jul 22, 2021 - Aug 5, 2021</span></p>
+        <a href="#" class="pagos-descargar">Descargar en el Centro de informes</a>
+      </div>
+
+      <div class="pagos-detalles">
+        <div class="pagos-card">
+          <h2 class="pagos-subtitulo">Total de ganancias</h2>
+          <p class="pagos-valor">$0.00</p>
+        </div>
+        <div class="pagos-card">
+          <h2 class="pagos-subtitulo">Pedidos completados</h2>
+          <p class="pagos-valor">0</p>
+        </div>
+        <div class="pagos-card">
+          <h2 class="pagos-subtitulo">Frecuencia de pago</h2>
+          <p class="pagos-valor">Por semana</p>
+          <button class="pagos-editar">Editar</button>
+        </div>
+        <div class="pagos-card">
+          <h2 class="pagos-subtitulo">Fecha de pago</h2>
+          <p class="pagos-valor">Mon Aug 09 2021</p>
+          <span class="pagos-pendiente">Pendiente</span>
+        </div>
+      </div>
+
+      <div class="pagos-resumen">
+        <p>
+          Tus ganancias incluyen todos los pedidos entregados al cliente entre las
+          <strong>12 a.m. del 26/7/2021</strong> y las <strong>12 a.m. del 9/8/2021</strong>.
+          Las ganancias se depositarán en la cuenta.
+        </p>
+        <div class="pagos-totales">
+          <div>
+            <h3>Ganancias</h3>
+            <p>$0.00</p>
+          </div>
+          <div>
+            <h3>Tarifas y otros pagos</h3>
+            <p>$0.00</p>
+          </div>
+          <div>
+            <h3>Pago total</h3>
+            <p>$0.00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagos-tabla">
+        <h2>Detalles de pedidos</h2>
+        <table>
+          <thead>
+          <tr>
+            <th>Código del Pedido</th>
+            <th>Fecha y Hora</th>
+            <th>Costo</th>
+            <th>Estado</th>
+          </tr>
+          </thead>
+          <tbody id="tabla-pedidos">
+          <!-- Filas dinámicas aquí -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <section id="articulos-section" class="section">
+      <div class="articulos-header">
+        <h1>Artículos</h1>
+        <div class="articulos-filtros">
+          <input type="text" placeholder="Buscar..." id="buscar-articulo">
+          <select id="filtro-categoria">
+            <option value="todo">Todo</option>
+            <option value="alimentos">Alimentos</option>
+            <option value="bebidas">Bebidas</option>
+            <!-- Agregar más categorías si es necesario -->
+          </select>
+          <button id="nuevo-articulo-btn">+ Nuevo artículo</button>
+        </div>
+      </div>
+
+      <table id="articulos-tabla">
+        <thead>
+        <tr>
+          <th>Foto</th>
+          <th>Nombre</th>
+          <th>Notas</th>
+          <th>Precio</th>
+          <th>Menús</th>
+          <th>Categorías</th>
+          <th>Se Usa En</th>
+          <th>Contiene</th>
+          <th>Última actualización</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody id="articulos-tbody">
+        </tbody>
+      </table>
+    </section>
+
+    <div id="articulo-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-titulo">Nuevo Artículo</h2>
+        <form id="articulo-form">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+
+          <label for="notas">Notas:</label>
+          <textarea id="notas" name="notas"></textarea>
+
+          <label for="precio">Precio:</label>
+          <input type="number" id="precio" name="precio" step="0.01" required>
+
+          <label for="menus">Menús:</label>
+          <input type="text" id="menus" name="menus">
+
+          <label for="categorias">Categorías:</label>
+          <input type="text" id="categorias" name="categorias">
+
+          <label for="se-usa-en">Se Usa En:</label>
+          <input type="text" id="se-usa-en" name="se-usa-en">
+
+          <label for="contiene">Contiene:</label>
+          <input type="text" id="contiene" name="contiene">
+
+          <button type="submit">Guardar</button>
+        </form>
+      </div>
+    </div>
+
+    <section id="horarios" class="section">
+      <div class="holiday-schedule">
+        <h2 class="holiday-schedule-title">Horario durante las fiestas</h2>
+        <p class="holiday-schedule-description">
+          Agrega una fecha e indica si el restaurante estará cerrado todo el día. Si estará abierto,
+          puedes acortar el horario de atención.
+        </p>
+        <div class="holiday-schedule-entry">
+          <label for="holiday-date" class="holiday-schedule-label">Fecha</label>
+          <input type="date" id="holiday-date" class="holiday-schedule-date" value="2021-07-04" />
+
+          <label class="holiday-schedule-closed">
+            <input type="checkbox" id="holiday-closed" class="holiday-schedule-checkbox" />
+            Cerrado todo el día
+          </label>
+
+          <label for="holiday-open-time" class="holiday-schedule-label">Horario de apertura</label>
+          <input type="time" id="holiday-open-time" class="holiday-schedule-time" value="11:15" />
+
+          <label for="holiday-close-time" class="holiday-schedule-label">Hora de cierre</label>
+          <input type="time" id="holiday-close-time" class="holiday-schedule-time" value="14:00" />
+
+          <button class="holiday-schedule-remove" onclick="removeEntry(this)">X</button>
+        </div>
+        <button class="holiday-schedule-add" onclick="addEntry()">+ Agregar más</button>
+        <button class="holiday-schedule-save">Guardar</button>
+      </div>
+
+    </section>
+  </main>
+</div>
+
+
+<script src="/js/reports.js"></script>
+<script src="/js/restaurantManagement.js"></script>
+<script src="/js/orderSection.js"></script>
+<script src="/js/payments.js"></script>
+<script src="/js/menu.js"></script>
+<script src="/js/schedules.js"></script>
+
+</body>
+</html>
