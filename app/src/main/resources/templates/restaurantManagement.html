@@ -6,6 +6,11 @@
   <title>Uber Eats para Restaurantes</title>
   <link rel="stylesheet" href="/styles/restaurantManagementStyles.css">
   <link rel="stylesheet" href="/styles/orderSectionStyles.css">
+  <link rel="stylesheet" href="/styles/reportsStyles.css">
+  <link rel="stylesheet" href="/styles/paymentsStyles.css">
+  <link rel="stylesheet" href="/styles/menuStyles.css">
+  <link rel="stylesheet" href="/styles/schedulesStyles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <header class="header">
@@ -16,15 +21,10 @@
     <ul>
       <li data-section="inicio" class="active">Inicio</li>
       <li data-section="pedidos">Pedidos</li>
-      <li data-section="top-uber-eats">El Top de Uber Eats</li>
-      <li data-section="informes">Informes</li>
-      <li data-section="pagos">Pagos</li>
-      <li data-section="menu">Menú</li>
+      <li data-section="reportes-section">Informes</li>
+      <li data-section="pagos-section">Pagos</li>
+      <li data-section="articulos-section">Menú</li>
       <li data-section="horarios">Horario de feriados</li>
-      <li data-section="marketing">Marketing</li>
-      <li data-section="preparacion">Tiempos de preparación</li>
-      <li data-section="usuarios">Usuarios</li>
-      <li data-section="configuracion">Configuración</li>
     </ul>
   </aside>
   <main class="main-content">
@@ -182,56 +182,235 @@
 
     </section>
 
-    <section id="top-uber-eats" class="section">
-      <h2>El Top de Uber Eats</h2>
-      <p>Esta es la sección de El Top de Uber Eats.</p>
+    <section id="reportes-section" class="section">
+        <h2 id="reportes-title">📊 Reportes</h2>
+        <p id="reportes-description">
+          En esta sección se presentan las estadísticas clave relacionadas con los pedidos. Observa el comportamiento diario, el rendimiento mensual y el progreso acumulado desde el inicio de la actividad.
+        </p>
+        <div id="reportes-charts">
+          <div class="reporte-grafica">
+            <canvas id="grafica-pedidos-dia"></canvas>
+            <h3>Total de pedidos del día</h3>
+            <p class="grafica-detalle">
+              Este gráfico muestra la cantidad de pedidos realizados hoy, desglosados en completados y en progreso.
+            </p>
+          </div>
+          <div class="reporte-grafica">
+            <canvas id="grafica-pedidos-exito-mes"></canvas>
+            <h3>Total de pedidos vendidos con éxito este mes</h3>
+            <p class="grafica-detalle">
+              Analiza el porcentaje de éxito y fallos en los pedidos procesados durante este mes.
+            </p>
+          </div>
+          <div class="reporte-grafica">
+            <canvas id="grafica-avance-pedidos"></canvas>
+            <h3>Progreso acumulado</h3>
+            <p class="grafica-detalle">
+              Representa el avance semanal desde el primer pedido hasta ahora, mostrando una tendencia acumulativa.
+            </p>
+          </div>
+          <div class="reporte-grafica">
+            <canvas id="grafica-pedidos-pagados-cancelados"></canvas>
+            <h3>Pedidos pagados y cancelados</h3>
+            <p class="grafica-detalle">
+              Este gráfico detalla el número de pedidos que han sido pagados y los que han sido cancelados durante el mes actual.
+            </p>
+          </div>
+
+          <div class="reporte-grafica">
+            <canvas id="grafica-pedidos-categorias"></canvas>
+            <h3>Pedidos pendientes por categorías</h3>
+            <p class="grafica-detalle">
+              Esta gráfica clasifica los pedidos pendientes según su nivel de prioridad, ayudando a visualizar dónde se necesita más atención.
+            </p>
+          </div>
+
+          <div class="reporte-grafica">
+            <canvas id="grafica-ingresos-mensuales"></canvas>
+            <h3>Ingresos totales por mes</h3>
+            <p class="grafica-detalle">
+              Observa la evolución de los ingresos en los últimos meses para identificar tendencias financieras.
+            </p>
+          </div>
+
+        </div>
     </section>
 
-    <section id="informes" class="section">
-      <h2>Informes</h2>
-      <p>Esta es la sección de informes.</p>
+
+    <section id="pagos-section" class="section">
+      <div class="pagos-header">
+        <h1 class="pagos-titulo">Pagos</h1>
+        <p class="pagos-periodo">Período de pago: <span>Jul 22, 2021 - Aug 5, 2021</span></p>
+        <a href="#" class="pagos-descargar">Descargar en el Centro de informes</a>
+      </div>
+
+      <div class="pagos-detalles">
+        <div class="pagos-card">
+          <h2 class="pagos-subtitulo">Total de ganancias</h2>
+          <p class="pagos-valor">$0.00</p>
+        </div>
+        <div class="pagos-card">
+          <h2 class="pagos-subtitulo">Pedidos completados</h2>
+          <p class="pagos-valor">0</p>
+        </div>
+        <div class="pagos-card">
+          <h2 class="pagos-subtitulo">Frecuencia de pago</h2>
+          <p class="pagos-valor">Por semana</p>
+          <button class="pagos-editar">Editar</button>
+        </div>
+        <div class="pagos-card">
+          <h2 class="pagos-subtitulo">Fecha de pago</h2>
+          <p class="pagos-valor">Mon Aug 09 2021</p>
+          <span class="pagos-pendiente">Pendiente</span>
+        </div>
+      </div>
+
+      <div class="pagos-resumen">
+        <p>
+          Tus ganancias incluyen todos los pedidos entregados al cliente entre las
+          <strong>12 a.m. del 26/7/2021</strong> y las <strong>12 a.m. del 9/8/2021</strong>.
+          Las ganancias se depositarán en la cuenta.
+        </p>
+        <div class="pagos-totales">
+          <div>
+            <h3>Ganancias</h3>
+            <p>$0.00</p>
+          </div>
+          <div>
+            <h3>Tarifas y otros pagos</h3>
+            <p>$0.00</p>
+          </div>
+          <div>
+            <h3>Pago total</h3>
+            <p>$0.00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagos-tabla">
+        <h2>Detalles de pedidos</h2>
+        <table>
+          <thead>
+          <tr>
+            <th>Código del Pedido</th>
+            <th>Fecha y Hora</th>
+            <th>Costo</th>
+            <th>Estado</th>
+          </tr>
+          </thead>
+          <tbody id="tabla-pedidos">
+          <!-- Filas dinámicas aquí -->
+          </tbody>
+        </table>
+      </div>
     </section>
 
-    <section id="pagos" class="section">
-      <h2>Pagos</h2>
-      <p>Esta es la sección de pagos.</p>
+
+    <section id="articulos-section" class="section">
+      <div class="articulos-header">
+        <h1>Artículos</h1>
+        <div class="articulos-filtros">
+          <input type="text" placeholder="Buscar..." id="buscar-articulo">
+          <select id="filtro-categoria">
+            <option value="todo">Todo</option>
+            <option value="alimentos">Alimentos</option>
+            <option value="bebidas">Bebidas</option>
+            <!-- Agregar más categorías si es necesario -->
+          </select>
+          <button id="nuevo-articulo-btn">+ Nuevo artículo</button>
+        </div>
+      </div>
+
+      <table id="articulos-tabla">
+        <thead>
+        <tr>
+          <th>Foto</th>
+          <th>Nombre</th>
+          <th>Notas</th>
+          <th>Precio</th>
+          <th>Menús</th>
+          <th>Categorías</th>
+          <th>Se Usa En</th>
+          <th>Contiene</th>
+          <th>Última actualización</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody id="articulos-tbody">
+        </tbody>
+      </table>
     </section>
 
-    <section id="menu" class="section">
-      <h2>Menú</h2>
-      <p>Esta es la sección del menú.</p>
-    </section>
+    <div id="articulo-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-titulo">Nuevo Artículo</h2>
+        <form id="articulo-form">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+
+          <label for="notas">Notas:</label>
+          <textarea id="notas" name="notas"></textarea>
+
+          <label for="precio">Precio:</label>
+          <input type="number" id="precio" name="precio" step="0.01" required>
+
+          <label for="menus">Menús:</label>
+          <input type="text" id="menus" name="menus">
+
+          <label for="categorias">Categorías:</label>
+          <input type="text" id="categorias" name="categorias">
+
+          <label for="se-usa-en">Se Usa En:</label>
+          <input type="text" id="se-usa-en" name="se-usa-en">
+
+          <label for="contiene">Contiene:</label>
+          <input type="text" id="contiene" name="contiene">
+
+          <button type="submit">Guardar</button>
+        </form>
+      </div>
+    </div>
 
     <section id="horarios" class="section">
-      <h2>Horario de feriados</h2>
-      <p>Esta es la sección de horarios.</p>
-    </section>
+      <div class="holiday-schedule">
+        <h2 class="holiday-schedule-title">Horario durante las fiestas</h2>
+        <p class="holiday-schedule-description">
+          Agrega una fecha e indica si el restaurante estará cerrado todo el día. Si estará abierto,
+          puedes acortar el horario de atención.
+        </p>
+        <div class="holiday-schedule-entry">
+          <label for="holiday-date" class="holiday-schedule-label">Fecha</label>
+          <input type="date" id="holiday-date" class="holiday-schedule-date" value="2021-07-04" />
 
-    <section id="marketing" class="section">
-      <h2>Marketing</h2>
-      <p>Esta es la sección de marketing.</p>
-    </section>
+          <label class="holiday-schedule-closed">
+            <input type="checkbox" id="holiday-closed" class="holiday-schedule-checkbox" />
+            Cerrado todo el día
+          </label>
 
-    <section id="preparacion" class="section">
-      <h2>Tiempos de preparación</h2>
-      <p>Esta es la sección de tiempos de preparación.</p>
-    </section>
+          <label for="holiday-open-time" class="holiday-schedule-label">Horario de apertura</label>
+          <input type="time" id="holiday-open-time" class="holiday-schedule-time" value="11:15" />
 
-    <section id="usuarios" class="section">
-      <h2>Usuarios</h2>
-      <p>Esta es la sección de usuarios.</p>
-    </section>
+          <label for="holiday-close-time" class="holiday-schedule-label">Hora de cierre</label>
+          <input type="time" id="holiday-close-time" class="holiday-schedule-time" value="14:00" />
 
-    <section id="configuracion" class="section">
-      <h2>Configuración</h2>
-      <p>Esta es la sección de configuración.</p>
-    </section>
+          <button class="holiday-schedule-remove" onclick="removeEntry(this)">X</button>
+        </div>
+        <button class="holiday-schedule-add" onclick="addEntry()">+ Agregar más</button>
+        <button class="holiday-schedule-save">Guardar</button>
+      </div>
 
+    </section>
   </main>
 </div>
 
+
+<script src="/js/reports.js"></script>
 <script src="/js/restaurantManagement.js"></script>
 <script src="/js/orderSection.js"></script>
+<script src="/js/payments.js"></script>
+<script src="/js/menu.js"></script>
+<script src="/js/schedules.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#articulos-section {
+    padding: 20px;
+}
+
+.articulos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.articulos-header h1 {
+    font-size: 24px;
+}
+
+.articulos-filtros {
+    display: flex;
+    gap: 10px;
+}
+
+#buscar-articulo, #filtro-categoria, #nuevo-articulo-btn {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#nuevo-articulo-btn {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+#articulos-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#articulos-tabla th, #articulos-tabla td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#articulos-tabla th {
+    background-color: #f5f5f5;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+}
+
+.modal-content input, .modal-content textarea, .modal-content button {
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
