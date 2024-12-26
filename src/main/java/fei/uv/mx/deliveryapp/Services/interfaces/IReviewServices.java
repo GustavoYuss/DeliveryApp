@@ -9,5 +9,6 @@ public interface IReviewServices {
     boolean deleteReview(int id);
     boolean updateReview(Review review);
     List<Review> getReviewsByDishId(int dishId);
+    double getReviewRating(int dishId);
     List<Review> getReviewsByUserId(int userId);
 }

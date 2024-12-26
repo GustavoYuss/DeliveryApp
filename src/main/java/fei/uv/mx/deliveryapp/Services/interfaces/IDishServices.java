@@ -9,5 +9,6 @@ public interface IDishServices {
     boolean deleteDish(int id);
     boolean updateDish(Dish dish);
     List<Dish> getDishesByRestaurantId(int restaurantId);
+    List<Dish> getTop5DishesByRestaurantId(int restaurantId, int excludedDishId);
     List<Dish> getDishesByDishTypeId(int restaurantId);
 }

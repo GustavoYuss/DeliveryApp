@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto</title>
-    <link rel="stylesheet" href="/styles/shoppingCarStyles.css">
+    <title th:text = "${product.getName()}"></title>
+    <link rel="stylesheet" href="/styles/detailsStyles.css">
 </head>
 <body>
     <div th:replace="fragments/bar :: header"></div>
-    <div class="container">
-        <a href="#" class="back-link">← Regresar a Pollo Feliz (Av. Xalapa)</a>
+    <div class="containerProduct">
+        <a href="#" class="back-link" th:text="'← ' + ${product.getIdRestaurant().getNameRestaurant()}"/>
         <div class="product-section">
             <div class="image-container">
                 <img src="https://www.paulinacocina.net/wp-content/uploads/2023/05/receta-pollo-frito-crujiente.jpg" alt="Pollo" class="product-image">
             </div>
             <div class="product-details">
-                <h1>1 Pollo</h1>
-                <p class="price">MX$285.00</p>
-                <p class="description">Incluye: Tortillas, salsas, cebolla asada, chile asado y totopos</p>
+                <h1 th:text = "${product.getName()}"></h1>
+                <p class="price"  th:text = "'MX$ ' + ${product.getNormalPrice().toString()}"></p>
+                <p class="description" th:text = "${product.getDescription()}"></p>
                 <div class="likes">
-                    <span>#1 más elogiado</span> <span>👍 91% (2041)</span>
+                    <span>#1 más elogiado</span> <span th:text="'👍 ' + ${review} + '%'"/>
                 </div>
                 <div class="order-section">
                     <select class="quantity-select">
@@ -27,7 +27,7 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
-                    <button class="order-button">Añadir 1 a la orden • MX$285.00</button>
+                    <button class="order-button"  th:text = "'Añadir 1 a la orden • MX$ ' + ${product.getNormalPrice()}"/>
                 </div>
             </div>
         </div>
@@ -35,30 +35,9 @@
         <div class="frequently-bought">
             <h2>Comunmente comprados juntos</h2>
             <div class="product-grid">
-                <div class="product-card">
-                    <p>Guacamole</p>
-                    <p class="small-price">MX$85.00 • 👍 92% (335)</p>
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-card">
-                    <p>1/2 Pollo</p>
-                    <p class="small-price">MX$160.00 • 👍 89% (605)</p>
-                    <p>Incluye: Tortillas, salsas, cebolla asada, chile asado y totopos</p>
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-card">
-                    <p>Frijoles Charros</p>
-                    <p class="small-price">MX$60.00 • 👍 83% (158)</p>
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-card">
-                    <p>Papas a la francesa</p>
-                    <p class="small-price">MX$65.00 • 👍 87% (229)</p>
-                    <button class="add-button">+</button>
-                </div>
-                <div class="product-card">
-                    <p>Papas a la francesa</p>
-                    <p class="small-price">MX$65.00 • 👍 93% (89)</p>
+                <div class="product-card" th:each="dish: ${dishes}">
+                    <p th:text="${dish.getName()}"></p>
+                    <p class="small-price" th:text="'MX$ ' + ${dish.getNormalPrice().toString()} +  ' • 👍' + ${review} + '%'"/>
                     <button class="add-button">+</button>
                 </div>
             </div>
