@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway Page</title>
+    <link rel="stylesheet" href="/styles/restaurantDetailsStyles.css">
+</head>
+<body>
+
+<div th:replace="fragments/bar :: header"></div>
+
+<div class="page-container">
+
+    <div class="restaurant-banner">
+        <img th:src="@{${restaurant.imagePath}}" alt="Restaurant Banner">
+        <div class="restaurant-image">
+            <img th:src="@{${restaurant.imageLogoPath}}" alt="Subway Logo">
+        </div>
+    </div>
+
+    <div class="restaurant-info">
+        <div>
+            <h1 th:text="${restaurant.nameRestaurant}"></h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar en Subway">
+        </div>
+    </div>
+
+    <div class="actions-container">
+        <div class="actions">
+            <p class="restaurant-info-details">
+                <span class="rating">4.1 ★</span> (1,500+) • Costo de envío: $23 •
+                <span class="uber-one">Uber One</span> • <a href="#">Información</a>
+            </p>
+        </div>
+        <div class="delivery-info">
+            <div class="optionButtons-container">
+                <div class="optionButtons active">Entrega a domicilio</div>
+                <div class="optionButtons">Recolectar</div>
+                <div class="optionButtons">Pedido grupal</div>
+            </div>
+            <div class="cost-info">
+                <p>Costo de envío: $23</p>
+                <span class="subtext">Precios y tarifas</span>
+            </div>
+            <div class="time-info">
+                <p>10 min</p>
+                <span class="subtext">Llegada más temprana</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="restaurants-Section">
+        <div class="header">
+            <div class="header-title">
+                <h2 class="subtitle-restaurants">Productos populares</h2>
+                <span>Productos amados por sus clientes.</span>
+            </div>
+        </div>
+
+        <button class="arrow-btn left-arrow-restaurants" id="leftArrow">&#9664;</button>
+
+        <div class="restaurants-carousel recent-restaurants" id="products-Recents">
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+
+            <div class="restaurants-item">
+                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
+                <div class="restaurants-content">
+                    <h3>Comida Mexicana</h3>
+                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
+                </div>
+            </div>
+        </div>
+
+        <button class="arrow-btn right-arrow-restaurants" id="rightArrow">&#9654;</button>
+
+</div>
+
+    <div class="container-Products">
+        <h1 th:text="${restaurant.nameRestaurant} + ' productos'"></h1>
+        <div id="product-container" class="product-grid"></div>
+        <div class="pagination">
+            <button id="prevPage" class="pagination-btn">Anterior</button>
+            <button id="nextPage" class="pagination-btn">Siguiente</button>
+        </div>
+    </div>
+    
+</div>
+
+<script src="/js/bar.js"></script>
+<script src="/js/restaurantDetails.js"></script>
+
+</body>
+</html>

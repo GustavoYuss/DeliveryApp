@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Uber</title>
+    <link rel="stylesheet" href="/styles/userProfile.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Cuenta DeliveryApp</h1>
+    </header>
+    <main>
+        <aside class="sidebar">
+            <button id="btn-info" class="active">Información de la cuenta</button>
+            <button id="btn-security">Seguridad</button>
+            <button id="btn-privacy">Protección de datos</button>
+        </aside>
+        <section class="content" id="content">
+            <!-- El contenido dinámico será cargado aquí -->
+            <div id="info" class="section active">
+                <h2>Información de la cuenta</h2>
+                <div class="profile">
+                    <img src="/images/userprofile.png" alt="Imagen de perfil">
+                    <p>Información básica</p>
+                    <ul>
+                        <li>
+                            <strong>Nombre:</strong> Miguel Camo
+                            <button class="edit-btn" data-target="edit-name">✎</button>
+                        </li>
+                        <li>
+                            <strong>Número de teléfono:</strong> +5212731010078
+                            <button class="edit-btn" data-target="edit-phone">✎</button>
+                        </li>
+                        <li>
+                            <strong>Correo electrónico:</strong> camomiguel@gmail.com
+                            <button class="edit-btn" data-target="edit-email">✎</button>
+                        </li>
+                    </ul>
+                </div>
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="modal-body"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="security" class="section">
+                <h1>Seguridad</h1>
+                <p>Si desea restablecer su contraseña llene los siguiente campos:</p>
+
+                <div class="password-content">
+                    <form>
+                        <label class="labelPassword" for="last-Password">Ingrese contraseña Antigua</label>
+                        <input type="text" id="last-Password" value="">
+                        <label class="labelPassword" for="new-Password">Ingresen la nueva contraseña</label>
+                        <input type="text" id="new-password">
+                        <label class="labelPassword" for="new-password-Confirm">Confirme la nueva contraseña</label>
+                        <input type="text" id="new-password-Confirm">
+                        <button class="buttonRegister" type="submit">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+            <div id="privacy" class="section">
+                <h1>Protección de datos</h1>
+                <h2>Privacidad</h2>
+                <h3>Centro de privacidad</h3>
+                <p>Controla tu privacidad y conoce cómo la protegemos.</p>
+
+                <h3>Apps de terceros con acceso a la cuenta</h3>
+                <p>Una vez que permitas el acceso a las apps de terceros, las verás aquí. Conoce más.</p>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="/js/userProfile.js"></script>
+</body>
+</html>

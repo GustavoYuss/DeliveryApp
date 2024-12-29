@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fucking Eats Home</title>
+    <link rel="stylesheet" href="/styles/indexStyles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+<div th:insert="~{fragments/bar :: header}"></div>
+
+<section class="category-container">
+    <button class="arrow-btn left-arrow" id="leftArrow">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <div class="category-list" id="categoryList"></div>
+    <button class="arrow-btn right-arrow" id="rightArrow">
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</section>
+
+<section class="ads-section">
+    <button class="arrow-btn arrow-left">&#9664;</button>
+    <div class="ads-carousel" id="ads">
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>¡Te presentamos una experiencia Cool&Deli!</h2>
+                <p>Prueba lo nuevo</p>
+                <button>Únete!</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="Cool & Deli">
+            </div>
+        </div>
+
+        <!-- Agrega más anuncios aquí según necesites -->
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>¡Te presentamos una experiencia Cool&Deli!</h2>
+                <p>Prueba lo nuevo</p>
+                <button>Únete!</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="Cool & Deli">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>¡Te presentamos una experiencia Cool&Deli!</h2>
+                <p>Prueba lo nuevo</p>
+                <button>Únete!</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="Cool & Deli">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>¡Te presentamos una experiencia Cool&Deli!</h2>
+                <p>Prueba lo nuevo</p>
+                <button>Únete!</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="Cool & Deli">
+            </div>
+        </div>
+
+        <div class="ad">
+            <div class="ad-content">
+                <h2>McTrio Cuarto de libra con Salsa Cheddar y un complemento sin costo</h2>
+                <p>¡Cheddar Nights!</p>
+                <button>Ordena aquí</button>
+            </div>
+            <div class="ad-image">
+                <img src="https://image.freepik.com/psd-gratis/plantilla-promocional-deliciosa-hamburguesa-o-restaurante-redes-sociales_256771-31.jpg" alt="McTrio con Salsa Cheddar">
+            </div>
+        </div>
+    </div>
+    <button class="arrow-btn arrow-right">&#9654;</button>
+</section>
+
+<section id="restaurants" >
+
+    <!-- Recienes -->
+    <div class="restaurants-Section">
+        <div class="header">
+            <div class="header-title">
+                <h2 class="subtitle-restaurants">Restauranes Recientes</h2>
+                <span>Los restauranes visitados recientemente.</span>
+            </div>
+        </div>
+
+        <button class="arrow-btn left-arrow-restaurants left-arrow-rr">&#9664;</button>
+        <div class="restaurants-carousel recent-restaurants"></div>
+        <button class="arrow-btn right-arrow-restaurants right-arrow-rr">&#9654;</button>
+    </div>
+
+    <!-- Parte de las mas puntuadas -->
+    <div class="restaurants-Section">
+        <div class="header">
+            <div class="header-title">
+                <h2 class="subtitle-restaurants">Mayor Calificación</h2>
+                <span>Las mejores calificaciones y un servicio excelente en todo momento.</span>
+            </div>
+        </div>
+
+        <button class="arrow-btn left-arrow-restaurants" id="arrow1">&#9664;</button>
+        <div class="restaurants-carousel" id="recentRestaurants"></div>
+        <button class="arrow-btn right-arrow-restaurants" id="arrow2">&#9654;</button>
+    </div>
+
+    <!-- Parte de las mas bara -->
+    <div class="restaurants-Section">
+        <div class="header">
+            <div class="header-title">
+                <h2 class="subtitle-restaurants">Buenas comidas a excelentes precios</h2>
+                <span>Las mejores calificaciones y un precio muy razonable.</span>
+            </div>
+        </div>
+
+        <button class="arrow-btn left-arrow-restaurants" id="leftArrow2" >&#9664;</button>
+        <div class="restaurants-carousel" id="Cheap"></div>
+        <button class="arrow-btn right-arrow-restaurants" id="rightArrow2">&#9654;</button>
+    </div>
+
+    <div class="restaurants-All-Section">
+        <div class="header">
+            <h2>Todos los Restaurantes</h2>
+        </div>
+
+        <div class="restaurants-table" id="restaurantsTable"></div>
+
+        <button class="load-more-restaurans-btn" id="loadMoreBtn">Ver más</button>
+    </div>
+</section>
+
+<script src="/js/index.js"></script>
+<script src="/js/bar.js"></script>
+
+</body>
+</html>
