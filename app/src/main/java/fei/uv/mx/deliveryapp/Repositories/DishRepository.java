@@ -31,9 +31,9 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
         return false;
     }
 
-    @Query("SELECT d FROM Dish d WHERE d.idRestaurant.id = ?1")
+    @Query("SELECT d FROM Dish d WHERE d.restaurant.id = ?1")
     List<Dish> findByRestaurantId(int restaurantId);
 
-    @Query("SELECT d FROM Dish d WHERE d.idDishType.id = ?1")
+    @Query("SELECT d FROM Dish d WHERE d.dishType.id = ?1")
     List<Dish> findByDishTypeId(int dishTypeId);
 }

@@ -373,12 +373,119 @@ h1 {
     background-color: #333333;
 }
 
+.logo-title {
+    margin-top: 21px;
+}
 
 
 
 
 
 
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.modal.hidden {
+    display: none;
+}
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    width: 90%;
+    height: 18cm;
+    max-width: 28cm;
+    border-radius: 8px;
+    position: relative;
+}
 
+.close-btn {
+    position: absolute;
+    top: 9px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+}
 
+.modal-info {
+    display: flex;
+    gap: 20px;
+}
+
+.modal-info img {
+    width: 13cm;
+    height: 13cm;
+    margin-top: 47px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.modal-details {
+    flex-grow: 1;
+    margin-top: 48px;
+}
+
+#special-instructions {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.add-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: #218838;
+}
+
+h1#modal-name {
+    font-size: xx-large;
+    color: darkgreen;
+    margin-bottom: 4px;
+}
+
+p#modal-price {
+    font-size: x-large;
+    color: slategray;
+    font-stretch: normal;
+    font-family: inherit;
+    margin-left: 1px;
+    margin-bottom: 18px;
+}
+
+p#modal-description {
+    width: 11cm;
+    margin-bottom: 30px;
+}
+
+textarea#special-instructions {
+    width: 503px;
+    height: 239px;
+    margin-bottom: 4px;
+}
+
+p#subtituloBox {
+    color: saddlebrown;
+    margin-bottom: 20px;
+    margin-left: 11px;
+    font-size: 12px;
+}

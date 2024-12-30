@@ -1,5 +1,6 @@
 package fei.uv.mx.deliveryapp.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -12,26 +13,30 @@ public class Dish {
     @Column(name = "idDish", nullable = false)
     private Integer id;
 
-    @Column(name = "Name", length = 50)
+    @Column(name = "Name", length = 150)
     private String name;
 
-    @Lob
-    @Column(name = "Description")
+    @Column(name = "Description", length = 255)
     private String description;
 
     @Column(name = "NormalPrice")
     private BigDecimal normalPrice;
+
+    @Column(name = "ImagePath", length = 455)
+    private String imagePath;
 
     @Column(name = "OfferPrice")
     private BigDecimal offerPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdRestaurant")
-    private Restaurant idRestaurant;
+    @JsonBackReference
+    private Restaurant restaurant;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdDishType")
-    private Dish idDishType;
+    @JsonBackReference
+    private DishType dishType;
 
     public Integer getId() {
         return id;
@@ -73,19 +78,27 @@ public class Dish {
         this.offerPrice = offerPrice;
     }
 
-    public Restaurant getIdRestaurant() {
-        return idRestaurant;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setIdRestaurant(Restaurant idRestaurant) {
-        this.idRestaurant = idRestaurant;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public Dish getIdDishType() {
-        return idDishType;
+    public DishType getDishType() {
+        return dishType;
     }
 
-    public void setIdDishType(Dish idDishType) {
-        this.idDishType = idDishType;
+    public void setDishType(DishType dishType) {
+        this.dishType = dishType;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
