@@ -4,6 +4,8 @@ import fei.uv.mx.deliveryapp.Models.Dish;
 import fei.uv.mx.deliveryapp.Repositories.DishRepository;
 import fei.uv.mx.deliveryapp.Services.interfaces.IDishServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest; // Correct import
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +43,10 @@ public class DishServices implements IDishServices {
     @Override
     public List<Dish> getDishesByRestaurantId(int restaurantId) {
         return dishRepository.findByRestaurantId(restaurantId);
+    }
+
+    @Override
+    public List<Dish> getTop5DishesByRestaurantId(int restaurantId, int excludedDishId) {
+        return dishRepository.findTop5ByRestaurantIdExceptDishId(restaurantId,excludedDishId, PageRequest.of(0, 5));
     }
 }

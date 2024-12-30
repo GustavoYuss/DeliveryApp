@@ -31,7 +31,7 @@ public class Dish {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdDishType")
-    private Dish idDishType;
+    private DishType idDishType;
 
     public Integer getId() {
         return id;
@@ -81,11 +81,11 @@ public class Dish {
         this.idRestaurant = idRestaurant;
     }
 
-    public Dish getIdDishType() {
+    public DishType getIdDishType() {
         return idDishType;
     }
 
-    public void setIdDishType(Dish idDishType) {
+    public void setIdDishType(DishType idDishType) {
         this.idDishType = idDishType;
     }
 }
