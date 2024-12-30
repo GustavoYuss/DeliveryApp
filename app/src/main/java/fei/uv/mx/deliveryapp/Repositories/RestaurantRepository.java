@@ -3,6 +3,7 @@ package fei.uv.mx.deliveryapp.Repositories;
 import fei.uv.mx.deliveryapp.Models.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -33,4 +34,11 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 
     @Query("SELECT u FROM Restaurant u")
     List<Restaurant> getAllRestaurant();
+
+    @Query("SELECT r FROM Restaurant r " +
+            "JOIN RestaurantDishType rdt ON r.id = rdt.idRestaurant " +
+            "JOIN DishType dt ON rdt.idDishType = dt.id " +
+            "WHERE dt.id = :dishTypeId")
+    List<Restaurant> findRestaurantsByDishTypeId(@Param("dishTypeId") Integer dishTypeId);
+
 }

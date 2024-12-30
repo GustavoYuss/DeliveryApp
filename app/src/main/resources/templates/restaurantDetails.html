@@ -61,52 +61,9 @@
         </div>
 
         <button class="arrow-btn left-arrow-restaurants" id="leftArrow">&#9664;</button>
-
-        <div class="restaurants-carousel recent-restaurants" id="products-Recents">
-            <div class="restaurants-item">
-                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
-                <div class="restaurants-content">
-                    <h3>Comida Mexicana</h3>
-                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
-                </div>
-            </div>
-
-            <div class="restaurants-item">
-                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
-                <div class="restaurants-content">
-                    <h3>Comida Mexicana</h3>
-                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
-                </div>
-            </div>
-
-            <div class="restaurants-item">
-                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
-                <div class="restaurants-content">
-                    <h3>Comida Mexicana</h3>
-                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
-                </div>
-            </div>
-
-            <div class="restaurants-item">
-                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
-                <div class="restaurants-content">
-                    <h3>Comida Mexicana</h3>
-                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
-                </div>
-            </div>
-
-            <div class="restaurants-item">
-                <img src="https://images.unsplash.com/photo-1562967914-01efa7e87832?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2252&q=80" alt="Listing pic" />
-                <div class="restaurants-content">
-                    <h3>Comida Mexicana</h3>
-                    <span>$25.00 MXM | <span class="rating">4.2 ★</span></span>
-                </div>
-            </div>
-        </div>
-
+        <div class="restaurants-carousel recent-restaurants" id="products-Recents"></div>
         <button class="arrow-btn right-arrow-restaurants" id="rightArrow">&#9654;</button>
-
-</div>
+    </div>
 
     <div class="container-Products">
         <h1 th:text="${restaurant.nameRestaurant} + ' productos'"></h1>
@@ -114,6 +71,24 @@
         <div class="pagination">
             <button id="prevPage" class="pagination-btn">Anterior</button>
             <button id="nextPage" class="pagination-btn">Siguiente</button>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-modal" class="close-btn">&times;</button>
+            <div class="modal-info">
+                <img id="modal-image" src="" alt="Producto">
+                <div class="modal-details">
+                    <h1 id="modal-name"></h1>
+                    <p id="modal-price"></p>
+                    <p id="modal-description"></p>
+                    <h1>Instrucciones especiales</h1>
+                    <textarea id="special-instructions" placeholder="Agregar una nota"></textarea>
+                    <p id="subtituloBox">Es posible que se te cobren los artículos adicionales.</p>
+                    <button id="add-to-cart" class="add-btn">Agregar al pedido</button>
+                </div>
+            </div>
         </div>
     </div>
     

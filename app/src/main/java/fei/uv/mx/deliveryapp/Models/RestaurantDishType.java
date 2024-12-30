@@ -5,14 +5,18 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "\"RestaurantDishType\"")
 public class RestaurantDishType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idRestaurantDishType", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idRestaurant")
-    private Restaurant idRestaurant;
+    @Column(name = "idRestaurant", nullable = false)
+    private Integer idRestaurant;
+
+    @Column(name = "idDishType", nullable = false)
+    private Integer idDishType;
+
 
     public Integer getId() {
         return id;
@@ -22,12 +26,20 @@ public class RestaurantDishType {
         this.id = id;
     }
 
-    public Restaurant getIdRestaurant() {
+    public Integer getIdRestaurant() {
         return idRestaurant;
     }
 
-    public void setIdRestaurant(Restaurant idRestaurant) {
+    public void setIdRestaurant(Integer idRestaurant) {
         this.idRestaurant = idRestaurant;
+    }
+
+    public Integer getIdDishType() {
+        return idDishType;
+    }
+
+    public void setIdDishType(Integer idDishType) {
+        this.idDishType = idDishType;
     }
 
 }

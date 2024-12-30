@@ -27,7 +27,7 @@ header .logo {
     display:flex;
 }
 
-h1#logo {
+.logo-title {
     font-size: 1.2rem;
     margin-left: 20px;
     color: rgb(0, 0, 0);
