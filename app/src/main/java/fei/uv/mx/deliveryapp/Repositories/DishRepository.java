@@ -3,6 +3,7 @@ package fei.uv.mx.deliveryapp.Repositories;
 import fei.uv.mx.deliveryapp.Models.Dish;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -36,4 +37,8 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
 
     @Query("SELECT d FROM Dish d WHERE d.dishType.id = ?1")
     List<Dish> findByDishTypeId(int dishTypeId);
+
+    @Query("SELECT d FROM Dish d WHERE d.restaurant.id = ?1 AND d.id <> ?2")
+    List<Dish> findTop5ByRestaurantIdExceptDishId(int restaurantId, int excludedDishId, Pageable pageable);
+
 }
