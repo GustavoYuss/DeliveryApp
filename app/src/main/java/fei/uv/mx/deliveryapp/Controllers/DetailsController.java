@@ -21,7 +21,7 @@ public class DetailsController {
     public String showIndexPage(@RequestParam(name = "product", required = false) int product, Model model) {
         Dish dish = dishServices.getDish(product);
         model.addAttribute("product", dish);
-        model.addAttribute("dishes", dishServices.getTop5DishesByRestaurantId(dish.getIdRestaurant().getId(), dish.getId()));
+        model.addAttribute("dishes", dishServices.getTop5DishesByRestaurantId(dish.getRestaurant().getId(), dish.getId()));
         model.addAttribute("review", reviewServices.getReviewRating(product));
         return "details";
     }

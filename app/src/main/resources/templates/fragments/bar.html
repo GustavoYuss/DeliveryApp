@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery Eats - OpenStreetMap</title>
 
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <!-- Tu CSS -->
     <link rel="stylesheet" href="/styles/barStyles.css" />
 
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
@@ -25,7 +22,7 @@
             <i class="fa-solid fa-bars"></i>
         </div>
         <div class="logo" onclick="redirectToIndex()">
-            <h1 id="logo">Delivery <span>Eats</span></h1>
+            <h1 class="logo-title">Delivery <span>Eats</span></h1>
         </div>
         <div class="option-bar">
             <div class="option active">Entrega a domicilio</div>
@@ -34,7 +31,6 @@
         <div class="currentDetails">
             <div class="header-option" onclick="showMap()">
                 <i data-feather="map-pin"></i>
-                <!-- Aquí se mostrará el icono y la dirección simplificada -->
                 <span class="space-right"><i class="fa-solid fa-location-dot"></i> <span id="locationLabel"></span></span>
                 <i class="fa-solid fa-chevron-down"></i>
             </div>
