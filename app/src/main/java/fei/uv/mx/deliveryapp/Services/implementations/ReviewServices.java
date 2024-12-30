@@ -4,6 +4,7 @@ import fei.uv.mx.deliveryapp.Models.Review;
 import fei.uv.mx.deliveryapp.Repositories.ReviewRepository;
 import fei.uv.mx.deliveryapp.Services.interfaces.IReviewServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,7 +40,13 @@ public class ReviewServices implements IReviewServices {
     }
 
     @Override
+    public double getReviewRating(int dishId) {
+        return reviewRepository.getReviewRating(dishId);
+    }
+
+    @Override
     public List<Review> getReviewsByUserId(int userId) {
         return reviewRepository.getReviewsByUser(userId);
     }
+
 }

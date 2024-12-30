@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "\"OrderDish\"")
-public class OrderDish {
+@Table(name = "\"OrderRestaurant\"")
+public class OrderRestaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idOrderDish", nullable = false)
+    @Column(name = "idOrderRestaurant", nullable = false)
     private Integer id;
 
     @Column(name = "UnitPrice")
@@ -25,6 +25,10 @@ public class OrderDish {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idDish")
     private Dish idDish;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idRestaurant")
+    private Restaurant idRestaurant;
 
     public Integer getId() {
         return id;
@@ -64,6 +68,12 @@ public class OrderDish {
 
     public void setIdDish(Dish idDish) {
         this.idDish = idDish;
+    }
+
+    public Restaurant getIdRestaurant() {return this.idRestaurant;}
+
+    public void setIdRestaurant(Restaurant idRestaurant) {
+        this.idRestaurant = idRestaurant;
     }
 
 }

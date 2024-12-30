@@ -39,4 +39,8 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     @Query("SELECT r FROM Review r WHERE r.idUser.id = ?1")
     List<Review> getReviewsByUser(int userId);
+
+    @Query("SELECT (SUM(r.rating) / COUNT(r)) AS resultado FROM Review r WHERE r.idDish.id = ?1")
+    double getReviewRating(int idDish);
+
 }

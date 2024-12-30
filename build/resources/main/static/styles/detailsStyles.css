@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.containerProduct {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.back-link {
+    display: block;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.product-section {
+    display: flex;
+    gap: 20px;
+}
+
+.image-container {
+    flex: 1;
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-details h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.likes {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.order-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.quantity-select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.order-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.order-button:hover {
+    background-color: #333;
+}
+
+.frequently-bought {
+    margin-top: 40px;
+}
+
+.frequently-bought h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.product-card {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.product-card p {
+    margin: 5px 0;
+}
+
+.small-price {
+    color: #777;
+    font-size: 0.9rem;
+}
