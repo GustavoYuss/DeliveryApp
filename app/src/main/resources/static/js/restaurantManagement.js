@@ -91,3 +91,33 @@ products.forEach(product => {
 
     productContainer.appendChild(productCard);
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("articulo-form");
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Evita el envío tradicional del formulario
+
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: formData
+            });
+
+            if (response.ok) {
+                // Recargar la página si el servidor responde con éxito (200 OK)
+                console.log("VINO AQUI");
+                location.reload();
+            } else {
+                // Manejar errores
+                const errorMessage = await response.text();
+                alert("Error: " + errorMessage);
+            }
+        } catch (error) {
+            console.error("Error al enviar el formulario:", error);
+            alert("Error al procesar la solicitud. Intenta nuevamente.");
+        }
+    });
+});

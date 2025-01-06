@@ -17,14 +17,17 @@ public class OrderAppRestaurant {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idOrderRestaurant")
-    private OrderRestaurant idRestaurant;
+    private OrderRestaurant idOrderRestaurant;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idRestaurant")
+    private Restaurant idRestaurant;
 
-    public OrderRestaurant getIdRestaurant() {
+    public Restaurant getIdRestaurant() {
         return this.idRestaurant;
     }
 
-    public void setIdRestaurant(OrderRestaurant idRestaurant) {
+    public void setIdRestaurant(Restaurant idRestaurant) {
         this.idRestaurant = idRestaurant;
     }
 
@@ -42,5 +45,13 @@ public class OrderAppRestaurant {
 
     public void setIdOrderAAppRestaurant(int idOrderAAppRestaurant) {
         this.idOrderAAppRestaurant = idOrderAAppRestaurant;
+    }
+
+    public OrderRestaurant getIdOrderRestaurant() {
+        return idOrderRestaurant;
+    }
+
+    public void setIdOrderRestaurant(OrderRestaurant idOrderRestaurant) {
+        this.idOrderRestaurant = idOrderRestaurant;
     }
 }

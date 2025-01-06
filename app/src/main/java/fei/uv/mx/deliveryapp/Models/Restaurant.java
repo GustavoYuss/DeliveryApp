@@ -29,6 +29,10 @@ public class Restaurant {
     @Column(name = "ImageLogoPath", length = 130)
     private String imageLogoPath;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdUser")
+    private User user;
+
     public Integer getId() {
         return id;
     }

@@ -22,7 +22,7 @@ public class RestaurantSeeder implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
-        /*
+/*
         Restaurant restaurant1 = new Restaurant();
         restaurant1.setNameRestaurant("Starbucks");
         restaurant1.setOpenTime(LocalTime.of(9, 0));
@@ -71,6 +71,6 @@ public class RestaurantSeeder implements CommandLineRunner {
         restaurantRepository.save(restaurant4);
         restaurantRepository.save(restaurant5);
         restaurantRepository.save(restaurant6);
-        */
+*/
     }
 }

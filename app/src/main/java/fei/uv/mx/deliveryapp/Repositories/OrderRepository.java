@@ -1,6 +1,8 @@
 package fei.uv.mx.deliveryapp.Repositories;
 
+import fei.uv.mx.deliveryapp.Models.CustomerCart;
 import fei.uv.mx.deliveryapp.Models.Order;
+import fei.uv.mx.deliveryapp.Models.OrderRestaurantDish;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -36,4 +38,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     @Query("SELECT o FROM Order o WHERE o.idPayment.id = ?1")
     List<Order> findByPaymentId(int paymentId);
+
+    @Query("SELECT cc FROM CustomerCart cc WHERE cc.user.id = ?1")
+    List<CustomerCart> getShoppingCarFromCustomer(int customerId);
 }

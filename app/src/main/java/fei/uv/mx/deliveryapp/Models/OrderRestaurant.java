@@ -3,6 +3,7 @@ package fei.uv.mx.deliveryapp.Models;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "\"OrderRestaurant\"")
@@ -12,23 +13,20 @@ public class OrderRestaurant {
     @Column(name = "idOrderRestaurant", nullable = false)
     private Integer id;
 
-    @Column(name = "UnitPrice")
-    private BigDecimal unitPrice;
+    @Column(name = "\"date\"")
+    private LocalDate date;
 
-    @Column(name = "Amount")
-    private Integer amount;
+    @Column(name = "total")
+    private double total;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idOrder")
-    private Order idOrder;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idDish")
-    private Dish idDish;
+    @JoinColumn(name = "idUser")
+    private User idUser;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idRestaurant")
-    private Restaurant idRestaurant;
+    @JoinColumn(name = "idStatus")
+    private Status idStatus;
 
     public Integer getId() {
         return id;
@@ -38,42 +36,35 @@ public class OrderRestaurant {
         this.id = id;
     }
 
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Status getIdStatus() {
+        return idStatus;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setIdStatus(Status idStatus) {
+        this.idStatus = idStatus;
     }
 
-    public Order getIdOrder() {
-        return idOrder;
+    public double getTotal() {
+        return total;
     }
 
-    public void setIdOrder(Order idOrder) {
-        this.idOrder = idOrder;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
-    public Dish getIdDish() {
-        return idDish;
+    public User getIdUser() {
+        return idUser;
     }
 
-    public void setIdDish(Dish idDish) {
-        this.idDish = idDish;
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
     }
-
-    public Restaurant getIdRestaurant() {return this.idRestaurant;}
-
-    public void setIdRestaurant(Restaurant idRestaurant) {
-        this.idRestaurant = idRestaurant;
-    }
-
 }
