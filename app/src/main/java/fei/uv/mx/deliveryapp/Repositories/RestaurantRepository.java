@@ -41,4 +41,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
             "WHERE dt.id = :dishTypeId")
     List<Restaurant> findRestaurantsByDishTypeId(@Param("dishTypeId") Integer dishTypeId);
 
+    List<Restaurant> findByNameRestaurantContainingIgnoreCase(String nameRestaurant);
+
 }

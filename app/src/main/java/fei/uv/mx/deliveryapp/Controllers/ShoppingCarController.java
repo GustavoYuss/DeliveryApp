@@ -1,24 +1,33 @@
 package fei.uv.mx.deliveryapp.Controllers;
 
-import fei.uv.mx.deliveryapp.DTOs.OrderDTO;
-import fei.uv.mx.deliveryapp.DTOs.OrderDishDTO;
-import jakarta.servlet.http.HttpServletRequest;
+import fei.uv.mx.deliveryapp.Models.CustomerCart;
+import fei.uv.mx.deliveryapp.Repositories.CustomerCarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Controller
+@RequestMapping("/deliveryApp/shoppingCar")
 public class ShoppingCarController {
 
-    @GetMapping("/car")
-    public String carPage(HttpServletRequest request, Model model) {
-        OrderDTO orderDTO = new OrderDTO();
-        ArrayList<OrderDishDTO> dishes = new ArrayList<OrderDishDTO>();
-        model.addAttribute("orderDTO", orderDTO);
-        model.addAttribute("dishes", dishes);
+    @Autowired
+    private final CustomerCarRepository customerCarRepository;
+
+    public ShoppingCarController(CustomerCarRepository customerCarRepository) {
+        this.customerCarRepository = customerCarRepository;
+    }
+
+    @GetMapping("/")
+    public String index() {
         return "shoppingCar";
     }
+
+    
+
+
 }

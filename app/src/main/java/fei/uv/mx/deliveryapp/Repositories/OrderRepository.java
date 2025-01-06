@@ -36,4 +36,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     @Query("SELECT o FROM Order o WHERE o.idPayment.id = ?1")
     List<Order> findByPaymentId(int paymentId);
+
+
 }

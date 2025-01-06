@@ -474,7 +474,7 @@ p#modal-price {
 
 p#modal-description {
     width: 11cm;
-    margin-bottom: 30px;
+    margin-bottom: 13px;
 }
 
 textarea#special-instructions {
@@ -488,4 +488,68 @@ p#subtituloBox {
     margin-bottom: 20px;
     margin-left: 11px;
     font-size: 12px;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 23px;
+}
+
+.dropdown-button {
+    background-color: #e3e4e8;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 60px;
+    margin-left: 2px;
+}
+
+.dropdown-button .arrow {
+    margin-left: 8px;
+}
+
+.dropdown-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: none;
+    z-index: 1000;
+    max-height: 120px; /* Allows 3 items to show */
+    overflow-y: auto; /* Adds scroll for extra items */
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+    background-color: #eee;
+}
+
+/* Optional: Custom scrollbar for better appearance */
+.dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
 }

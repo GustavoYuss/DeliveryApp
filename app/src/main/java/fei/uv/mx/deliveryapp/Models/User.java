@@ -1,10 +1,13 @@
 package fei.uv.mx.deliveryapp.Models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "\"User\"")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +21,7 @@ public class User {
     private String email;
 
     @Nationalized
-    @Column(name = "Password", length = 30)
+    @Column(name = "Password")
     private String password;
 
     @Column(name = "PhoneNumber", length = 12)

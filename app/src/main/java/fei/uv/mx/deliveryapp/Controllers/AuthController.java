@@ -1,5 +1,7 @@
 package fei.uv.mx.deliveryapp.Controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fei.uv.mx.deliveryapp.Models.User;
 import fei.uv.mx.deliveryapp.Models.VerificationToken;
 import fei.uv.mx.deliveryapp.Repositories.UserRepository;
@@ -9,6 +11,7 @@ import fei.uv.mx.deliveryapp.Services.implementations.EmailServices;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -40,14 +46,30 @@ public class AuthController {
     public String startSession(@ModelAttribute("UserNew") User user, Model model, HttpServletRequest request, HttpServletResponse response) {
         try {
             String token = authService.authenticate(user.getEmail(), user.getPassword(), request);
-            Cookie jwtCookie = new Cookie("jwtToken", token);
-            jwtCookie.setHttpOnly(true);
-            jwtCookie.setSecure(false);
-            jwtCookie.setPath("/");
-            jwtCookie.setMaxAge((int) authService.getJwtExpirationMs() / 1000);
-            response.addCookie(jwtCookie);
-            model.addAttribute("user", user);
-            return "index";
+            Optional<User> optionalUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+
+            if (optionalUser.isPresent()) {
+                User foundUser = optionalUser.get();
+
+                Cookie jwtCookie = new Cookie("jwtToken", token);
+                jwtCookie.setHttpOnly(true);
+                jwtCookie.setSecure(false);
+                jwtCookie.setPath("/");
+                jwtCookie.setMaxAge((int) authService.getJwtExpirationMs() / 1000);
+                response.addCookie(jwtCookie);
+
+                Map<String, Object> simpleUser = new HashMap<>();
+                simpleUser.put("id", foundUser.getId());
+                simpleUser.put("name", foundUser.getName());
+                simpleUser.put("email", foundUser.getEmail());
+                simpleUser.put("phoneNumber", foundUser.getPhoneNumber());
+
+                model.addAttribute("authenticatedUser", simpleUser);
+                return "index";
+
+            } else {
+                throw new RuntimeException("Usuario no encontrado");
+            }
 
         } catch (RuntimeException e) {
             model.addAttribute("error", "Correo o contraseña incorrectos");
@@ -56,16 +78,17 @@ public class AuthController {
         }
     }
 
+
     @PostMapping("/registerUser")
     public String registerNewUser(Model model, User user, HttpServletRequest request) {
         try {
 
             user.setEnabled(false);
-            userRepository.save(user);
+            userRepository.createUser(user);
 
             String token = UUID.randomUUID().toString();
             VerificationToken verificationToken = new VerificationToken(user, token);
-            verificationTokenRepository.save(verificationToken);
+            verificationTokenRepository.createVerificationToken(verificationToken);
 
             String appUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
             emailService.sendVerificationEmail(user, token, appUrl);

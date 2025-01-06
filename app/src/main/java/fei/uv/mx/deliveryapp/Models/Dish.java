@@ -1,12 +1,15 @@
 package fei.uv.mx.deliveryapp.Models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "\"Dish\"")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,14 +31,14 @@ public class Dish {
     @Column(name = "OfferPrice")
     private BigDecimal offerPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdRestaurant")
-    @JsonBackReference
+    @JsonBackReference(value = "restaurant-dish")
     private Restaurant restaurant;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdDishType")
-    @JsonBackReference
+    @JsonBackReference(value = "dishType-dish")
     private DishType dishType;
 
     public Integer getId() {

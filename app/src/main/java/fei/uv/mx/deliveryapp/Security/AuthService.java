@@ -43,7 +43,7 @@ public class AuthService {
 
     public String authenticate(String username, String password, HttpServletRequest request) {
         Optional<User> optionalUser = userRepository.findByEmailAndPassword(username, password);
-        if (optionalUser.isPresent() && optionalUser.get().getPassword().equals(password)) {
+        if (optionalUser.isPresent()) {
             String token = createToken(username);
             Session session = new Session();
             session.setUser(optionalUser.get());
