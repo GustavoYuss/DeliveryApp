@@ -1,6 +1,8 @@
 package fei.uv.mx.deliveryapp.Services.implementations;
 
 import fei.uv.mx.deliveryapp.Models.OrderRestaurant;
+import fei.uv.mx.deliveryapp.Models.OrderRestaurantDish;
+import fei.uv.mx.deliveryapp.Repositories.OrderRestaurantDishRepository;
 import fei.uv.mx.deliveryapp.Repositories.OrderRestaurantRepository;
 import fei.uv.mx.deliveryapp.Services.interfaces.IOrderDishServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ import java.util.List;
 public class OrderDishServices implements IOrderDishServices {
     @Autowired
     OrderRestaurantRepository orderRestaurantRepository;
+
+    @Autowired
+    OrderRestaurantDishRepository orderRestaurantDishRepository;
 
     @Override
     public OrderRestaurant createOrderDish(OrderRestaurant orderRestaurant) {
@@ -34,6 +39,13 @@ public class OrderDishServices implements IOrderDishServices {
     }
 
     @Override
+    public OrderRestaurantDish saveDishesToOrder(OrderRestaurantDish orderRestaurantDish) {
+        return orderRestaurantDishRepository.orderDishRestaurant(orderRestaurantDish);
+    }
+
+
+/*
+    @Override
     public List<OrderRestaurant> getOrderDishesByOrderId(int orderId) {
         return orderRestaurantRepository.findByOrderId(orderId);
     }
@@ -41,5 +53,5 @@ public class OrderDishServices implements IOrderDishServices {
     @Override
     public List<OrderRestaurant> getOrderDishesByDishId(int dishId) {
         return orderRestaurantRepository.findByDishId(dishId);
-    }
+    }*/
 }

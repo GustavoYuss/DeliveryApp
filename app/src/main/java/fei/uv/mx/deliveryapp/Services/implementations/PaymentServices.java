@@ -34,7 +34,7 @@ public class PaymentServices implements IPaymentServices {
     }
 
     @Override
-    public List<Payment> getPaymentsByUserId(int userId) {
+    public Payment getPaymentsByUserId(int userId) {
         return paymentRepository.findByUserId(userId);
     }
 }

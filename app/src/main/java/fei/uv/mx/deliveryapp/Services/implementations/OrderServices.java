@@ -1,6 +1,9 @@
 package fei.uv.mx.deliveryapp.Services.implementations;
 
+import fei.uv.mx.deliveryapp.Models.CustomerCart;
 import fei.uv.mx.deliveryapp.Models.Order;
+import fei.uv.mx.deliveryapp.Models.OrderAppRestaurant;
+import fei.uv.mx.deliveryapp.Repositories.OrderAppRestaurantRepository;
 import fei.uv.mx.deliveryapp.Repositories.OrderRepository;
 import fei.uv.mx.deliveryapp.Services.interfaces.IOrderServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,9 @@ import java.util.List;
 public class OrderServices implements IOrderServices {
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    OrderAppRestaurantRepository orderAppRestaurantRepository;
 
     @Override
     public Order createOrder(Order order) {
@@ -41,5 +47,15 @@ public class OrderServices implements IOrderServices {
     @Override
     public List<Order> getOrdersByUserId(int userId) {
         return orderRepository.findByUserId(userId);
+    }
+
+    @Override
+    public OrderAppRestaurant createOrderAppRestaurant(OrderAppRestaurant orderAppRestaurant) {
+        return orderAppRestaurantRepository.createOrderRestaurant(orderAppRestaurant);
+    }
+
+    @Override
+    public List<CustomerCart> getCustomerCart(int idUser) {
+        return orderRepository.getShoppingCarFromCustomer(idUser);
     }
 }

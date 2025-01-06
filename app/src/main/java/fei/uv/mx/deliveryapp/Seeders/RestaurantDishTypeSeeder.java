@@ -20,7 +20,7 @@ public class RestaurantDishTypeSeeder implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
-        /*
+/*
         RestaurantDishType restaurantDishType = new RestaurantDishType();
         restaurantDishType.setIdRestaurant(1);
         restaurantDishType.setIdDishType(12);
@@ -90,6 +90,6 @@ public class RestaurantDishTypeSeeder implements CommandLineRunner {
         restaurantDishType13.setIdRestaurant(6);
         restaurantDishType13.setIdDishType(11);
         restaurantDishTypeRepository.createRestaurantDishType(restaurantDishType13);
-        */
+*/
     }
 }

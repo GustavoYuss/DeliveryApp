@@ -60,6 +60,14 @@ public class UserServices implements IUserServices {
      * @return
      */
     @Override
+    public int getUserByEmail(String email) {
+        return userRepository.findUserIdByEmail(email);
+    }
+
+    /**
+     * @return
+     */
+    @Override
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
