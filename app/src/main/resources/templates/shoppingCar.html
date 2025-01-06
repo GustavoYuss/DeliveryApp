@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
+
     <link rel="stylesheet" href="/styles/shoppingCarStyles.css">
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 <header class="header">
@@ -14,36 +18,7 @@
 <main class="container">
     <section class="products-section">
         <h2>Productos ⚡ FULL</h2>
-        <div class="product-item">
-            <img src="/images/hot-dog.png" alt="Audífonos">
-            <div class="product-info">
-                <p>Audífonos Inalámbricos Sony WH-CH520, Color Negro</p>
-                <div class="product-actions">
-                    <a href="#">Eliminar</a> | <a href="#">Guardar</a> | <a href="#">Comprar ahora</a>
-                </div>
-            </div>
-            <div class="product-price">$799</div>
-        </div>
-        <div class="product-item">
-            <img src="/images/hot-dog.png" alt="Mochila">
-            <div class="product-info">
-                <p>Mochila para Laptop Impermeable 35 Litros</p>
-                <div class="product-actions">
-                    <a href="#">Eliminar</a> | <a href="#">Guardar</a> | <a href="#">Comprar ahora</a>
-                </div>
-            </div>
-            <div class="product-price">$349.99</div>
-        </div>
-        <div class="product-item">
-            <img src="/images/hot-dog.png" alt="Thermal Pad">
-            <div class="product-info">
-                <p>Thermal Pad GPU Térmico 100x100mm X 1mm</p>
-                <div class="product-actions">
-                    <a href="#">Eliminar</a> | <a href="#">Guardar</a> | <a href="#">Comprar ahora</a>
-                </div>
-            </div>
-            <div class="product-price">$59.80</div>
-        </div>
+        <div id="products-container"></div>
         <div class="shipping">
             <p>Envío</p>
             <div class="shipping-status">
@@ -52,16 +27,18 @@
             </div>
         </div>
     </section>
+
     <aside class="summary-section">
         <h2>Resumen de compra</h2>
-        <p>Productos (5): $1,625.79</p>
-        <p>Envíos (3): Gratis</p>
+        <p id="products">Productos (5): $1,625.79</p>
+        <p id="shippingLabel">Envíos (3): Gratis</p>
         <div class="total">
             <p>Total</p>
-            <p>$1,625.79</p>
+            <p id="totalPrice">$1,625.79</p>
         </div>
         <button class="checkout-button">Continuar compra</button>
     </aside>
+
 </main>
 <script src="/js/shoppingCar.js"></script>
 </body>

@@ -81,6 +81,16 @@ const adsData = [
     }
 ];
 
+console.log("Contenido recibido de authenticatedUser en bruto:", authenticatedUser);
+
+if (authenticatedUser && authenticatedUser.id && authenticatedUser.name) {
+    localStorage.setItem('user', JSON.stringify(authenticatedUser));
+    console.log("Usuario guardado en localStorage:", authenticatedUser);
+} else {
+    console.error("No se pudo obtener el usuario autenticado correctamente");
+}
+
+
 categories.forEach(category => {
     const categoryList = document.getElementById('categoryList');
     const item = document.createElement('div');
@@ -189,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             const restaurantSection = document.querySelector("#restaurantsTable");
+
             restaurantSection.innerHTML = data.map(restaurant => createRestaurantHTML(restaurant)).join('');
         });
 });
@@ -239,7 +250,7 @@ document.addEventListener('click', function (event) {
     if (restaurantItem) {
         const restaurantId = restaurantItem.getAttribute('data-id');
         if (restaurantId) {
-            window.location.href = `/restaurantDetails?id=${restaurantId}`;
+            window.location.href = `/deliveryApp/restaurants/showDetails?id=${restaurantId}`;
         }
     }
 });

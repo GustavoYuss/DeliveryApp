@@ -4,26 +4,20 @@ let userLat, userLng;
 let currentAddress = { street: '', city: '', state: '' };
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // Verificamos si hay una dirección guardada en localStorage
     const savedAddress = localStorage.getItem('selectedAddress');
     const savedLat = localStorage.getItem('selectedLat');
     const savedLon = localStorage.getItem('selectedLon');
 
     if (savedAddress && savedLat && savedLon) {
-        // Si existe dirección guardada, la usamos
         userLat = parseFloat(savedLat);
         userLng = parseFloat(savedLon);
-
-        // Mostramos la dirección guardada en la barra
         const locationLabel = document.getElementById("locationLabel");
         locationLabel.textContent = savedAddress;
     } else {
-        // Si no hay nada guardado en localStorage, utilizamos la geolocalización actual
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(async function(position) {
                 userLat = position.coords.latitude;
                 userLng = position.coords.longitude;
-
                 const data = await reverseGeocode(userLat, userLng);
                 if (data && data.address) {
                     updateLocationLabelFromAddress(data.address);
@@ -39,18 +33,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function showMap() {
     document.getElementById("mapModal").style.display = "flex";
-
     if (!map) {
         map = L.map('map').setView([userLat, userLng], 15);
-
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
-
         marker = L.marker([userLat, userLng]).addTo(map);
-
-        // Evento para manejar doble clic en el mapa
         map.on('dblclick', async (e) => {
             const lat = e.latlng.lat;
             const lon = e.latlng.lng;
@@ -58,13 +47,10 @@ function showMap() {
             const reverseData = await reverseGeocode(lat, lon);
             if (reverseData && reverseData.address) {
                 updateLocationLabelFromAddress(reverseData.address);
-
-                // Guardamos la selección en localStorage
                 const street = reverseData.address.road || reverseData.address.street || '';
                 const city = reverseData.address.city || reverseData.address.town || reverseData.address.village || '';
                 const state = reverseData.address.state || '';
                 const formattedAddress = [street, city, state].filter(Boolean).join(', ');
-
                 localStorage.setItem('selectedAddress', formattedAddress);
                 localStorage.setItem('selectedLat', lat);
                 localStorage.setItem('selectedLon', lon);
@@ -86,9 +72,7 @@ function updateLocationLabelFromAddress(address) {
     const city = address.city || address.town || address.village || '';
     const state = address.state || '';
     const formattedAddress = [street, city, state].filter(Boolean).join(', ');
-
     currentAddress = { street, city, state };
-
     const locationLabel = document.getElementById("locationLabel");
     locationLabel.textContent = formattedAddress;
 }
@@ -120,8 +104,6 @@ function selectPlaceFromList(place) {
         const city = place.address.city || place.address.town || place.address.village || '';
         const state = place.address.state || '';
         const formattedAddress = [street, city, state].filter(Boolean).join(', ');
-
-        // Guardamos en localStorage
         localStorage.setItem('selectedAddress', formattedAddress);
         localStorage.setItem('selectedLat', lat);
         localStorage.setItem('selectedLon', lon);
@@ -133,7 +115,6 @@ function selectPlaceFromList(place) {
                 const city = data.address.city || data.address.town || data.address.village || '';
                 const state = data.address.state || '';
                 const formattedAddress = [street, city, state].filter(Boolean).join(', ');
-
                 localStorage.setItem('selectedAddress', formattedAddress);
                 localStorage.setItem('selectedLat', lat);
                 localStorage.setItem('selectedLon', lon);
@@ -145,7 +126,6 @@ function selectPlaceFromList(place) {
     searchInput.value = [place.address?.road || place.display_name, place.address?.city, place.address?.state].filter(Boolean).join(', ');
 }
 
-// Buscar lugares al escribir en el input del mapa
 const searchInput = document.getElementById("searchInput");
 const suggestionsList = document.getElementById("searchSuggestions");
 
@@ -155,7 +135,6 @@ searchInput.addEventListener("input", async function() {
         suggestionsList.style.display = "none";
         return;
     }
-
     const results = await searchPlaces(query);
     suggestionsList.innerHTML = "";
     if (results.length > 0) {
@@ -182,12 +161,28 @@ function redirectToLogin() {
 }
 
 function goToCar() {
-    window.location.href = "/car";
+    window.location.href = "/deliveryApp/shoppingCar/";
 }
 
 function redirectToUserProfile() {
-    window.location.href = "/userProfile";
+
+    const userJSON = localStorage.getItem('user');
+    if (userJSON !== null) {
+        try {
+            const user = JSON.parse(userJSON);
+            if (user && user.id) {
+                window.location.href = `/deliveryApp/userProfile/showData?id=${user.id}`;
+            } else {
+                console.error("Invalid user data: Missing 'id'.");
+            }
+        } catch (error) {
+            console.error("Failed to parse user JSON:", error);
+        }
+    } else {
+        console.warn("No user data found in localStorage.");
+    }
 }
+
 
 const menuBtn = document.getElementById("menu__btn");
 const sideBar = document.querySelector(".sidebar");
@@ -199,3 +194,80 @@ menuBtn.onclick = () => {
 closeBtn.onclick = () => {
     sideBar.classList.remove("visible");
 };
+
+
+let userJSON = null;
+let user = null;
+
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        userJSON = localStorage.getItem("user");
+        ValidateJSON(userJSON);
+        user = JSON.parse(userJSON);
+
+        const response = await fetch(`/deliveryApp/shoppingCar/getQuantityItems?id=${user.id}`);
+        if (!response.ok) {
+            throw new Error(`Error fetching products: ${response.statusText}`);
+        }
+
+        const quantity = await response.json();
+
+        const notificationSpan = document.querySelector(".cart-icon .notification");
+        if (notificationSpan) {
+            notificationSpan.textContent = quantity;
+        }
+
+    } catch (error) {
+        console.error("Failed to fetch products:", error);
+    }
+});
+
+
+function ValidateJSON(userJSON)
+{
+    if (!userJSON) {
+        console.warn("No user data found in localStorage.");
+        window.location.href = "/login";
+        return;
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("mainSearchInput");
+    const resultsList = document.getElementById("searchResults");
+
+    if (!searchInput || !resultsList) {
+        console.error("No se encontraron los elementos necesarios en el DOM.");
+        return;
+    }
+
+    searchInput.addEventListener("input", () => {
+        const query = searchInput.value.trim();
+
+        if (query === "") {
+            resultsList.innerHTML = "";
+            return;
+        }
+
+        fetch(`/search?query=${encodeURIComponent(query)}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Error al obtener los datos.");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                resultsList.innerHTML = "";
+                data.forEach((restaurant) => {
+                    const li = document.createElement("li");
+                    li.textContent = restaurant.name;
+                    resultsList.appendChild(li);
+                });
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                resultsList.innerHTML = "<li>Error al cargar los resultados.</li>";
+            });
+    });
+});

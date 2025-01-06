@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const restaurantId = 1;
-    console.log("Archivo JavaScript cargado.");
-
-    fetch(`/getDishesByRestaurant?id=${restaurantId}`, {
+    fetch(`/deliveryApp/restaurants/getDishesByRestaurant?id=${restaurantId}`, {
         method: "GET",
         credentials: "include",
     })
@@ -23,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const restaurantId = 1;
     console.log("Archivo JavaScript cargado.");
 
-    fetch(`/getDishesByRestaurant?id=${restaurantId}`, {
+    fetch(`/deliveryApp/restaurants/getDishesByRestaurant?id=${restaurantId}`, {
         method: "GET",
         credentials: "include",
     })
@@ -142,6 +140,99 @@ closeModal.addEventListener("click", () => {
     modal.classList.add("hidden");
 });
 
-function addToCart(product) {
-    console.log(`Producto añadido al carrito: ${product.name}`);
+document.addEventListener("DOMContentLoaded", () => {
+    const dropdownButton = document.querySelector(".dropdown-button");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+
+    dropdownButton.addEventListener("click", () => {
+        dropdownMenu.style.display =
+            dropdownMenu.style.display === "block" ? "none" : "block";
+    });
+
+    dropdownMenu.addEventListener("click", (event) => {
+        if (event.target.tagName === "LI") {
+            dropdownButton.innerHTML = `${event.target.textContent} <span class="arrow">▼</span>`;
+            dropdownMenu.style.display = "none";
+        }
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.style.display = "none";
+        }
+    });
+});
+
+function ValidateJSON(userJSON)
+{
+    if (!userJSON) {
+        console.warn("No user data found in localStorage.");
+        window.location.href = "/login";
+        return;
+    }
 }
+
+function addToCart(product) {
+    const quantity = parseInt(document.querySelector(".dropdown-button").textContent.trim());
+    const specialInstructions = document.getElementById("special-instructions").value;
+    let userJSON = localStorage.getItem("user");
+    ValidateJSON(userJSON);
+    let user = JSON.parse(userJSON);
+
+    const customerCart = {
+        user: { id: user.id, name: user.name, email: user.email},
+        dish: { id: product.id },
+        quantity: quantity,
+        costByProduct: product.normalPrice * quantity
+    };
+
+    fetch('/deliveryApp/restaurants/addDishToCar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(customerCart),
+        credentials: "include"
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(`Error del servidor: ${text}`);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Producto agregado al carrito:", data);
+            alert("Producto agregado al carrito con éxito");
+            modal.classList.add("hidden");
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Hubo un error al agregar el producto al carrito: " + error.message);
+        });
+}
+
+async function reloadItemsCart() {
+    try {
+        let userJSON = localStorage.getItem("user");
+        ValidateJSON(userJSON);
+        let user = JSON.parse(userJSON);
+
+        const response = await fetch(`/shoppingCar/getQuantityItems?id=${user.id}`);
+        if (!response.ok) {
+            throw new Error(`Error fetching products: ${response.statusText}`);
+        }
+
+        const quantity = await response.json();
+
+        const notificationSpan = document.querySelector(".cart-icon .notification");
+        if (notificationSpan) {
+            notificationSpan.textContent = quantity;
+        }
+
+    } catch (error) {
+        console.error("Failed to fetch products:", error);
+    }
+}
+

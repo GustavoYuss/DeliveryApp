@@ -1,6 +1,7 @@
 package fei.uv.mx.deliveryapp.Controllers;
 
 import fei.uv.mx.deliveryapp.Repositories.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/")
 public class IndexController {
+    @Autowired
     private final RestaurantRepository restaurantRepository;
 
     public IndexController(RestaurantRepository restaurantRepository) {
@@ -49,4 +51,15 @@ public class IndexController {
         }
 
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Restaurant>> searchRestaurants(@RequestParam("query") String query) {
+        try {
+            List<Restaurant> results = restaurantRepository.findByNameRestaurantContainingIgnoreCase(query);
+            return ResponseEntity.ok(results);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }

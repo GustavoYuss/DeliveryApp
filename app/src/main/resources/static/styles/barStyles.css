@@ -22,7 +22,6 @@ body {
     margin: auto;
 }
 
-/* Estilos De la Barra Superior */
 header .logo {
     display:flex;
 }
@@ -408,4 +407,23 @@ a.manage-account {
 
 .sidebar.visible {
     transform: translateX(0);
+}
+
+.results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.results-list li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.results-list li:hover {
+    background-color: #f0f0f0;
 }

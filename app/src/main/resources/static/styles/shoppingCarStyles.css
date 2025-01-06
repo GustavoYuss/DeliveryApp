@@ -55,11 +55,12 @@ body {
 }
 
 .product-item img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    margin-right: 10px;
-}
+     width: 60px;
+     height: 60px;
+     object-fit: cover;
+     margin-right: 10px;
+     margin-left: 64px;
+ }
 
 .product-info {
     flex: 1;
@@ -136,4 +137,19 @@ body {
 
 .checkout-button:hover {
     background-color: #3b5731;
+}
+
+
+.cart-icon {
+    position: absolute;
+    margin-right: 30px;
+    background-color: #48544e;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
