@@ -45,4 +45,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 
     @Query("SELECT r.id FROM Restaurant r WHERE r.user.id = ?1")
     int getRestaurantByUserId(int userId);
+
+    List<Restaurant> findByNameRestaurantContainingIgnoreCase(String nameRestaurant);
 }
