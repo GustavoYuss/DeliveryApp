@@ -184,6 +184,31 @@ function showItem(item) {
 document.addEventListener("DOMContentLoaded", () => {
     const checkoutButton = document.querySelector(".checkout-button");
     checkoutButton.addEventListener("click", () => {
-        alert("Compra completada");
+        fetch(`/deliveryApp/shoppingCar/makeOrder`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error(`HTTP status ${response.status}`);
+                }
+            })
+            .then(result => {
+                if (result) {
+                    ShowAlertOK(
+                        'Producto Eliminado',
+                        'Se elimino correctamente el producto del carrito de compras');
+                } else {
+                    ShowAlertError();
+                }
+            })
+            .catch(error => {
+                ShowAlertError();
+            });
     });
 });

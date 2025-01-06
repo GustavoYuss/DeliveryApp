@@ -19,7 +19,7 @@ public class Order {
     @Column(name = "Total")
     private BigDecimal total;
 
-    @Column(name = "address", nullable = false, length = 150)
+    @Column(name = "address", nullable = true, length = 150)
     private String address;
 
     @ManyToOne(fetch = FetchType.LAZY)
