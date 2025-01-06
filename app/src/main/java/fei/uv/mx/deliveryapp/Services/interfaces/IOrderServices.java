@@ -1,6 +1,9 @@
 package fei.uv.mx.deliveryapp.Services.interfaces;
 
+import fei.uv.mx.deliveryapp.Models.CustomerCart;
 import fei.uv.mx.deliveryapp.Models.Order;
+import fei.uv.mx.deliveryapp.Models.OrderAppRestaurant;
+
 import java.util.List;
 
 public interface IOrderServices {
@@ -10,4 +13,6 @@ public interface IOrderServices {
     boolean updateOrder(Order order);
     List<Order> getOrdersByPaymentId(int paymentId);
     List<Order> getOrdersByUserId(int userId);
+    OrderAppRestaurant createOrderAppRestaurant(OrderAppRestaurant orderAppRestaurant);
+    List<CustomerCart>  getCustomerCart(int idUser);
 }

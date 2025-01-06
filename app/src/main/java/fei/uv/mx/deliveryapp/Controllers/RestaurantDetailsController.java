@@ -43,5 +43,4 @@ public class RestaurantDetailsController {
         }
         return ResponseEntity.ok(dishList);
     }
-
 }

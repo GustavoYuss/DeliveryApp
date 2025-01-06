@@ -14,8 +14,9 @@ public class RestaurantDishType {
     @Column(name = "idRestaurant", nullable = false)
     private Integer idRestaurant;
 
-    @Column(name = "idDishType", nullable = false)
-    private Integer idDishType;
+    @ManyToOne
+    @JoinColumn(name = "idDishType")
+    private DishType idDishType;
 
 
     public Integer getId() {
@@ -34,11 +35,11 @@ public class RestaurantDishType {
         this.idRestaurant = idRestaurant;
     }
 
-    public Integer getIdDishType() {
+    public DishType getIdDishType() {
         return idDishType;
     }
 
-    public void setIdDishType(Integer idDishType) {
+    public void setIdDishType(DishType idDishType) {
         this.idDishType = idDishType;
     }
 

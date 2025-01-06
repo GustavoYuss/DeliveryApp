@@ -8,5 +8,5 @@ public interface IPaymentServices {
     Payment getPayment(int id);
     boolean deletePayment(int id);
     boolean updatePayment(Payment payment);
-    List<Payment> getPaymentsByUserId(int userId);
+    Payment getPaymentsByUserId(int userId);
 }

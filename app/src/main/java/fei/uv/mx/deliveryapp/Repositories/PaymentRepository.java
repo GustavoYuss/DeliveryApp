@@ -32,5 +32,5 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
     }
 
     @Query("SELECT p FROM Payment p WHERE p.idUser.id = ?1")
-    List<Payment> findByUserId(int userId);
+    Payment findByUserId(int userId);
 }

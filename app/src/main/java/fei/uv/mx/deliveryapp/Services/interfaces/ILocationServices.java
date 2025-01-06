@@ -24,4 +24,6 @@ public interface ILocationServices {
     public boolean deleteAddress(int id);
     public boolean updateAddress(Address address);
     public List<Address> getAllAddress();
+
+    int getAddressByUser(int idUser);
 }

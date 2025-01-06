@@ -32,13 +32,17 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
         return false;
     }
 
+
     @Query("SELECT u FROM Restaurant u")
     List<Restaurant> getAllRestaurant();
 
     @Query("SELECT r FROM Restaurant r " +
             "JOIN RestaurantDishType rdt ON r.id = rdt.idRestaurant " +
-            "JOIN DishType dt ON rdt.idDishType = dt.id " +
+            "JOIN DishType dt ON rdt.idDishType.id = dt.id " +
             "WHERE dt.id = :dishTypeId")
     List<Restaurant> findRestaurantsByDishTypeId(@Param("dishTypeId") Integer dishTypeId);
 
+
+    @Query("SELECT r.id FROM Restaurant r WHERE r.user.id = ?1")
+    int getRestaurantByUserId(int userId);
 }

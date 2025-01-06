@@ -20,30 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             contiene: "Salsa Hot",
             ultimaActualizacion: "07/29",
         },
-        // Agregar más artículos si es necesario
     ];
-
-    function renderizarArticulos() {
-        articulosTbody.innerHTML = "";
-        articulos.forEach((articulo, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-        <td><img src="${articulo.foto}" alt="Foto" width="50"></td>
-        <td>${articulo.nombre}</td>
-        <td>${articulo.notas}</td>
-        <td>${articulo.precio}</td>
-        <td>${articulo.menus}</td>
-        <td>${articulo.categorias}</td>
-        <td>${articulo.seUsaEn}</td>
-        <td>${articulo.contiene}</td>
-        <td>${articulo.ultimaActualizacion}</td>
-        <td>
-          <button class="editar-btn" data-index="${index}">Editar</button>
-        </td>
-      `;
-            articulosTbody.appendChild(row);
-        });
-    }
 
     nuevoArticuloBtn.addEventListener("click", () => {
         modal.style.display = "flex";
@@ -56,28 +33,38 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.style.display = "none";
     });
 
-    articuloForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const nuevoArticulo = {
-            foto: "https://via.placeholder.com/50",
-            nombre: e.target.nombre.value,
-            notas: e.target.notas.value,
-            precio: e.target.precio.value,
-            menus: e.target.menus.value,
-            categorias: e.target.categorias.value,
-            seUsaEn: e.target["se-usa-en"].value,
-            contiene: e.target.contiene.value,
-            ultimaActualizacion: new Date().toLocaleDateString(),
-        };
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("articulo-form");
 
-        if (editandoArticulo !== null) {
-            articulos[editandoArticulo] = nuevoArticulo;
-        } else {
-            articulos.push(nuevoArticulo);
-        }
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault(); // Evita el envío tradicional del formulario
 
-        renderizarArticulos();
-        modal.style.display = "none";
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (response.ok) {
+                    // Recargar la página si el servidor responde con éxito (200 OK)
+                    location.reload();
+                    const articulosSection = document.getElementById("articulos-section");
+
+                    if (articulosSection) {
+                        articulosSection.scrollIntoView({ behavior: "smooth" });
+                    }
+                } else {
+                    // Manejar errores
+                    const errorMessage = await response.text();
+                    alert("Error: " + errorMessage);
+                }
+            } catch (error) {
+                console.error("Error al enviar el formulario:", error);
+                alert("Error al procesar la solicitud. Intenta nuevamente.");
+            }
+        });
     });
 
     articulosTbody.addEventListener("click", (e) => {
@@ -99,5 +86,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    renderizarArticulos();
 });

@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IUserServices {
-    public User createUser(User user);
-    public User getUser(int id);
-    public boolean deleteUser(int id);
-    public boolean updateUser(User user);
-    public List<User> getAllUsers();
-    public Optional<User> authenticateUser(String email, String password);
+    User createUser(User user);
+    User getUser(int id);
+    boolean deleteUser(int id);
+    boolean updateUser(User user);
+    List<User> getAllUsers();
+    Optional<User> authenticateUser(String email, String password);
+    int getUserByEmail(String email);
 }

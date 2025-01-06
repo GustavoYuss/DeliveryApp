@@ -1,6 +1,8 @@
 package fei.uv.mx.deliveryapp.Services.implementations;
 
-import fei.uv.mx.deliveryapp.Models.Restaurant;
+import fei.uv.mx.deliveryapp.Models.*;
+import fei.uv.mx.deliveryapp.Repositories.OrderRestaurantRepository;
+import fei.uv.mx.deliveryapp.Repositories.RestaurantDishTypeRepository;
 import fei.uv.mx.deliveryapp.Repositories.RestaurantRepository;
 import fei.uv.mx.deliveryapp.Repositories.UserRepository;
 import fei.uv.mx.deliveryapp.Services.interfaces.IRestaurantServices;
@@ -13,6 +15,12 @@ import java.util.List;
 public class RestaurantServices implements IRestaurantServices {
     @Autowired
     RestaurantRepository restaurantRepository;
+
+    @Autowired
+    RestaurantDishTypeRepository restaurantDishTypeRepository;
+
+    @Autowired
+    OrderRestaurantRepository orderRestaurantRepository;
 
     /**
      * @param restaurant
@@ -58,4 +66,32 @@ public class RestaurantServices implements IRestaurantServices {
         return restaurantRepository.getAllRestaurant();
     }
 
+    /**
+     * @return
+     */
+    @Override
+    public int getRestaurantByIdUser(int id) {
+        return restaurantRepository.getRestaurantByUserId(id);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<DishType> getDishesTypeByRestaurant(int idRestaurant) {
+        return restaurantDishTypeRepository.getDishTypesFromRestaurant(idRestaurant);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<OrderRestaurant> getOrderRestaurantByRestaurant(int idRestaurant) {
+        return orderRestaurantRepository.findByOrderIdRestaurant(idRestaurant);
+    }
+
+    @Override
+    public List<DishOrderDTO> getDishesFromOrderRestaurant(int idOrder) {
+        return orderRestaurantRepository.getDishesFromOrderRestaurant(idOrder);
+    }
 }

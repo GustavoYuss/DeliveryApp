@@ -151,4 +151,9 @@ public class LocationServices implements ILocationServices {
     public List<Address> getAllAddress() {
         return addressRepository.getAllAddress();
     }
+
+    @Override
+    public int getAddressByUser(int idUser) {
+        return addressRepository.getAddressByUser(idUser);
+    }
 }

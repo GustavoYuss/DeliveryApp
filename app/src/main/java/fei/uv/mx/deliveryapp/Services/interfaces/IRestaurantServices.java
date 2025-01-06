@@ -1,12 +1,17 @@
 package fei.uv.mx.deliveryapp.Services.interfaces;
 
-import fei.uv.mx.deliveryapp.Models.Restaurant;
+import fei.uv.mx.deliveryapp.Models.*;
+
 import java.util.List;
 
 public interface IRestaurantServices {
-    public Restaurant createRestaurant(Restaurant restaurant);
-    public Restaurant getRestaurant(int id);
-    public boolean deleteRestaurant(int id);
-    public boolean updateRestaurant(Restaurant restaurant);
-    public List<Restaurant> getAllRestaurants();
+    Restaurant createRestaurant(Restaurant restaurant);
+    Restaurant getRestaurant(int id);
+    boolean deleteRestaurant(int id);
+    boolean updateRestaurant(Restaurant restaurant);
+    List<Restaurant> getAllRestaurants();
+    int getRestaurantByIdUser(int id);
+    List<DishType> getDishesTypeByRestaurant(int idRestaurant);
+    List<OrderRestaurant> getOrderRestaurantByRestaurant(int idRestaurant);
+    List<DishOrderDTO> getDishesFromOrderRestaurant(int idOrder);
 }
