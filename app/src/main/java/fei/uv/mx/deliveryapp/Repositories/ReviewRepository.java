@@ -34,13 +34,13 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Query("SELECT r FROM Review r")
     List<Review> getAllReviews();
 
-    @Query("SELECT r FROM Review r WHERE r.idDish.id = ?1")
-    List<Review> getReviewsByDish(int dishId);
+    @Query("SELECT r FROM Review r JOIN FETCH r.user WHERE r.restaurant.id = ?1")
+    List<Review> getReviewsByRestaurantId(int restaurantId);
 
-    @Query("SELECT r FROM Review r WHERE r.idUser.id = ?1")
+    @Query("SELECT r FROM Review r WHERE r.user.id = ?1")
     List<Review> getReviewsByUser(int userId);
 
-    @Query("SELECT (SUM(r.rating) / COUNT(r)) AS resultado FROM Review r WHERE r.idDish.id = ?1")
+    @Query("SELECT (SUM(r.rating) / COUNT(r)) AS resultado FROM Review r WHERE r.restaurant.id = ?1")
     double getReviewRating(int idDish);
 
 }
