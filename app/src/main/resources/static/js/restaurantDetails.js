@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const restaurantId = 1;
+    const restaurantId = 4;
     fetch(`/deliveryApp/restaurants/getDishesByRestaurant?id=${restaurantId}`, {
         method: "GET",
         credentials: "include",

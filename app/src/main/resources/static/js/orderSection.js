@@ -34,8 +34,10 @@ async function openSidebar(event) {
     document.querySelector(".user-name").textContent = userName;
     document.querySelector(".sidebar2-date").textContent = orderDate;
 
+    console.log(idOrder);
+
     try {
-        const response = await fetch(`http://localhost:8080/getDishesFromOrder?idRestaurant=${idOrder}`);
+        const response = await fetch(`http://localhost:8080/getDishesFromOrder?idOrder=${idOrder}`);
         if (!response.ok) {
             throw new Error(`Error en la solicitud: ${response.status}`);
         }

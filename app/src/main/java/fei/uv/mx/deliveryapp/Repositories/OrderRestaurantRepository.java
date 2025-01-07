@@ -40,7 +40,7 @@ public interface OrderRestaurantRepository extends JpaRepository<OrderRestaurant
     @Query("SELECT odr FROM OrderAppRestaurant oda JOIN oda.idOrderRestaurant odr WHERE oda.idRestaurant.id = ?1")
     List<OrderRestaurant> findByOrderIdRestaurant(int orderId);
 
-    @Query("SELECT new fei.uv.mx.deliveryapp.Models.DishOrderDTO(od, ord.amount) FROM OrderRestaurantDish ord JOIN ord.idDish od WHERE ord.id = ?1")
+    @Query("SELECT new fei.uv.mx.deliveryapp.Models.DishOrderDTO(od, ord.amount) FROM OrderRestaurantDish ord JOIN ord.idDish od WHERE ord.idOrderRestaurant.id = ?1")
     List<DishOrderDTO> getDishesFromOrderRestaurant(int orderId);
 
     /*
