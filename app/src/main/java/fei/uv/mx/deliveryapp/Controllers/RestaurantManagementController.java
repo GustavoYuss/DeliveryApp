@@ -53,6 +53,9 @@ public class RestaurantManagementController {
         model.addAttribute("dishTypeList", dishTypeList);
         model.addAttribute("orders", orders);
 
+        System.out.println(idRestaurant);
+        System.out.println(orders.size());
+
         return "restaurantManagement";
     }
 
@@ -72,9 +75,9 @@ public class RestaurantManagementController {
 
     @GetMapping("/getDishesFromOrder")
     public ResponseEntity<List<DishOrderDTO>> getDishesFromOrder(HttpServletRequest request) {
-        int idOrder = Integer.parseInt(request.getParameter("idRestaurant"));
-
+        int idOrder = Integer.parseInt(request.getParameter("idOrder"));
         List<DishOrderDTO> dishes = restaurantServices.getDishesFromOrderRestaurant(idOrder);
+        System.out.println(dishes.size());
         return ResponseEntity.ok(dishes);
     }
 

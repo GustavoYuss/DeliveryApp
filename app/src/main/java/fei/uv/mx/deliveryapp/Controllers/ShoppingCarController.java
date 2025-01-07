@@ -78,6 +78,7 @@ public class ShoppingCarController {
         //int idUserAddress = locationServices.getAddressByUser(userID);
         //Payment idUserPayment = paymentServices.getPaymentsByUserId(userID);
         Order order = new Order();
+        order.address = "PUTOS TODOS";
         Address address = new Address();
         order.setDate(LocalDate.now());
         order.setTotal(new BigDecimal("123.45"));
@@ -92,7 +93,7 @@ public class ShoppingCarController {
         List<Integer> idRestaurantList = new ArrayList<>();
         for (CustomerCart customerCart : customerCartList) {
             if(!idRestaurantList.contains(customerCart.getDish().getId())){
-                idRestaurantList.add(customerCart.getDish().getId());
+                idRestaurantList.add(customerCart.getDish().getRestaurant().getId());
             }
         }
 
