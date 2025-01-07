@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const restaurantId = 4;
+    const restaurantId = 1;
     fetch(`/deliveryApp/restaurants/getDishesByRestaurant?id=${restaurantId}`, {
         method: "GET",
         credentials: "include",
@@ -235,4 +235,111 @@ async function reloadItemsCart() {
         console.error("Failed to fetch products:", error);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const menuSection = document.querySelector("#menu-section");
+    const reviewsSection = document.querySelector("#view-reviews");
+    const writeReviewSection = document.querySelector("#write-review");
+    const optionButtons = document.querySelectorAll(".optionButtons");
+
+    const viewMenuButton = optionButtons[0];
+    const viewReviewsButton = optionButtons[1];
+    const writeReviewButton = optionButtons[2];
+
+    viewMenuButton.addEventListener("click", () => {
+        toggleSections(menuSection);
+        setActiveButton(viewMenuButton);
+    });
+
+    viewReviewsButton.addEventListener("click", () => {
+        toggleSections(reviewsSection);
+        setActiveButton(viewReviewsButton);
+        const restaurantId = 1;
+        loadReviews(restaurantId); // Cargar reseñas al hacer clic
+    });
+
+    writeReviewButton.addEventListener("click", () => {
+        toggleSections(writeReviewSection);
+        setActiveButton(writeReviewButton);
+    });
+
+    function toggleSections(activeSection) {
+        [menuSection, reviewsSection, writeReviewSection].forEach((section) => {
+            section.classList.add("hidden");
+        });
+        activeSection.classList.remove("hidden");
+    }
+
+    function setActiveButton(activeButton) {
+        optionButtons.forEach((button) => button.classList.remove("active"));
+        activeButton.classList.add("active");
+    }
+
+    async function loadReviews(restaurantId) {
+        const reviewsList = document.getElementById("reviews-list");
+        reviewsList.innerHTML = ""; // Limpiar la lista antes de cargar las reseñas
+
+        try {
+            const response = await fetch(`http://localhost:8080/deliveryApp/restaurants/getReviews?id=${restaurantId}`);
+            if (!response.ok) throw new Error("Error al cargar las reseñas");
+
+            const reviews = await response.json();
+
+            if (reviews.length === 0) {
+                reviewsList.innerHTML = "<li>No hay reseñas disponibles para este restaurante.</li>";
+                return;
+            }
+
+            reviews.forEach((review) => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <span class="review-author">Usuario: ${review.user?.name}</span>
+                    <span class="review-rating">${"★".repeat(review.rating)}</span>
+                    <span class="review-description">${review.description}</span>
+                `;
+                reviewsList.appendChild(li);
+            });
+        } catch (error) {
+            console.error(error);
+            reviewsList.innerHTML = "<li>Error al cargar las reseñas.</li>";
+        }
+    }
+
+    const reviewForm = document.getElementById("review-form");
+    reviewForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const rating = document.getElementById("review-rating").value;
+        const description = document.getElementById("review-description").value;
+
+        if (rating && description) {
+            alert(`Tu reseña fue enviada con ${rating} estrellas.`);
+            reviewForm.reset();
+        } else {
+            alert("Por favor, completa todos los campos.");
+        }
+    });
+});
 

@@ -540,7 +540,6 @@ p#subtituloBox {
     background-color: #eee;
 }
 
-/* Optional: Custom scrollbar for better appearance */
 .dropdown-menu::-webkit-scrollbar {
     width: 6px;
 }
@@ -552,4 +551,75 @@ p#subtituloBox {
 
 .dropdown-menu::-webkit-scrollbar-thumb:hover {
     background-color: #aaa;
+}
+
+
+
+
+
+
+
+
+
+
+
+.hidden {
+    display: none;
+}
+
+.reviews-section, .write-review-section {
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.reviews-list {
+    list-style: none;
+    padding: 0;
+}
+
+.reviews-list li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews-list li:last-child {
+    border-bottom: none;
+}
+
+.reviews-list .review-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.write-review-section label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.write-review-section textarea, .write-review-section select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
 }

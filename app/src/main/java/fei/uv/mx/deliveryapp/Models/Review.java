@@ -11,19 +11,19 @@ public class Review {
     private Integer id;
 
     @Lob
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "Rating")
+    @Column(name = "dating")
     private Integer rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idDish")
-    private Dish idDish;
+    @JoinColumn(name = "idRestaurant")
+    private Restaurant restaurant;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdUser")
-    private User idUser;
+    private User user;
 
     public Integer getId() {
         return id;
@@ -49,19 +49,19 @@ public class Review {
         this.rating = rating;
     }
 
-    public Dish getIdDish() {
-        return idDish;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdDish(Dish idDish) {
-        this.idDish = idDish;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public User getIdUser() {
-        return idUser;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setIdUser(User idUser) {
-        this.idUser = idUser;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }
