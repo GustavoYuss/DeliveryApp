@@ -43,8 +43,8 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     List<Restaurant> findRestaurantsByDishTypeId(@Param("dishTypeId") Integer dishTypeId);
 
 
-    @Query("SELECT r.id FROM Restaurant r WHERE r.user.id = ?1")
-    int getRestaurantByUserId(int userId);
+    @Query("SELECT r FROM Restaurant r WHERE r.user.id = ?1")
+    Restaurant getRestaurantByUserId(int userId);
 
     List<Restaurant> findByNameRestaurantContainingIgnoreCase(String nameRestaurant);
 }

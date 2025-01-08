@@ -40,10 +40,10 @@
 
       <div class="restaurant-info">
         <div>
-          <h1>StarBucks</h1>
+          <h1 th:text="${restaurant.getNameRestaurant()}"></h1>
         </div>
         <div class="search-bar">
-          <input type="text" placeholder="Buscar en Subway">
+          <input type="text" th:placeholder="${restaurant.getNameRestaurant()}">
         </div>
       </div>
 
@@ -75,10 +75,19 @@
 
       <div class="container-Products">
         <h1>Subway productos</h1>
-        <div id="product-container" class="product-grid"></div>
-        <div class="pagination">
-          <button id="prevPage" class="pagination-btn">Anterior</button>
-          <button id="nextPage" class="pagination-btn">Siguiente</button>
+        <div id="product-container" class="product-grid" >
+          <div class="product-info" th:each="product : ${dishesMenu}">
+            <div class="text-content">
+              <h2 th:text="${product.name}"></h2>
+              <div class="price-rating">
+                <span class="price" th:text="${product.normalPrice}"></span>
+                <span class="rating">•</span>
+              </div>
+              <p th:text="${product.description}"></p>
+            </div>
+            <img th:src="${product.getImagePath()}" alt="image">
+            <button class="add-to-cart">+</button>
+          </div>
         </div>
       </div>
 
@@ -109,8 +118,8 @@
               <span class="user-name" th:text="${order.idUser.name}"/>
             </div>
             <span class="pedido-id" th:text="${order.id}"/>
-            <span class="pedido-status" onclick="openStatusForm(event, 'C7E14')" th:text="${order.idStatus.status}" />
-            <span class="pedido-restaurant">Cevichi Bichi</span>
+            <span class="pedido-status" th:onclick="'openStatusForm(event, \'' + ${order.id} + '\')'" th:text="${order.idStatus.status}" />
+            <span class="pedido-restaurant" th:text="${restaurant.getNameRestaurant()}"></span>
             <span class="pedido-time" th:text="${order.date}" />
             <span class="pedido-price" th:text="${order.total}"/>
           </div>
@@ -118,16 +127,14 @@
       </div>
 
       <!-- Modal para cambiar estado -->
+
       <div class="status-modal" id="statusModal">
         <div class="modal-content">
           <h2>Cambiar estado del pedido</h2>
           <div class="status-buttons">
-            <button onclick="changeStatus('En espera')">En espera</button>
-            <button onclick="changeStatus('En proceso')">En proceso</button>
-            <button onclick="changeStatus('Enviado')">Enviado</button>
-            <button onclick="changeStatus('Enviado y cobrado')">Enviado y cobrado</button>
-            <button onclick="changeStatus('Terminado')">Terminado</button>
-            <button onclick="changeStatus('Cancelado')">Cancelado</button>
+            <button onclick="changeStatus(1)">Procesando</button>
+            <button onclick="changeStatus(2)">Pagado</button>
+            <button onclick="changeStatus(3)">Cancelado</button>
           </div>
           <button class="close-modal" onclick="closeStatusForm()">Cerrar</button>
         </div>
@@ -246,11 +253,11 @@
       <div class="pagos-detalles">
         <div class="pagos-card">
           <h2 class="pagos-subtitulo">Total de ganancias</h2>
-          <p class="pagos-valor">$0.00</p>
+          <p class="pagos-valor" th:text="${earnings}"></p>
         </div>
         <div class="pagos-card">
           <h2 class="pagos-subtitulo">Pedidos completados</h2>
-          <p class="pagos-valor">0</p>
+          <p class="pagos-valor" th:text="${finishedOrders}"></p>
         </div>
         <div class="pagos-card">
           <h2 class="pagos-subtitulo">Frecuencia de pago</h2>
@@ -298,7 +305,12 @@
           </tr>
           </thead>
           <tbody id="tabla-pedidos">
-          <!-- Filas dinámicas aquí -->
+          <tr th:each="pedido : ${orders}">
+            <td th:text="${pedido.getId()}"></td>
+            <td th:text="${pedido.getDate()}"></td>
+            <td th:text="${pedido.getTotal()}"></td>
+            <td th:text="${pedido.getIdStatus().getStatus()}"></td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -333,7 +345,7 @@
         </thead>
         <tbody id="articulos-tbody">
           <tr th:each="dishMenu : ${dishesMenu}">
-            <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrm45IT7TPDizgfnHZXQPDqLqTyIxJBt0D4Q&s" alt="Foto" width="50"></td>
+            <td><img th:src="${dishMenu.getImagePath()}" alt="Foto" width="50"></td>
             <td th:text="${dishMenu.getName()}"></td>
             <td th:text="${dishMenu.getDescription()}"></td>
             <td th:text="${dishMenu.getNormalPrice()}"></td>
@@ -366,6 +378,9 @@
             <option value="" disabled selected>Seleccione un tipo</option>
             <option th:each="dishTypeOption : ${dishTypeList}" th:value="${dishTypeOption.id}" th:text="${dishTypeOption.dishType}"></option>
           </select>
+
+          <label for="imagen">Imagen:</label>
+          <input id="imagen" name="Imagen" th:field="*{imagePath}">
 
           <button type="submit">Guardar</button>
         </form>

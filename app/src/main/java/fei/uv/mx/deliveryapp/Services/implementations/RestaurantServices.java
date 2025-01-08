@@ -70,7 +70,7 @@ public class RestaurantServices implements IRestaurantServices {
      * @return
      */
     @Override
-    public int getRestaurantByIdUser(int id) {
+    public Restaurant getRestaurantByIdUser(int id) {
         return restaurantRepository.getRestaurantByUserId(id);
     }
 

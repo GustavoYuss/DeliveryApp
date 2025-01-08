@@ -10,7 +10,7 @@ public interface IRestaurantServices {
     boolean deleteRestaurant(int id);
     boolean updateRestaurant(Restaurant restaurant);
     List<Restaurant> getAllRestaurants();
-    int getRestaurantByIdUser(int id);
+    Restaurant getRestaurantByIdUser(int id);
     List<DishType> getDishesTypeByRestaurant(int idRestaurant);
     List<OrderRestaurant> getOrderRestaurantByRestaurant(int idRestaurant);
     List<DishOrderDTO> getDishesFromOrderRestaurant(int idOrder);

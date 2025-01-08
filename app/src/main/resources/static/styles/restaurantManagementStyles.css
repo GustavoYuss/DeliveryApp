@@ -325,9 +325,21 @@ h1#title {
 }
 
 .product-info {
-    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
     top: 10px;
     margin-bottom: 39px;
+}
+
+.product-info img {
+    max-width: 150px;
+    margin-left: 20px;
+}
+
+.product-info .text-content {
+    flex: 1;
 }
 
 .product-card img {

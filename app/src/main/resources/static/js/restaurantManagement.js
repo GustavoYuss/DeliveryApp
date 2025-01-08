@@ -71,7 +71,7 @@ const products = [
 ];
 
 const productContainer = document.getElementById("product-container");
-
+/*
 products.forEach(product => {
     const productCard = document.createElement("div");
     productCard.classList.add("product-card");
@@ -91,7 +91,7 @@ products.forEach(product => {
 
     productContainer.appendChild(productCard);
 });
-
+*/
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("articulo-form");
 
