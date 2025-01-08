@@ -2,6 +2,7 @@ package fei.uv.mx.deliveryapp.Services.interfaces;
 
 import fei.uv.mx.deliveryapp.Models.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IRestaurantServices {
@@ -14,4 +15,6 @@ public interface IRestaurantServices {
     List<DishType> getDishesTypeByRestaurant(int idRestaurant);
     List<OrderRestaurant> getOrderRestaurantByRestaurant(int idRestaurant);
     List<DishOrderDTO> getDishesFromOrderRestaurant(int idOrder);
+    int getCountOrderByStatus(int idRestaurant, int idStatus);
+    int getCountOrderByStatusAndDate(int idRestaurant, int idStatus, LocalDate date);
 }

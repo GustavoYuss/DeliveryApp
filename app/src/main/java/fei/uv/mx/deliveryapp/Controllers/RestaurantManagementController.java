@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -102,6 +104,26 @@ public class RestaurantManagementController {
         orderSelected.setIdStatus(status);
         orderServices.updateOrderDish(orderSelected);
         return ResponseEntity.ok("restaurantManagement");
+    }
+
+    @GetMapping ("/getTodayStats")
+    public ResponseEntity<List<Integer>> getTodayStats(HttpServletRequest request) {
+        List<Integer> todayStats = new LinkedList<>();
+        LocalDate date = LocalDate.now();
+        todayStats.add(restaurantServices.getCountOrderByStatusAndDate(restaurant.getId(),1, date));
+        todayStats.add(restaurantServices.getCountOrderByStatusAndDate(restaurant.getId(),2, date));
+        todayStats.add(restaurantServices.getCountOrderByStatusAndDate(restaurant.getId(),3, date));
+        System.out.println(todayStats.size());
+        return ResponseEntity.ok(todayStats);
+    }
+
+    @GetMapping ("/getStats")
+    public ResponseEntity<List<Integer>> getStats(HttpServletRequest request) {
+        List<Integer> stats = new LinkedList<>();
+        stats.add(restaurantServices.getCountOrderByStatus(restaurant.getId(),1));
+        stats.add(restaurantServices.getCountOrderByStatus(restaurant.getId(),2));
+        stats.add(restaurantServices.getCountOrderByStatus(restaurant.getId(),3));
+        return ResponseEntity.ok(stats);
     }
 
     private void getIdRestaurant(HttpServletRequest request) {

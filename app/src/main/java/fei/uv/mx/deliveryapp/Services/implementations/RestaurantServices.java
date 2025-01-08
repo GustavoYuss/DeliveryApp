@@ -9,6 +9,7 @@ import fei.uv.mx.deliveryapp.Services.interfaces.IRestaurantServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -93,5 +94,15 @@ public class RestaurantServices implements IRestaurantServices {
     @Override
     public List<DishOrderDTO> getDishesFromOrderRestaurant(int idOrder) {
         return orderRestaurantRepository.getDishesFromOrderRestaurant(idOrder);
+    }
+
+    @Override
+    public int getCountOrderByStatus(int idRestaurant, int idStatus) {
+        return orderRestaurantRepository.getCountOfOrderByStatus(idRestaurant, idStatus);
+    }
+
+    @Override
+    public int getCountOrderByStatusAndDate(int idRestaurant, int idStatus, LocalDate date) {
+        return orderRestaurantRepository.getCountOfOrderByStatusAndDate(idRestaurant, idStatus, date);
     }
 }
