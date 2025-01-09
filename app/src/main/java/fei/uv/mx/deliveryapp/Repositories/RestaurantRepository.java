@@ -32,8 +32,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
         return false;
     }
 
-
-    @Query("SELECT u FROM Restaurant u")
+    @Query("SELECT r FROM Restaurant r LEFT JOIN FETCH r.user")
     List<Restaurant> getAllRestaurant();
 
     @Query("SELECT r FROM Restaurant r " +

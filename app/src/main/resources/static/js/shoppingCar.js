@@ -177,10 +177,6 @@ function decreaseItemFromCar(item) {
         });
 }
 
-function showItem(item) {
-
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     const checkoutButton = document.querySelector(".checkout-button");
     checkoutButton.addEventListener("click", () => {
