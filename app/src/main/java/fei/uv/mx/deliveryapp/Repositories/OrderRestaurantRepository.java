@@ -7,6 +7,7 @@ import fei.uv.mx.deliveryapp.Models.OrderRestaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderRestaurantRepository extends JpaRepository<OrderRestaurant, Integer> {
@@ -42,6 +43,12 @@ public interface OrderRestaurantRepository extends JpaRepository<OrderRestaurant
 
     @Query("SELECT new fei.uv.mx.deliveryapp.Models.DishOrderDTO(od, ord.amount) FROM OrderRestaurantDish ord JOIN ord.idDish od WHERE ord.idOrderRestaurant.id = ?1")
     List<DishOrderDTO> getDishesFromOrderRestaurant(int orderId);
+
+    @Query("SELECT COUNT(odr) FROM OrderAppRestaurant oda JOIN oda.idOrderRestaurant odr WHERE oda.idRestaurant.id = ?1 AND odr.idStatus.id = ?2")
+    int getCountOfOrderByStatus(int idRestaurant, int idStatus);
+
+    @Query("SELECT COUNT(odr) FROM OrderAppRestaurant oda JOIN oda.idOrderRestaurant odr WHERE oda.idRestaurant.id = ?1 AND odr.idStatus.id = ?2 AND odr.date = ?3")
+    int getCountOfOrderByStatusAndDate(int idRestaurant, int idStatus, LocalDate date);
 
     /*
     @Query("SELECT od FROM OrderRestaurant od WHERE od.idDish.id = ?1")

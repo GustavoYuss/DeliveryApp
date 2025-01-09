@@ -75,18 +75,27 @@ public class ShoppingCarController {
         User user = new User();
         user.setId(userID);
         List<CustomerCart> customerCartList = orderServices.getCustomerCart(userID);
+        int totalOrder = getTotalOrder(customerCartList);
         //int idUserAddress = locationServices.getAddressByUser(userID);
         //Payment idUserPayment = paymentServices.getPaymentsByUserId(userID);
         Order order = new Order();
         order.address = "PUTOS TODOS";
         Address address = new Address();
         order.setDate(LocalDate.now());
-        order.setTotal(new BigDecimal("123.45"));
+        order.setTotal(new BigDecimal(totalOrder));
         //order.setIdPayment(idUserPayment);
         order.setIdUser(user);
         order = orderServices.createOrder(order);
         List<Integer> idRestaurntsList = getIdRestaurant(customerCartList);
         registerOrder(customerCartList, idRestaurntsList, order);
+    }
+
+    private int getTotalOrder(List<CustomerCart> customerCartList) {
+        int total = 0;
+        for (CustomerCart customerCart : customerCartList) {
+            total += customerCart.getQuantity() * customerCart.getCostByProduct();
+        }
+        return total;
     }
 
     private List<Integer> getIdRestaurant(List<CustomerCart> customerCartList) {
@@ -110,9 +119,10 @@ public class ShoppingCarController {
             User user = new User();
             user.setId(userID);
             orderRestaurant.setIdUser(user);
+            orderRestaurant.setTotal(getTotalRestaurant(customerCartList, idRestaurant));
             orderRestaurant = orderRestaurantRepository.createOrderRestaurant(orderRestaurant);
             for (CustomerCart customerCart : customerCartList) {
-                if (customerCart.getUser().getId() == user.getId()) {
+                if (customerCart.getDish().getRestaurant().getId() == idRestaurant) {
                     OrderRestaurantDish orderRestaurantDish = new OrderRestaurantDish();
                     orderRestaurantDish.setIdDish(customerCart.getDish());
                     orderRestaurantDish.setIdOrderRestaurant(orderRestaurant);
@@ -130,6 +140,15 @@ public class ShoppingCarController {
         }
     }
 
+    private double getTotalRestaurant(List<CustomerCart> customerCartList, int idRestaurant) {
+        double total = 0;
+        for (CustomerCart customerCart : customerCartList) {
+            if (customerCart.getDish().getRestaurant().getId() == idRestaurant) {
+                total += customerCart.getQuantity() * customerCart.getCostByProduct();
+            }
+        }
+        return total;
+    }
 
     private void getIdUser(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
