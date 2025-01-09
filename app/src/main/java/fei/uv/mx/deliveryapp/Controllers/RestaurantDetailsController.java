@@ -1,13 +1,8 @@
 package fei.uv.mx.deliveryapp.Controllers;
 
-import fei.uv.mx.deliveryapp.Models.CustomerCart;
-import fei.uv.mx.deliveryapp.Models.Dish;
-import fei.uv.mx.deliveryapp.Models.Restaurant;
-import fei.uv.mx.deliveryapp.Models.User;
-import fei.uv.mx.deliveryapp.Repositories.CustomerCarRepository;
-import fei.uv.mx.deliveryapp.Repositories.DishRepository;
-import fei.uv.mx.deliveryapp.Repositories.RestaurantRepository;
-import fei.uv.mx.deliveryapp.Repositories.UserRepository;
+import fei.uv.mx.deliveryapp.DTOs.ReviewDTO;
+import fei.uv.mx.deliveryapp.Models.*;
+import fei.uv.mx.deliveryapp.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,20 +18,15 @@ import java.util.List;
 public class RestaurantDetailsController {
 
     @Autowired
-    private final RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
     @Autowired
-    private final DishRepository dishRepository;
+    private DishRepository dishRepository;
     @Autowired
-    private final CustomerCarRepository customerCartRepository;
+    private CustomerCarRepository customerCartRepository;
     @Autowired
-    private final UserRepository userRepository;
-
-    public RestaurantDetailsController(RestaurantRepository restaurantRepository, DishRepository dishRepository, CustomerCarRepository customerCartRepository, UserRepository userRepository) {
-        this.restaurantRepository = restaurantRepository;
-        this.dishRepository = dishRepository;
-        this.customerCartRepository = customerCartRepository;
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @GetMapping("/showDetails")
     public String showRestaurantDetails(@RequestParam("id") int restaurantId, Model model) {
@@ -49,7 +39,6 @@ public class RestaurantDetailsController {
 
     @GetMapping("/getDishesByRestaurant")
     public ResponseEntity<List<Dish>> getDishesByRestaurant(@RequestParam("id") int restaurantId) {
-        System.out.println("Si se llego a llamar el meotodo");
         List<Dish> dishList = dishRepository.findByRestaurantId(restaurantId);
         if (dishList == null || dishList.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -68,6 +57,39 @@ public class RestaurantDetailsController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Error al agregar el plato al carrito: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/getReviews")
+    public ResponseEntity<?> getReviews(@RequestParam("id") int restaurantId) {
+        List<Review> reviews;
+        List<ReviewDTO> reviewDTOS = new ArrayList<>();
+        try {
+            reviews = reviewRepository.getReviewsByRestaurantId(restaurantId);
+            reviews.forEach(review -> {
+                ReviewDTO reviewDTO = new ReviewDTO();
+                reviewDTO.setId(review.getId());
+                reviewDTO.setDescription(review.getDescription());
+                reviewDTO.setRating(review.getRating());
+                reviewDTO.setUserName(review.getUser().getName());
+                reviewDTOS.add(reviewDTO);
+            });
+            return ResponseEntity.ok(reviewDTOS);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @PostMapping("/registerReviews")
+    public ResponseEntity<Review> registerReviews(@RequestBody Review review) {
+        try {
+            System.out.println(review.getDescription());
+            System.out.println(review.getRating());
+            System.out.println(review.getUser().getId());
+            System.out.println(review.getRestaurant().getId());
+            return ResponseEntity.ok(reviewRepository.createReview(review));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
         }
     }
 

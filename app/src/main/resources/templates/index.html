@@ -33,19 +33,6 @@
 
 
 <section id="restaurants" >
-    <!-- Recienes -->
-    <div class="restaurants-Section" id="recientes">
-        <div class="header">
-            <div class="header-title">
-                <h2 class="subtitle-restaurants">Restauranes Recientes</h2>
-                <span>Los restauranes visitados recientemente.</span>
-            </div>
-        </div>
-
-        <button class="arrow-btn left-arrow-restaurants left-arrow-rr">&#9664;</button>
-        <div class="restaurants-carousel recent-restaurants"></div>
-        <button class="arrow-btn right-arrow-restaurants right-arrow-rr">&#9654;</button>
-    </div>
 
     <!-- Parte de las mas puntuadas -->
     <div class="restaurants-Section" id="mas-puntuadas">
@@ -81,14 +68,13 @@
         </div>
 
         <div class="restaurants-table" id="restaurantsTable"></div>
-
-        <button class="load-more-restaurans-btn" id="loadMoreBtn">Ver más</button>
     </div>
 </section>
 
 <script th:inline="javascript">
     var authenticatedUser = /*[[${authenticatedUser}]]*/ {};
 </script>
+
 <script src="/js/index.js"></script>
 <script src="/js/bar.js"></script>
 

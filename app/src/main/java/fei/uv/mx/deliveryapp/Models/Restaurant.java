@@ -3,6 +3,7 @@ package fei.uv.mx.deliveryapp.Models;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 
 @Entity
@@ -22,6 +23,9 @@ public class Restaurant {
 
     @Column(name = "CloseTime")
     private LocalTime closeTime;
+
+    @Column(name = "Rating")
+    private BigDecimal rating;
 
     @Column(name = "ImagePath", length = 130)
     private String imagePath;
@@ -79,5 +83,21 @@ public class Restaurant {
 
     public void setImageLogoPath(String imageLogoPath) {
         this.imageLogoPath = imageLogoPath;
+    }
+
+    public BigDecimal getRating() {
+        return rating;
+    }
+
+    public void setRating(BigDecimal rating) {
+        this.rating = rating;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

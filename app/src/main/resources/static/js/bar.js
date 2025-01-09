@@ -4,57 +4,57 @@ let userLat, userLng;
 let currentAddress = { street: '', city: '', state: '' };
 
 document.addEventListener("DOMContentLoaded", async () => {
+    // Recuperar ubicación guardada
     const savedAddress = localStorage.getItem('selectedAddress');
-    const savedLat = localStorage.getItem('selectedLat');
-    const savedLon = localStorage.getItem('selectedLon');
+    const savedLat = parseFloat(localStorage.getItem('selectedLat'));
+    const savedLon = parseFloat(localStorage.getItem('selectedLon'));
 
-    if (savedAddress && savedLat && savedLon) {
-        userLat = parseFloat(savedLat);
-        userLng = parseFloat(savedLon);
-        const locationLabel = document.getElementById("locationLabel");
-        locationLabel.textContent = savedAddress;
+    if (savedAddress && !isNaN(savedLat) && !isNaN(savedLon)) {
+        userLat = savedLat;
+        userLng = savedLon;
+        document.getElementById("locationLabel").textContent = savedAddress;
     } else {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(async function(position) {
-                userLat = position.coords.latitude;
-                userLng = position.coords.longitude;
-                const data = await reverseGeocode(userLat, userLng);
-                if (data && data.address) {
-                    updateLocationLabelFromAddress(data.address);
+        // Intentar obtener ubicación actual
+        try {
+            const permission = await navigator.permissions.query({ name: 'geolocation' });
+            if (permission.state === 'denied') {
+                alert("Permiso de geolocalización denegado.");
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    userLat = position.coords.latitude;
+                    userLng = position.coords.longitude;
+                    const data = await reverseGeocode(userLat, userLng);
+                    if (data?.address) updateLocationLabelFromAddress(data.address);
+                },
+                (error) => {
+                    console.error("Error al obtener la ubicación:", error.message);
+                    alert("No se pudo obtener la ubicación.");
                 }
-            }, function() {
-                alert("No se pudo obtener la ubicación.");
-            });
-        } else {
-            alert("La geolocalización no está disponible en este navegador.");
+            );
+        } catch (error) {
+            console.error("Error al verificar permisos:", error);
         }
     }
 });
 
 function showMap() {
     document.getElementById("mapModal").style.display = "flex";
+
     if (!map) {
-        map = L.map('map').setView([userLat, userLng], 15);
+        // Inicializar mapa
+        map = L.map('map').setView([userLat || 0, userLng || 0], 15);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '© OpenStreetMap contributors'
+            attribution: '© OpenStreetMap contributors',
         }).addTo(map);
         marker = L.marker([userLat, userLng]).addTo(map);
+
         map.on('dblclick', async (e) => {
             const lat = e.latlng.lat;
             const lon = e.latlng.lng;
-            marker.setLatLng([lat, lon]);
-            const reverseData = await reverseGeocode(lat, lon);
-            if (reverseData && reverseData.address) {
-                updateLocationLabelFromAddress(reverseData.address);
-                const street = reverseData.address.road || reverseData.address.street || '';
-                const city = reverseData.address.city || reverseData.address.town || reverseData.address.village || '';
-                const state = reverseData.address.state || '';
-                const formattedAddress = [street, city, state].filter(Boolean).join(', ');
-                localStorage.setItem('selectedAddress', formattedAddress);
-                localStorage.setItem('selectedLat', lat);
-                localStorage.setItem('selectedLon', lon);
-            }
+            updateMarker(lat, lon);
         });
     }
 
@@ -67,69 +67,68 @@ function closeMap() {
     document.getElementById("mapModal").style.display = "none";
 }
 
+function updateMarker(lat, lon) {
+    marker.setLatLng([lat, lon]);
+    reverseGeocode(lat, lon).then((data) => {
+        if (data?.address) {
+            updateLocationLabelFromAddress(data.address);
+            const formattedAddress = formatAddress(data.address);
+            localStorage.setItem('selectedAddress', formattedAddress);
+            localStorage.setItem('selectedLat', lat);
+            localStorage.setItem('selectedLon', lon);
+        }
+    });
+}
+
 function updateLocationLabelFromAddress(address) {
+    const formattedAddress = formatAddress(address);
+    document.getElementById("locationLabel").textContent = formattedAddress;
+    currentAddress = { ...address };
+}
+
+function formatAddress(address) {
     const street = address.road || address.street || '';
     const city = address.city || address.town || address.village || '';
     const state = address.state || '';
-    const formattedAddress = [street, city, state].filter(Boolean).join(', ');
-    currentAddress = { street, city, state };
-    const locationLabel = document.getElementById("locationLabel");
-    locationLabel.textContent = formattedAddress;
+    return [street, city, state].filter(Boolean).join(', ');
 }
 
 async function reverseGeocode(lat, lon) {
-    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&addressdetails=1`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
+    try {
+        const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&addressdetails=1`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Error al obtener datos de geocodificación inversa");
+        return await response.json();
+    } catch (error) {
+        console.error("Error en reverseGeocode:", error);
+    }
 }
 
 async function searchPlaces(query) {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(query)}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
+    try {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(query)}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Error al buscar lugares");
+        return await response.json();
+    } catch (error) {
+        console.error("Error en searchPlaces:", error);
+    }
 }
 
 function selectPlaceFromList(place) {
     const lat = parseFloat(place.lat);
     const lon = parseFloat(place.lon);
+    updateMarker(lat, lon);
 
-    map.setView([lat, lon], 15);
-    marker.setLatLng([lat, lon]);
-
-    if (place.address) {
-        updateLocationLabelFromAddress(place.address);
-        const street = place.address.road || place.address.street || '';
-        const city = place.address.city || place.address.town || place.address.village || '';
-        const state = place.address.state || '';
-        const formattedAddress = [street, city, state].filter(Boolean).join(', ');
-        localStorage.setItem('selectedAddress', formattedAddress);
-        localStorage.setItem('selectedLat', lat);
-        localStorage.setItem('selectedLon', lon);
-    } else {
-        reverseGeocode(lat, lon).then(data => {
-            if (data && data.address) {
-                updateLocationLabelFromAddress(data.address);
-                const street = data.address.road || data.address.street || '';
-                const city = data.address.city || data.address.town || data.address.village || '';
-                const state = data.address.state || '';
-                const formattedAddress = [street, city, state].filter(Boolean).join(', ');
-                localStorage.setItem('selectedAddress', formattedAddress);
-                localStorage.setItem('selectedLat', lat);
-                localStorage.setItem('selectedLon', lon);
-            }
-        });
-    }
-
+    const formattedAddress = formatAddress(place.address || {});
+    document.getElementById("searchInput").value = formattedAddress;
     suggestionsList.style.display = "none";
-    searchInput.value = [place.address?.road || place.display_name, place.address?.city, place.address?.state].filter(Boolean).join(', ');
 }
 
 const searchInput = document.getElementById("searchInput");
 const suggestionsList = document.getElementById("searchSuggestions");
 
-searchInput.addEventListener("input", async function() {
+searchInput.addEventListener("input", async function () {
     const query = this.value.trim();
     if (query.length < 3) {
         suggestionsList.style.display = "none";
@@ -137,20 +136,20 @@ searchInput.addEventListener("input", async function() {
     }
     const results = await searchPlaces(query);
     suggestionsList.innerHTML = "";
-    if (results.length > 0) {
-        for (let place of results) {
+
+    if (results?.length > 0) {
+        results.forEach((place) => {
             const li = document.createElement("li");
             li.textContent = place.display_name;
-            li.addEventListener("click", () => {
-                selectPlaceFromList(place);
-            });
+            li.addEventListener("click", () => selectPlaceFromList(place));
             suggestionsList.appendChild(li);
-        }
+        });
         suggestionsList.style.display = "block";
     } else {
         suggestionsList.style.display = "none";
     }
 });
+
 
 function redirectToIndex(){
     window.location.href = "/";
@@ -158,6 +157,10 @@ function redirectToIndex(){
 
 function redirectToLogin() {
     window.location.href = "/login";
+}
+
+function redirectToCustomerOrdersPage() {
+    window.location.href = "/deliveryApp/customer/"
 }
 
 function goToCar() {

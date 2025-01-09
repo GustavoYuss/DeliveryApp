@@ -124,7 +124,6 @@ function handleCategoryClick(categoryId) {
         .then(restaurants => {
             document.getElementById("mas-bara").style.display = "none";
             document.getElementById("mas-puntuadas").style.display = "none";
-            document.getElementById("recientes").style.display = "none";
             const restaurantsTable = document.querySelector("#restaurantsTable");
             restaurantsTable.innerHTML = "";
 
@@ -250,6 +249,7 @@ document.addEventListener('click', function (event) {
     if (restaurantItem) {
         const restaurantId = restaurantItem.getAttribute('data-id');
         if (restaurantId) {
+            localStorage.setItem('restaurant', JSON.stringify(restaurantId));
             window.location.href = `/deliveryApp/restaurants/showDetails?id=${restaurantId}`;
         }
     }

@@ -35,13 +35,13 @@ public class ReviewServices implements IReviewServices {
     }
 
     @Override
-    public List<Review> getReviewsByDishId(int dishId) {
-        return reviewRepository.getReviewsByDish(dishId);
+    public List<Review> getReviewsByRestaurantId(int restaurantId) {
+        return reviewRepository.getReviewsByRestaurantId(restaurantId);
     }
 
     @Override
-    public double getReviewRating(int dishId) {
-        return reviewRepository.getReviewRating(dishId);
+    public double getReviewRating(int restaurantId) {
+        return reviewRepository.getReviewRating(restaurantId);
     }
 
     @Override
