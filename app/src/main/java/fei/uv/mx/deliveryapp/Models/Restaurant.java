@@ -84,4 +84,20 @@ public class Restaurant {
     public void setImageLogoPath(String imageLogoPath) {
         this.imageLogoPath = imageLogoPath;
     }
+
+    public BigDecimal getRating() {
+        return rating;
+    }
+
+    public void setRating(BigDecimal rating) {
+        this.rating = rating;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

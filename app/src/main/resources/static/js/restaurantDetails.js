@@ -1,48 +1,102 @@
+function removeFirstAndLastChar(str) {
+    if (str.length <= 2) {
+        return '';
+    }
+    return str.substring(1, str.length - 1);
+}
+
+function getRestaurantID() {
+    const restaurantId = localStorage.getItem('restaurant');
+    const aux= removeFirstAndLastChar(restaurantId);
+    return parseInt(aux, 10);
+}
+
+function getUserID() {
+    let userJSON = localStorage.getItem("user");
+    ValidateJSON(userJSON);
+    return JSON.parse(userJSON);
+}
+
+function ShowAlertOK(title, menssage)
+{
+    Swal.fire({
+        icon: "success",
+        title: title,
+        text: menssage,
+        confirmButtonText: 'OK'
+    }).then(() => {
+        location.reload(true);
+    });
+}
+
+function ShowAlertError()
+{
+    Swal.fire({
+        icon: "error",
+        title: 'Error de red',
+        text: 'No fue posible conectar con el servidor. Por favor, verifica tu conexión e inténtalo nuevamente.'
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-    const restaurantId = 1;
+    const restaurantId = getRestaurantID();
+    if (!isNaN(restaurantId)) {
+        fetch(`/deliveryApp/restaurants/getDishesByRestaurant?id=${restaurantId}`, {
+            method: "GET",
+            credentials: "include",
+        })
+            .then(response => {
+                if (!response.ok) {
+                    ShowAlertError();
+                    throw new Error("Error en la respuesta del servidor");
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (Array.isArray(data) && data.length > 0) {
+                    const dishesHTML = data.map(product => createDishItemHTML(product)).join('');
+                    document.getElementById('dishes-container').innerHTML = dishesHTML;
+                } else {
+                    document.getElementById('dishes-container').innerHTML = "<p>No hay platos disponibles.</p>";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const restaurantId = getRestaurantID();
     fetch(`/deliveryApp/restaurants/getDishesByRestaurant?id=${restaurantId}`, {
         method: "GET",
         credentials: "include",
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error("Error al obtener los datos del servidor.");
+                ShowAlertError();
+                throw new Error("Error en la respuesta del servidor");
             }
             return response.json();
         })
         .then(data => {
-            console.log(data);
-            data.map(product => createDishItemHTML(product)).join('');
-        })
-        .catch(error => console.error("Error:", error));
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const restaurantId = 1;
-    console.log("Archivo JavaScript cargado.");
-
-    fetch(`/deliveryApp/restaurants/getDishesByRestaurant?id=${restaurantId}`, {
-        method: "GET",
-        credentials: "include",
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error al obtener los datos del servidor.");
+            if (Array.isArray(data) && data.length > 0) {
+                const popularDishesHTML = data.map(product => createDishPopularItemHTML(product)).join('');
+                document.getElementById('popular-dishes-container').innerHTML = popularDishesHTML;
+            } else {
+                document.getElementById('popular-dishes-container').innerHTML = "<p>No hay platos populares disponibles.</p>";
             }
-            return response.json();
         })
-        .then(data => {
-            console.log(data);
-            data.map(product => createDishPopularItemHTML(product)).join('');
-        })
-        .catch(error => console.error("Error:", error));
+        .catch(error => {
+            console.error("Error:", error);
+        });
 });
+
 
 
 function createDishItemHTML(product) {
     const productCard = document.createElement("div");
     const productContainer = document.getElementById("product-container");
-
     productCard.classList.add("product-card");
 
     productCard.innerHTML = `
@@ -111,8 +165,6 @@ function enableCarouselScroll(containerSelector, leftButtonSelector, rightButton
 
 enableCarouselScroll('#products-Recents', '#leftArrow', '#rightArrow');
 
-
-
 const productContainer = document.getElementById("product-container");
 const modal = document.getElementById("product-modal");
 const closeModal = document.getElementById("close-modal");
@@ -168,16 +220,13 @@ function ValidateJSON(userJSON)
     if (!userJSON) {
         console.warn("No user data found in localStorage.");
         window.location.href = "/login";
-        return;
     }
 }
 
 function addToCart(product) {
     const quantity = parseInt(document.querySelector(".dropdown-button").textContent.trim());
     const specialInstructions = document.getElementById("special-instructions").value;
-    let userJSON = localStorage.getItem("user");
-    ValidateJSON(userJSON);
-    let user = JSON.parse(userJSON);
+    let user = getUserID();
 
     const customerCart = {
         user: { id: user.id, name: user.name, email: user.email},
@@ -197,28 +246,26 @@ function addToCart(product) {
         .then(response => {
             if (!response.ok) {
                 return response.text().then(text => {
-                    throw new Error(`Error del servidor: ${text}`);
+                    throw new Error(`Error: ${response.statusText}`);
                 });
             }
             return response.json();
         })
         .then(data => {
-            console.log("Producto agregado al carrito:", data);
-            alert("Producto agregado al carrito con éxito");
+            ShowAlertOK("Producto agregado al carrito con éxito",
+                "Producto agregado al carrito: " + data)
+            reloadItemsCart();
             modal.classList.add("hidden");
         })
         .catch(error => {
             console.error(error);
-            alert("Hubo un error al agregar el producto al carrito: " + error.message);
+            ShowAlertError();
         });
 }
 
 async function reloadItemsCart() {
     try {
-        let userJSON = localStorage.getItem("user");
-        ValidateJSON(userJSON);
-        let user = JSON.parse(userJSON);
-
+        let user = getUserID()
         const response = await fetch(`/shoppingCar/getQuantityItems?id=${user.id}`);
         if (!response.ok) {
             throw new Error(`Error fetching products: ${response.statusText}`);
@@ -233,30 +280,9 @@ async function reloadItemsCart() {
 
     } catch (error) {
         console.error("Failed to fetch products:", error);
+        ShowAlertError();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -277,8 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
     viewReviewsButton.addEventListener("click", () => {
         toggleSections(reviewsSection);
         setActiveButton(viewReviewsButton);
-        const restaurantId = 1;
-        loadReviews(restaurantId); // Cargar reseñas al hacer clic
+        let restaurantIdInt = getRestaurantID();
+        loadReviews(restaurantIdInt);
     });
 
     writeReviewButton.addEventListener("click", () => {
@@ -300,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function loadReviews(restaurantId) {
         const reviewsList = document.getElementById("reviews-list");
-        reviewsList.innerHTML = ""; // Limpiar la lista antes de cargar las reseñas
+        reviewsList.innerHTML = "";
 
         try {
             const response = await fetch(`http://localhost:8080/deliveryApp/restaurants/getReviews?id=${restaurantId}`);
@@ -316,14 +342,13 @@ document.addEventListener("DOMContentLoaded", () => {
             reviews.forEach((review) => {
                 const li = document.createElement("li");
                 li.innerHTML = `
-                    <span class="review-author">Usuario: ${review.user?.name}</span>
+                    <span class="review-author">Usuario: ${review.userName}</span>
                     <span class="review-rating">${"★".repeat(review.rating)}</span>
                     <span class="review-description">${review.description}</span>
                 `;
                 reviewsList.appendChild(li);
             });
         } catch (error) {
-            console.error(error);
             reviewsList.innerHTML = "<li>Error al cargar las reseñas.</li>";
         }
     }
@@ -335,11 +360,55 @@ document.addEventListener("DOMContentLoaded", () => {
         const description = document.getElementById("review-description").value;
 
         if (rating && description) {
-            alert(`Tu reseña fue enviada con ${rating} estrellas.`);
+            ShowAlertOK("Reseña enviada con existo",
+                `Tu reseña fue enviada con ${rating} estrellas.`);
             reviewForm.reset();
         } else {
             alert("Por favor, completa todos los campos.");
         }
     });
 });
+
+
+document.getElementById('review-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const rating = document.getElementById('review-rating').value;
+    const description = document.getElementById('review-description').value;
+
+    if (!rating || !description) {
+        alert('Por favor, complete todos los campos.');
+        return;
+    }
+
+    let userID = getUserID().id
+    let restaurantID = getRestaurantID()
+
+    const reviewData = {
+        description: description,
+        rating: rating,
+        user: { id: userID  },
+        restaurant: { id: restaurantID }
+    };
+
+    fetch('/deliveryApp/restaurants/registerReviews', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reviewData)
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Error al enviar la reseña');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un error al enviar la reseña');
+        });
+});
+
 

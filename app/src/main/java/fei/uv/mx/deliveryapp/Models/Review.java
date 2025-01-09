@@ -14,7 +14,7 @@ public class Review {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "dating")
+    @Column(name = "rating")
     private Integer rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
