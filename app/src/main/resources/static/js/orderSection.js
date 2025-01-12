@@ -3,7 +3,6 @@ let currentPedidoId = null;
 function openStatusForm(event, pedidoId) {
     event.stopPropagation();
     currentPedidoId = pedidoId;
-    console.log(currentPedidoId);
     const modal = document.getElementById("statusModal");
     modal.style.display = "flex";
 }
@@ -15,12 +14,6 @@ function closeStatusForm() {
 
 async function changeStatus(newStatus) {
     const pedidoItems = document.querySelectorAll(".pedido-item");
-    /*pedidoItems.forEach((item) => {
-        const id = item.querySelector(".pedido-id").textContent;
-        if (id === currentPedidoId) {
-            item.querySelector(".pedido-status").textContent = newStatus;
-        }
-    });*/
     const response = await fetch(`http://localhost:8080/updateStatusOrder?idStatus=${newStatus}&idOrder=${currentPedidoId}`);
     if (!response.ok) {
         throw new Error(`Error en la solicitud: ${response.status}`);

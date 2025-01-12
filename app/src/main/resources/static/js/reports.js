@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     new Chart(document.getElementById("grafica-pedidos-dia"), {
         type: "pie",
         data: {
-            labels: ["En progreso", "Pagados", "Cancelados"],
+            labels: ["En progreso", "Enviados", "Entregados", "Cancelados"],
             datasets: [
                 {
                     data: todayStats,
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     new Chart(document.getElementById("grafica-pedidos-exito-mes"), {
         type: "doughnut",
         data: {
-            labels: ["En progreso", "Pagados", "Cancelados"],
+            labels: ["En progreso", "Enviados", "Entregados", "Cancelados"],
             datasets: [
                 {
                     data: totalStats,
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     new Chart(document.getElementById("grafica-pedidos-pagados-cancelados"), {
         type: "bar",
         data: {
-            labels: ["En progreso", "Pagados", "Cancelados"],
+            labels: ["En progreso", "Enviados", "Entregados", "Cancelados"],
             datasets: [
                 {
                     label: "Pedidos",
