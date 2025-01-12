@@ -1,6 +1,8 @@
 package fei.uv.mx.deliveryapp.Controllers;
 
-import fei.uv.mx.deliveryapp.Models.Order;
+import fei.uv.mx.deliveryapp.Models.DishOrderDTO;
+import fei.uv.mx.deliveryapp.Models.*;
+import fei.uv.mx.deliveryapp.Repositories.DishRepository;
 import fei.uv.mx.deliveryapp.Repositories.OrderRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +29,12 @@ public class CustomerOrdersController {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private DishRepository dishRepository;
+
+
     @GetMapping("/")
     public String customerOrdersPage(HttpServletRequest request, Model model) {
-
         orders = orderRepository.findByDateBetween(LocalDate.now(), LocalDate.now());
         model.addAttribute("orders", orders);
         model.addAttribute("startDate", LocalDate.now());
@@ -61,5 +66,22 @@ public class CustomerOrdersController {
         return ResponseEntity.ok(lastUpdate);
     }
 
+    @GetMapping("/getDishesFromOrder")
+    public ResponseEntity<List<DishOrderDTO>> getDishesFromOrder(HttpServletRequest request) {
+        int idOrder = Integer.parseInt(request.getParameter("idOrder"));
+        List<DishOrderDTO> dishes = dishRepository.findDishOrderDTOsByOrderId(idOrder);
+        return ResponseEntity.ok(dishes);
+    }
 
+    @GetMapping("/updateStatusOrder")
+    public ResponseEntity<String> updateStatusOrder(HttpServletRequest request) {
+        int idStatus = 1;
+        int idOrder = Integer.parseInt(request.getParameter("idOrder"));
+        Status status = new Status();
+        status.setId(idStatus);
+        Order order = orderRepository.getOrder(idOrder);
+        order.setStatus(status);
+        orderRepository.updateOrder(order);
+        return ResponseEntity.ok("restaurantManagement");
+    }
 }

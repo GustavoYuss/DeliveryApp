@@ -1,5 +1,6 @@
 package fei.uv.mx.deliveryapp.Controllers;
 
+import fei.uv.mx.deliveryapp.Models.DishOrderDTO;
 import fei.uv.mx.deliveryapp.DTOs.RestaurantRequestDTO;
 import fei.uv.mx.deliveryapp.Models.*;
 import fei.uv.mx.deliveryapp.Repositories.DishTypeRepository;
@@ -12,22 +13,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class RestaurantManagementController {
@@ -68,7 +65,7 @@ public class RestaurantManagementController {
             newDish.setDishType(new DishType());
             List<Dish> dishes = dishServices.getDishesByRestaurantId(restaurant.getId());
             List<DishType> dishTypeList = restaurantServices.getDishesTypeByRestaurant(restaurant.getId());
-            orders = restaurantServices.getOrderRestaurantByRestaurant(restaurant.getId());
+            orders = restaurantServices.getOrderRestaurantByDay(restaurant.getId(),LocalDate.now(), LocalDate.now());
             double earnings = getTotalEarnings(orders);
             int finishedOrders = getCompleteOrders(orders);
 
@@ -79,6 +76,9 @@ public class RestaurantManagementController {
             model.addAttribute("restaurant", restaurant);
             model.addAttribute("earnings", earnings);
             model.addAttribute("finishedOrders", finishedOrders);
+            model.addAttribute("startDate", LocalDate.now());
+            model.addAttribute("endDate", LocalDate.now());
+            model.addAttribute("tomorrow", LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("EEE MMM dd yyyy")));
 
             return "restaurantManagement";
         }
@@ -219,21 +219,32 @@ public class RestaurantManagementController {
         return completeOrders;
     }
 
-    @PostMapping
-    public ResponseEntity<String> createRestaurant(@Valid @RequestBody RestaurantRequestDTO request, BindingResult result) {
-        if (result.hasErrors()) {
-            String errors = result.getAllErrors().stream()
-                    .map(ObjectError::getDefaultMessage)
-                    .collect(Collectors.joining(", "));
-            return ResponseEntity.badRequest().body("Errores: " + errors);
+    @GetMapping("/filter")
+    public String filterOrders(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+            Model model) {
+
+        if (startDate != null && endDate != null && restaurant != null) {
+            Dish newDish = new Dish();
+            newDish.setDishType(new DishType());
+            List<Dish> dishes = dishServices.getDishesByRestaurantId(restaurant.getId());
+            List<DishType> dishTypeList = restaurantServices.getDishesTypeByRestaurant(restaurant.getId());
+            List<OrderRestaurant> orders = restaurantServices.getOrderRestaurantByDay(restaurant.getId(),startDate, endDate);
+            double earnings = getTotalEarnings(orders);
+            int finishedOrders = getCompleteOrders(orders);
+
+            model.addAttribute("dish", newDish);
+            model.addAttribute("dishesMenu", dishes);
+            model.addAttribute("dishTypeList", dishTypeList);
+            model.addAttribute("orders", orders);
+            model.addAttribute("restaurant", restaurant);
+            model.addAttribute("earnings", earnings);
+            model.addAttribute("finishedOrders", finishedOrders);
+            model.addAttribute("startDate", startDate != null ? startDate : LocalDate.now());
+            model.addAttribute("endDate", endDate != null ? endDate : LocalDate.now());
         }
-
-        //restaurantService.saveRestaurant(request);
-        return ResponseEntity.ok("Restaurante registrado exitosamente");
+        return "restaurantManagement";
     }
-
-
-
-
 
 }

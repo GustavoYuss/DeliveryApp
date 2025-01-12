@@ -3,10 +3,7 @@ package fei.uv.mx.deliveryapp.Controllers;
 import fei.uv.mx.deliveryapp.DTOs.OrderDTO;
 import fei.uv.mx.deliveryapp.DTOs.OrderDishDTO;
 import fei.uv.mx.deliveryapp.DTOs.OrderRequestDTO;
-import fei.uv.mx.deliveryapp.Repositories.CustomerCarRepository;
-import fei.uv.mx.deliveryapp.Repositories.OrderAppRestaurantRepository;
-import fei.uv.mx.deliveryapp.Repositories.OrderRestaurantDishRepository;
-import fei.uv.mx.deliveryapp.Repositories.OrderRestaurantRepository;
+import fei.uv.mx.deliveryapp.Repositories.*;
 import fei.uv.mx.deliveryapp.Services.implementations.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -62,6 +59,9 @@ public class ShoppingCarController {
     @Autowired
     private OrderAppRestaurantRepository orderAppRepository;
 
+    @Autowired
+    private StatusRepository statusRepository;
+
     @GetMapping("/")
     public String carPage(HttpServletRequest request, Model model) {
         OrderDTO orderDTO = new OrderDTO();
@@ -74,12 +74,9 @@ public class ShoppingCarController {
     @PostMapping("/makeOrder")
     public ResponseEntity<String> makeOrder(@RequestBody OrderRequestDTO orderRequest) {
         try {
-            System.out.println("Entro???");
-            //getIdUser(request);
             userID = orderRequest.getUserID();
             User user = new User();
             user.setId(userID);
-            System.out.println("Pago: " + orderRequest.getPayment().getCardName() + " cvv" + orderRequest.getPayment().getCardNumber());
             Payment payment = paymentServices.createPayment(orderRequest.getPayment());
             List<CustomerCart> customerCartList = orderServices.getCustomerCart(userID);
             int totalOrder = getTotalOrder(customerCartList);
@@ -89,6 +86,9 @@ public class ShoppingCarController {
             order.setTotal(new BigDecimal(totalOrder));
             order.setIdPayment(payment);
             order.setIdUser(user);
+            Status status = new Status();
+            status.setId(1);
+            order.setStatus(status);
             order = orderServices.createOrder(order);
             List<Integer> idRestaurntsList = getIdRestaurant(customerCartList);
             registerOrder(customerCartList, idRestaurntsList, order);

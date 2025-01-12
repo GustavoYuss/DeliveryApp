@@ -1,8 +1,6 @@
 package fei.uv.mx.deliveryapp.Repositories;
 
-import fei.uv.mx.deliveryapp.Models.Dish;
 import fei.uv.mx.deliveryapp.Models.DishOrderDTO;
-import fei.uv.mx.deliveryapp.Models.OrderAppRestaurant;
 import fei.uv.mx.deliveryapp.Models.OrderRestaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -49,6 +47,11 @@ public interface OrderRestaurantRepository extends JpaRepository<OrderRestaurant
 
     @Query("SELECT COUNT(odr) FROM OrderAppRestaurant oda JOIN oda.idOrderRestaurant odr WHERE oda.idRestaurant.id = ?1 AND odr.idStatus.id = ?2 AND odr.date = ?3")
     int getCountOfOrderByStatusAndDate(int idRestaurant, int idStatus, LocalDate date);
+
+    @Query("SELECT odr FROM OrderAppRestaurant oda JOIN oda.idOrderRestaurant odr " +
+            "WHERE oda.idRestaurant.id = ?1 AND odr.date BETWEEN ?2 AND ?3")
+    List<OrderRestaurant> findByOrderIdRestaurantAndDateRange(int orderId, LocalDate startDate, LocalDate endDate);
+
 
     /*
     @Query("SELECT od FROM OrderRestaurant od WHERE od.idDish.id = ?1")

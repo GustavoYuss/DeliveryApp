@@ -1,9 +1,11 @@
 package fei.uv.mx.deliveryapp.Repositories;
 
+import fei.uv.mx.deliveryapp.Models.DishOrderDTO;
 import fei.uv.mx.deliveryapp.Models.Dish;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -40,5 +42,14 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
 
     @Query("SELECT d FROM Dish d WHERE d.restaurant.id = ?1 AND d.id <> ?2")
     List<Dish> findTop5ByRestaurantIdExceptDishId(int restaurantId, int excludedDishId, Pageable pageable);
+
+    @Query("""
+            SELECT new fei.uv.mx.deliveryapp.Models.DishOrderDTO(d, ord.amount)
+            FROM Dish d
+            JOIN OrderRestaurantDish ord ON d.id = ord.idDish.id
+            JOIN OrderAppRestaurant oar ON ord.idOrderRestaurant.id = oar.idOrderRestaurant.id
+            WHERE oar.idOrder.id = :orderId
+        """)
+    List<DishOrderDTO> findDishOrderDTOsByOrderId(@Param("orderId") Integer orderId);
 
 }

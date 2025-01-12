@@ -1,10 +1,10 @@
 package fei.uv.mx.deliveryapp.Services.implementations;
 
+import fei.uv.mx.deliveryapp.Models.DishOrderDTO;
 import fei.uv.mx.deliveryapp.Models.*;
 import fei.uv.mx.deliveryapp.Repositories.OrderRestaurantRepository;
 import fei.uv.mx.deliveryapp.Repositories.RestaurantDishTypeRepository;
 import fei.uv.mx.deliveryapp.Repositories.RestaurantRepository;
-import fei.uv.mx.deliveryapp.Repositories.UserRepository;
 import fei.uv.mx.deliveryapp.Services.interfaces.IRestaurantServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,5 +104,9 @@ public class RestaurantServices implements IRestaurantServices {
     @Override
     public int getCountOrderByStatusAndDate(int idRestaurant, int idStatus, LocalDate date) {
         return orderRestaurantRepository.getCountOfOrderByStatusAndDate(idRestaurant, idStatus, date);
+    }
+
+    public List<OrderRestaurant> getOrderRestaurantByDay(int idRestaurant, LocalDate startDate, LocalDate endDate) {
+        return orderRestaurantRepository.findByOrderIdRestaurantAndDateRange(idRestaurant, startDate, endDate);
     }
 }
