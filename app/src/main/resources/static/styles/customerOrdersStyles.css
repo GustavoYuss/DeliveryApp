@@ -67,23 +67,20 @@ img {
     display: flex;
     align-items: center;
     gap: 16px;
-    /*margin-top: -11px;
-    margin-bottom: 5px;
-    margin-left: 15px;
-    margin-right: 5px;*/
     margin-left: 15px;
     margin-right: 5px;
 }
 
 .user-avatar {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
 }
 
 .user-name {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 22px;
+    margin-bottom: -3px;
 }
 
 .pedido-id,
@@ -242,8 +239,8 @@ img {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    margin-left: 6px;
 }
-
 .user-avatar-sidebar {
     width: 50px;
     height: 50px;
@@ -260,4 +257,9 @@ img {
 .user-orders {
     color: #666;
     font-size: 14px;
+}
+
+.info {
+    padding: 24px;
+    font-size: 23px;
 }

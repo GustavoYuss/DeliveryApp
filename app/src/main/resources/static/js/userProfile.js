@@ -31,6 +31,10 @@ function ShowAlertError(title, menssage)
     });
 }
 
+function redirectToIndex() {
+    window.location.href = "/";
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     userJSON = localStorage.getItem("user");

@@ -167,6 +167,10 @@ function goToCar() {
     window.location.href = "/deliveryApp/shoppingCar/";
 }
 
+function goToRestaurant() {
+    window.location.href = "/restaurantManagement";
+}
+
 function redirectToUserProfile() {
 
     const userJSON = localStorage.getItem('user');
@@ -207,6 +211,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         userJSON = localStorage.getItem("user");
         ValidateJSON(userJSON);
         user = JSON.parse(userJSON);
+
+        const usernameLabel = document.getElementById("userNameLabel");
+        usernameLabel.textContent = user.name;
 
         const response = await fetch(`/deliveryApp/shoppingCar/getQuantityItems?id=${user.id}`);
         if (!response.ok) {

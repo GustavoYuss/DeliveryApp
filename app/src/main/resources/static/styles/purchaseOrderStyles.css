@@ -323,3 +323,12 @@ h2 {
 img {
     width: 42px;
 }
+
+span#span {
+    margin-left: 108px;
+    margin-right: -224px;
+}
+
+h3 {
+    margin-bottom: 30px;
+}

@@ -30,30 +30,6 @@
         </div>
       </section>
 
-      <!-- Opciones de entrega -->
-      <section class="delivery-options">
-        <h2>Opciones de entrega</h2>
-        <div class="option">
-          <input type="radio" id="prioritaria" name="delivery" checked>
-          <label for="prioritaria">
-            <div class="option-content">
-              <p><strong>Prioritaria</strong> <span class="tag">Más rápido</span></p>
-              <p>10-20 min · Entregado directamente a ti</p>
-              <p class="price">+ $49.00</p>
-            </div>
-          </label>
-        </div>
-        <div class="option">
-          <input type="radio" id="basica" name="delivery">
-          <label for="basica">
-            <div class="option-content">
-              <p><strong>Básica</strong></p>
-              <p>10-25 min</p>
-            </div>
-          </label>
-        </div>
-      </section>
-
       <section class="payment-section">
         <h2>Pago</h2>
         <button id="addPaymentButton" class="add-payment-button" onclick="showCardForm()">Agregar tarjeta de pago</button>
@@ -97,7 +73,7 @@
     <aside class="order-summary">
       <h3>Resumen del carrito</h3>
       <p id="count">1 artículo</p>
-      <p class="promo-code">Agregar código promo<span>Ninguno</span></p>
+      <p class="promo-code">Agregar código promo:    <span id="span">  Ninguno</span></p>
       <div class="totals">
         <p>Subtotal: <span id="subtotal">$180.00</span></p>
         <p>Costo de envío: <span id="costoEnvio">$16.00</span></p>

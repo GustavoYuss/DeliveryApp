@@ -225,7 +225,6 @@ function ValidateJSON(userJSON)
 
 function addToCart(product) {
     const quantity = parseInt(document.querySelector(".dropdown-button").textContent.trim());
-    const specialInstructions = document.getElementById("special-instructions").value;
     let user = getUserID();
 
     const customerCart = {

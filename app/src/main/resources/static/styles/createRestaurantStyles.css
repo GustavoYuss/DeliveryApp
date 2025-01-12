@@ -42,7 +42,7 @@ body {
     flex: 1;
     background: url('https://source.unsplash.com/800x600/?office') no-repeat center center;
     background-size: cover;
-    padding: 20px;
+    padding: 62px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -86,6 +86,9 @@ form button {
     cursor: pointer;
     margin-top: 20px;
     padding: 15px;
+    border-radius: 38px;
+    font-family: inherit;
+    font-stretch: extra-expanded;
 }
 
 form button:hover {
@@ -109,6 +112,7 @@ form button:hover {
     font-size: 14px;
     font-weight: 500;
     color: var(--selected-text);
+    height: 35px;
 }
 
 .selected-item button {
@@ -130,4 +134,15 @@ p {
 
 h1 {
     color: white;
+}
+
+button#buttomRemove {
+    margin-bottom: 17px;
+    margin-right: -11px;
+}
+
+button#add-category-btn {
+    border-radius: 38px;
+    font-family: inherit;
+    font-stretch: extra-expanded;
 }

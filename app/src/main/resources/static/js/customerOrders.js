@@ -99,6 +99,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 });
 
+function cancelOrder(orderId) {
+    if (confirm("¿Estás seguro de que deseas cancelar este pedido?")) {
+        // Aquí puedes enviar una solicitud para cancelar el pedido
+        fetch(`/cancelOrder/${orderId}`, {
+            method: "POST",
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert("Pedido cancelado con éxito");
+                // Opcional: recargar la página o actualizar la lista de pedidos
+                location.reload();
+            })
+            .catch(error => {
+                alert("Error al cancelar el pedido");
+            });
+    }
+}
+
+
 /*
 function fetchFilteredOrders() {
     const startDate = document.querySelector(".filter-date:nth-of-type(1)").value;

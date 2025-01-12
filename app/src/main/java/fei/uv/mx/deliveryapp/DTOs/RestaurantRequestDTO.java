@@ -1,5 +1,7 @@
 package fei.uv.mx.deliveryapp.DTOs;
 
+import fei.uv.mx.deliveryapp.Models.DishType;
+import fei.uv.mx.deliveryapp.Models.User;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.annotations.processing.Pattern;
 
@@ -14,7 +16,8 @@ public class RestaurantRequestDTO {
     private LocalTime closeTime;
     private String imagePath;
     private String imageLogoPath;
-    private List<String> categories;
+    private User user;
+    private List<DishType> categories;
 
     public String getNameRestaurant() {
         return nameRestaurant;
@@ -56,11 +59,19 @@ public class RestaurantRequestDTO {
         this.imageLogoPath = imageLogoPath;
     }
 
-    public List<String> getCategories() {
+    public List<DishType> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<String> categories) {
+    public void setCategories(List<DishType> categories) {
         this.categories = categories;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

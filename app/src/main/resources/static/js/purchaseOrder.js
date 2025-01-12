@@ -111,8 +111,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         productsLabel.textContent = `${totalProductCount} Articulo(s)`;
         subtotal.textContent = `$${totalProductCost.toFixed(2)}`;
-        shippingLabel.textContent = `$ ${totalShippingCost.toFixed(2)}.00`;
-        totalPriceLabel.textContent = `$${(totalProductCost + totalShippingCost).toFixed(2)}.00 MX`;
+        shippingLabel.textContent = `$${(totalProductCost + totalShippingCost).toFixed(2)} MX`;
+        totalPriceLabel.textContent = `$ ${totalShippingCost.toFixed(2)}.00`;
 
     } catch (error) {
         console.error("Failed to fetch products:", error);

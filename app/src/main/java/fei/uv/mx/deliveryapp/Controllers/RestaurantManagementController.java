@@ -2,6 +2,8 @@ package fei.uv.mx.deliveryapp.Controllers;
 
 import fei.uv.mx.deliveryapp.DTOs.RestaurantRequestDTO;
 import fei.uv.mx.deliveryapp.Models.*;
+import fei.uv.mx.deliveryapp.Repositories.DishTypeRepository;
+import fei.uv.mx.deliveryapp.Repositories.RestaurantDishTypeRepository;
 import fei.uv.mx.deliveryapp.Services.implementations.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -48,6 +51,12 @@ public class RestaurantManagementController {
     @Autowired
     private OrderDishServices orderServices;
 
+    @Autowired
+    private DishTypeRepository dishTypeRepository;
+
+    @Autowired
+    private RestaurantDishTypeRepository restaurantDishTypeRepository;
+
 
     @GetMapping("/restaurantManagement")
     public String restaurantManagementPage(HttpServletRequest request, Model model) {
@@ -74,9 +83,44 @@ public class RestaurantManagementController {
             return "restaurantManagement";
         }
         else {
+            List<DishType> dishTypeList = dishTypeRepository.findAll();
+            System.out.println("Numero de elementod: " + dishTypeList.stream().count());
+            model.addAttribute("dishTypeList", dishTypeList); // Debe coincidir con el atributo usado en la vista
             return "createRestaurant";
         }
+    }
 
+    @PostMapping("/registerRestaurant")
+    public ResponseEntity<?> registerRestaurant(@RequestBody @Valid RestaurantRequestDTO requestDTO) {
+        try {
+            Restaurant newRestaurant = new Restaurant();
+            newRestaurant.setNameRestaurant(requestDTO.getNameRestaurant());
+            newRestaurant.setCloseTime(requestDTO.getCloseTime());
+            newRestaurant.setOpenTime(requestDTO.getOpenTime());
+            newRestaurant.setImagePath(requestDTO.getImagePath());
+            newRestaurant.setImageLogoPath(requestDTO.getImageLogoPath());
+            newRestaurant.setRating(BigDecimal.ZERO);
+            newRestaurant.setUser(requestDTO.getUser());
+
+            Restaurant restaurantConfirm = restaurantServices.createRestaurant(newRestaurant);
+
+            if (restaurantConfirm != null) {
+                requestDTO.getCategories().forEach(category -> {
+                    RestaurantDishType restaurantDishType = new RestaurantDishType();
+                    restaurantDishType.setIdRestaurant(restaurantConfirm.getId());
+                    restaurantDishType.setIdDishType(category);
+                    restaurantDishTypeRepository.createRestaurantDishType(restaurantDishType);
+                });
+
+                return ResponseEntity.ok("Registro Correcto");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("No se pudo registrar el restaurante");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al registrar el restaurante: " + e.getMessage());
+        }
     }
 
     @PostMapping("/addDishToMenu")

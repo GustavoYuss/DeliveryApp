@@ -99,8 +99,7 @@ function renderProducts(customerCarItems) {
                     <p>${customerCar.dish.name}</p>
                     <div class="product-actions">
                         <a class="decreaseItem-Button" data-id="${customerCar.dish.id}">Quitar Elemento</a> | 
-                        <a class="deleteItem-Button" data-id="${customerCar.dish.id}">Eliminar del carrito</a> | 
-                        <a class="showItem-Button" data-id="${customerCar.dish.id}">Ver Detalles</a>
+                        <a class="deleteItem-Button" data-id="${customerCar.dish.id}">Eliminar del carrito</a> 
                     </div>
                 </div>
                 <div class="product-price">$ ${customerCar.costByProduct}.00</div>
