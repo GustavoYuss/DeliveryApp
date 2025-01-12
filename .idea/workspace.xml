@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6ef88890-09bc-4867-b534-b26ff1e036d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DeliveryApp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/fei.uv.mx.DeliveryApp.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/podman-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/podman-compose.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/app">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2qVpzk36v6fRT5h1MTKq1Ewja8x" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Gradle.Build app.executor": "Run",
+    "Gradle.D:/Migue/University/WebSystemsDevelopment_Workspace/Project/DeliveryApp/app/build.gradle.executor": "Run",
+    "Notification.DisplayName-DoNotAsk-Database detector": "Database detector",
+    "Notification.DoNotAsk-Database detector": "true",
+    "OverrideImplement.generate.javadoc": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.DeliveryAppApplication.executor": "Run",
+    "git-widget-placeholder": "MigCamo",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Migue/University/WebSystemsDevelopment_Workspace/Project/DeliveryApp/drawweb",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver.localdb",
+      "sqlserver"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Migue\University\WebSystemsDevelopment_Workspace\Project\DeliveryApp\drawweb" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Migue\University\WebSystemsDevelopment_Workspace\Project\DeliveryApp\app\src\main\resources\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="DeliveryApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeliveryAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="fei.uv.mx.DeliveryApp.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="fei.uv.mx.deliveryapp.DeliveryAppApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6ef88890-09bc-4867-b534-b26ff1e036d0" name="Changes" comment="" />
+      <created>1734757861857</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734757861857</updated>
+      <workItem from="1734757864053" duration="2731000" />
+      <workItem from="1734797361529" duration="3510000" />
+      <workItem from="1734803800619" duration="3623000" />
+      <workItem from="1734807646104" duration="5752000" />
+      <workItem from="1734839428159" duration="4759000" />
+      <workItem from="1734848354792" duration="686000" />
+      <workItem from="1734849082645" duration="560000" />
+      <workItem from="1734889292351" duration="97000" />
+      <workItem from="1734889516622" duration="49000" />
+      <workItem from="1734889569133" duration="69000" />
+      <workItem from="1734889662611" duration="13882000" />
+      <workItem from="1734975441842" duration="1632000" />
+      <workItem from="1735013872691" duration="6996000" />
+      <workItem from="1735055220129" duration="838000" />
+      <workItem from="1735068516096" duration="3132000" />
+      <workItem from="1735186553332" duration="1826000" />
+      <workItem from="1735253650437" duration="223000" />
+      <workItem from="1735253905398" duration="377000" />
+      <workItem from="1735254910242" duration="3480000" />
+      <workItem from="1735276617385" duration="7470000" />
+      <workItem from="1735328627311" duration="929000" />
+      <workItem from="1735330195179" duration="69000" />
+      <workItem from="1735331253091" duration="9165000" />
+      <workItem from="1735413154574" duration="302000" />
+      <workItem from="1735413474053" duration="175000" />
+      <workItem from="1735413967598" duration="5236000" />
+      <workItem from="1735432670859" duration="7563000" />
+      <workItem from="1735489541274" duration="18314000" />
+      <workItem from="1735528031505" duration="3876000" />
+      <workItem from="1735532127943" duration="602000" />
+      <workItem from="1735532749644" duration="140000" />
+      <workItem from="1735532911035" duration="13000" />
+      <workItem from="1735532938883" duration="416000" />
+      <workItem from="1735620728958" duration="2483000" />
+      <workItem from="1735688569927" duration="6262000" />
+      <workItem from="1735702956893" duration="1060000" />
+      <workItem from="1735763251005" duration="643000" />
+      <workItem from="1735764870708" duration="5336000" />
+      <workItem from="1735785440873" duration="7682000" />
+      <workItem from="1735864971340" duration="6224000" />
+      <workItem from="1735955708104" duration="5460000" />
+      <workItem from="1735963452383" duration="9000" />
+      <workItem from="1735963478083" duration="2897000" />
+      <workItem from="1735969564249" duration="536000" />
+      <workItem from="1736018579905" duration="20793000" />
+      <workItem from="1736096410014" duration="100000" />
+      <workItem from="1736096523846" duration="806000" />
+      <workItem from="1736104119951" duration="10609000" />
+      <workItem from="1736125598296" duration="6083000" />
+      <workItem from="1736135551715" duration="2610000" />
+      <workItem from="1736138211486" duration="2942000" />
+      <workItem from="1736213895731" duration="6736000" />
+      <workItem from="1736220803141" duration="1159000" />
+      <workItem from="1736262520051" duration="3554000" />
+      <workItem from="1736267021317" duration="13109000" />
+      <workItem from="1736293826931" duration="5407000" />
+      <workItem from="1736388319751" duration="684000" />
+      <workItem from="1736393173808" duration="8000" />
+      <workItem from="1736393318786" duration="613000" />
+      <workItem from="1736393988884" duration="3812000" />
+      <workItem from="1736446833022" duration="3076000" />
+      <workItem from="1736451206060" duration="3828000" />
+      <workItem from="1736480036133" duration="11290000" />
+      <workItem from="1736533877664" duration="4009000" />
+      <workItem from="1736546881074" duration="17574000" />
+      <workItem from="1736615248171" duration="157000" />
+      <workItem from="1736615425754" duration="7071000" />
+      <workItem from="1736627782596" duration="916000" />
+      <workItem from="1736628726935" duration="404000" />
+      <workItem from="1736635041334" duration="2467000" />
+      <workItem from="1736638243289" duration="241000" />
+      <workItem from="1736639007594" duration="427000" />
+      <workItem from="1736640135404" duration="476000" />
+      <workItem from="1736641381732" duration="648000" />
+      <workItem from="1736642449071" duration="1017000" />
+      <workItem from="1736644879828" duration="18781000" />
+      <workItem from="1736698945585" duration="5635000" />
+      <workItem from="1736704658715" duration="6137000" />
+      <workItem from="1736711087333" duration="40000" />
+      <workItem from="1736711139575" duration="8000" />
+      <workItem from="1736711161120" duration="38000" />
+      <workItem from="1736711644154" duration="68000" />
+      <workItem from="1736711734175" duration="20000" />
+      <workItem from="1736711786421" duration="36000" />
+      <workItem from="1736711834420" duration="15000" />
+      <workItem from="1736711862699" duration="1621000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/fei/uv/mx/deliveryapp/Controllers/UserProfileController.java</url>
+          <line>48</line>
+          <properties class="fei.uv.mx.deliveryapp.Controllers.UserProfileController" method="updatePhone">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
