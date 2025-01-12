@@ -47,7 +47,7 @@
                 <span id="price" class="pedido-price" th:text="${order.total}"></span>
                 <div class="pedido-cancel">
                     <div th:if="${order.status != null && order.status.status != 1}">
-                        <button type="button" class="cancel-button" onclick="cancelOrder(${order.id})">Cancelar</button>
+                        <button type="button" class="cancel-button" th:onclick="'cancelOrder(\'' + ${order.getId()} + '\')'">Cancelar</button>
                     </div>
                 </div>
             </div>

@@ -103,13 +103,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function cancelOrder(orderId) {
     if (confirm("¿Estás seguro de que deseas cancelar este pedido?")) {
-        fetch(`/cancelOrder/${orderId}`, {
-            method: "POST",
-        })
-            .then(response => response.json())
-            .then(data => {
-                alert("Pedido cancelado con éxito");
-                location.reload();
+        console.log(orderId)
+        fetch(`http://localhost:8080/deliveryApp/customer/updateStatusOrder?idOrder=${orderId}`)
+            .then(response => {
+                if (response.ok) {
+                    alert("Pedido cancelado con éxito");
+                    location.reload();
+                }
             })
             .catch(error => {
                 alert("Error al cancelar el pedido");

@@ -10,9 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -75,13 +73,17 @@ public class CustomerOrdersController {
 
     @GetMapping("/updateStatusOrder")
     public ResponseEntity<String> updateStatusOrder(HttpServletRequest request) {
-        int idStatus = 1;
+        System.out.println("FEOS TODOS ALV");
+        int idStatus = 4;
         int idOrder = Integer.parseInt(request.getParameter("idOrder"));
         Status status = new Status();
         status.setId(idStatus);
+        orderRepository.updateOrderRestaurantStatusByOrderId(idStatus, idOrder);
+        orderRepository.updateOrderStatus(idStatus, idOrder);
+        /*
         Order order = orderRepository.getOrder(idOrder);
         order.setStatus(status);
-        orderRepository.updateOrder(order);
+        orderRepository.updateOrder(order);*/
         return ResponseEntity.ok("restaurantManagement");
     }
 }

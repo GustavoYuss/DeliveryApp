@@ -173,6 +173,7 @@ public class RestaurantManagementController {
         todayStats.add(restaurantServices.getCountOrderByStatusAndDate(restaurant.getId(),1, date));
         todayStats.add(restaurantServices.getCountOrderByStatusAndDate(restaurant.getId(),2, date));
         todayStats.add(restaurantServices.getCountOrderByStatusAndDate(restaurant.getId(),3, date));
+        todayStats.add(restaurantServices.getCountOrderByStatusAndDate(restaurant.getId(),4, date));
         System.out.println(todayStats.size());
         return ResponseEntity.ok(todayStats);
     }
@@ -183,6 +184,7 @@ public class RestaurantManagementController {
         stats.add(restaurantServices.getCountOrderByStatus(restaurant.getId(),1));
         stats.add(restaurantServices.getCountOrderByStatus(restaurant.getId(),2));
         stats.add(restaurantServices.getCountOrderByStatus(restaurant.getId(),3));
+        stats.add(restaurantServices.getCountOrderByStatus(restaurant.getId(),4));
         return ResponseEntity.ok(stats);
     }
 
@@ -207,7 +209,7 @@ public class RestaurantManagementController {
     private double getTotalEarnings(List<OrderRestaurant> orders) {
         double totalEarnings = 0;
         for (OrderRestaurant order : orders) {
-            if (order.getIdStatus().getId() == 2) {
+            if (order.getIdStatus().getId() == 3) {
                 totalEarnings += order.getTotal();
             }
         }
@@ -217,7 +219,7 @@ public class RestaurantManagementController {
     private int getCompleteOrders(List<OrderRestaurant> orders) {
         int completeOrders = 0;
         for (OrderRestaurant order : orders) {
-            if (order.getIdStatus().getId() == 2) {
+            if (order.getIdStatus().getId() == 3) {
                 completeOrders++;
             }
         }
