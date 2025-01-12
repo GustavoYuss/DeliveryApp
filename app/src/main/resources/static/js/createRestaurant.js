@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedOption && selectedOption.value) {
             const categoryId = selectedOption.value;
             const categoryName = selectedOption.text;
+            console.log("id: " + categoryId + " name: " + categoryName);
 
             if (!selectedCategories.some(cat => cat.id === categoryId)) {
                 selectedCategories.push({ id: categoryId, name: categoryName });
