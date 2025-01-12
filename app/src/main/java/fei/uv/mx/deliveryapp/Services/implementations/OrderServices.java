@@ -58,4 +58,8 @@ public class OrderServices implements IOrderServices {
     public List<CustomerCart> getCustomerCart(int idUser) {
         return orderRepository.getShoppingCarFromCustomer(idUser);
     }
+
+    public Order getIdOrderGeneral(int idOrderRestaurant){
+        return orderRepository.getIdOrderGeneral(idOrderRestaurant);
+    }
 }

@@ -1,9 +1,7 @@
 function redirectToIndex() {
     window.location.href = "/";
 }
-
-let currentPedidoId = null;
-
+/*
 function openStatusForm(event, pedidoId) {
     event.stopPropagation();
     currentPedidoId = pedidoId;
@@ -23,13 +21,13 @@ async function changeStatus(newStatus) {
         if (id === currentPedidoId) {
             item.querySelector(".pedido-status").textContent = newStatus;
         }
-    });*/
+    });
     const response = await fetch(`http://localhost:8080/updateStatusOrder?idStatus=${newStatus}&idOrder=${currentPedidoId}`);
     if (!response.ok) {
         throw new Error(`Error en la solicitud: ${response.status}`);
     }
     location.reload();
-}
+}*/
 
 async function openSidebar(event) {
     const clickedElement = event.currentTarget;

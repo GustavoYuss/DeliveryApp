@@ -53,4 +53,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     List<Order> findFilteredOrders(@Param("startDate") LocalDate startDate,
                                    @Param("endDate") LocalDate endDate,
                                    @Param("status") String status);
+
+    @Query("SELECT ora.idOrder FROM OrderAppRestaurant ora WHERE ora.idOrderRestaurant.id = ?1")
+    Order getIdOrderGeneral(int idOrderRestaurant);
 }

@@ -54,6 +54,9 @@ public class RestaurantManagementController {
     @Autowired
     private RestaurantDishTypeRepository restaurantDishTypeRepository;
 
+    @Autowired
+    private OrderServices orderServicesGeneral;
+
 
     @GetMapping("/restaurantManagement")
     public String restaurantManagementPage(HttpServletRequest request, Model model) {
@@ -65,7 +68,7 @@ public class RestaurantManagementController {
             newDish.setDishType(new DishType());
             List<Dish> dishes = dishServices.getDishesByRestaurantId(restaurant.getId());
             List<DishType> dishTypeList = restaurantServices.getDishesTypeByRestaurant(restaurant.getId());
-            orders = restaurantServices.getOrderRestaurantByDay(restaurant.getId(),LocalDate.now(), LocalDate.now());
+            orders = restaurantServices.getOrderRestaurantByRestaurant(restaurant.getId());
             double earnings = getTotalEarnings(orders);
             int finishedOrders = getCompleteOrders(orders);
 
@@ -148,7 +151,7 @@ public class RestaurantManagementController {
     public ResponseEntity<String> updateStatusOrder(HttpServletRequest request) {
         int idStatus = Integer.parseInt(request.getParameter("idStatus"));
         int idOrder = Integer.parseInt(request.getParameter("idOrder"));
-        OrderRestaurant orderSelected = null;
+        OrderRestaurant orderSelected = new OrderRestaurant();
         for (OrderRestaurant order : orders) {
             if (order.getId() == idOrder) {
                 orderSelected = order;
@@ -156,6 +159,8 @@ public class RestaurantManagementController {
         }
         Status status = new Status();
         status.setId(idStatus);
+        Order order = orderServicesGeneral.getIdOrderGeneral(orderSelected.getId());
+        order.setStatus(status);
         orderSelected.setIdStatus(status);
         orderServices.updateOrderDish(orderSelected);
         return ResponseEntity.ok("restaurantManagement");
