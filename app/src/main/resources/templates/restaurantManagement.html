@@ -92,15 +92,13 @@
         <div class="pedidos-header">
           <h1 class="pedidos-title">Pedidos</h1>
           <div class="pedidos-filters">
-            <input type="date" class="filter-date" />
-            <input type="date" class="filter-date" />
-            <select class="filter-dropdown">
-              <option>Ordena</option>
-            </select>
-            <select class="filter-dropdown">
-              <option>Problema con el pedido...</option>
-            </select>
-            <button class="filter-eats-pass">Eats Pass</button>
+            <form action="/filter" method="get">
+              <input type="date" class="filter-date" name="startDate"
+                     th:value="${startDate}"/>
+              <input type="date" class="filter-date" name="endDate"
+                     th:value="${endDate}"/>
+              <button class="filter-eats-pass">Filtar Pedidos</button>
+            </form>
           </div>
           <p class="last-update">Última actualización: 5 de ago. de 2021 13:00</p>
         </div>
@@ -144,11 +142,6 @@
           </div>
           <h2 class="sidebar2-title">Pedido C7E14</h2>
           <p class="sidebar2-date">Aug 1, 2021</p>
-          <div class="timeline">
-            <p><strong>04:19 PM</strong> Pedido hecho por el cliente</p>
-            <p><strong>04:19 PM</strong> Pedido aceptado por el restaurante</p>
-            <p><strong>05:06 PM</strong> Pedido entregado al cliente</p>
-          </div>
           <div class="order-details">
             <div class="order-item">
               <span>1</span>
@@ -166,13 +159,6 @@
               <p>Tostadas (Paq. con 20)</p>
               <p class="item-price">MX$60.00</p>
             </div>
-          </div>
-          <div class="order-summary">
-            <p><span>Venta de comida (con IVA):</span> MX$230.00</p>
-            <p><span>Impuesto sobre la renta retenido:</span> -MX$1.98</p>
-            <p><span>IVA retenido:</span> -MX$15.86</p>
-            <p><span>Tasa de servicio (con IVA):</span> MX$80.04</p>
-            <p><strong>Total:</strong> MX$292.20</p>
           </div>
         </div>
       </div>
@@ -229,12 +215,12 @@
         </div>
         <div class="pagos-card">
           <h2 class="pagos-subtitulo">Frecuencia de pago</h2>
-          <p class="pagos-valor">Por semana</p>
-          <button class="pagos-editar">Editar</button>
+          <p class="pagos-valor">Por dia</p>
+          <button class="pagos-editar">Se paga un dia despues de realizarlo</button>
         </div>
         <div class="pagos-card">
           <h2 class="pagos-subtitulo">Fecha de pago</h2>
-          <p class="pagos-valor">Mon Aug 09 2021</p>
+          <p class="pagos-valor" th:text="${tomorrow}"></p>
           <span class="pagos-pendiente">Pendiente</span>
         </div>
       </div>
@@ -242,22 +228,17 @@
       <div class="pagos-resumen">
         <p>
           Tus ganancias incluyen todos los pedidos entregados al cliente entre las
-          <strong>12 a.m. del 26/7/2021</strong> y las <strong>12 a.m. del 9/8/2021</strong>.
+          <strong th:text="'12 a.m. del ' + ${startDate}"></strong> y las <strong th:text="'12 p.m. del ' + ${startDate}"></strong>.
           Las ganancias se depositarán en la cuenta.
         </p>
-        <div class="pagos-totales">
-          <div>
-            <h3>Ganancias</h3>
-            <p>$0.00</p>
-          </div>
-          <div>
-            <h3>Tarifas y otros pagos</h3>
-            <p>$0.00</p>
-          </div>
-          <div>
-            <h3>Pago total</h3>
-            <p>$0.00</p>
-          </div>
+        <div class="pedidos-filters">
+          <form action="/filter" method="get">
+            <input type="date" class="filter-date" name="startDate"
+                   th:value="${startDate}"/>
+            <input type="date" class="filter-date" name="endDate"
+                   th:value="${endDate}"/>
+            <button class="filter-eats-pass">Filtar Pedidos</button>
+          </form>
         </div>
       </div>
 

@@ -19,7 +19,6 @@ public class OrderRestaurant {
     @Column(name = "total")
     private double total;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idUser")
     private User idUser;

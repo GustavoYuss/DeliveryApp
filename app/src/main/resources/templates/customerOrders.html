@@ -15,7 +15,7 @@
         <div class="pedidos-header">
             <h1 class="pedidos-title">Mis historial de pedidos</h1>
             <div class="pedidos-filters">
-                <form action="/deliveryApp/customer/filter" method="get">
+                <form action="/filter" method="get">
                     <input type="date" class="filter-date" name="startDate"
                            th:value="${startDate}"/>
                     <input type="date" class="filter-date" name="endDate"
@@ -30,8 +30,8 @@
         <div class="pedidos-list">
             <div id="pedidos-header">
                 <div class="pedido-user"></div>
+                <div class="pedido-id">Codigo</div>
                 <div class="pedido-status">Estado</div>
-                <div class="pedido-payment">Dirección</div>
                 <div class="pedido-time">Fecha</div>
                 <div class="pedido-price">Total</div>
                 <div class="pedido-cancel">Acciones</div> <!-- Nueva columna para las acciones -->
@@ -41,12 +41,10 @@
                     <img src="/images/online-order.png" alt=" " class="user-avatar" />
                     <span class="user-name">Mi pedido</span>
                 </div>
+                <span class="pedido-id" th:text="${order.getId()}"></span>
                 <span class="pedido-status" th:text="${order.status != null ? order.status.status : ''}"></span>
-                <span class="pedido-payment" th:text="${order.getAddress()}"></span>
                 <span class="pedido-time" th:text="${order.date}"></span>
-                <span class="pedido-price" th:text="${order.total}"></span>
-
-                <!-- Nueva celda para el botón de cancelar, en la columna "Acciones" -->
+                <span id="price" class="pedido-price" th:text="${order.total}"></span>
                 <div class="pedido-cancel">
                     <div th:if="${order.status != null && order.status.status != 1}">
                         <button type="button" class="cancel-button" onclick="cancelOrder(${order.id})">Cancelar</button>
@@ -54,8 +52,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <div class="status-modal" id="statusModal">

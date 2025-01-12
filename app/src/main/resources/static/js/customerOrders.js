@@ -37,21 +37,17 @@ async function openSidebar(event) {
     const userName = clickedElement.querySelector('.user-name').textContent.trim();
     const orderDate = clickedElement.querySelector('.pedido-time').textContent.trim();
 
-    // Actualiza los datos de la cabecera de la sidebar
     document.querySelector(".sidebar2-title").textContent = `Pedido ${idOrder}`;
     document.querySelector(".user-name").textContent = userName;
     document.querySelector(".sidebar2-date").textContent = orderDate;
 
-    console.log(idOrder);
-
     try {
-        const response = await fetch(`http://localhost:8080/getDishesFromOrder?idOrder=${idOrder}`);
+        const response = await fetch(`http://localhost:8080/deliveryApp/customer/getDishesFromOrder?idOrder=${idOrder}`);
         if (!response.ok) {
             throw new Error(`Error en la solicitud: ${response.status}`);
         }
 
         const dishItems = await response.json();
-        console.log("JSON recibido del servidor:", dishItems);
 
         const orderDetailsContainer = document.querySelector(".order-details");
         orderDetailsContainer.innerHTML = "";
@@ -59,12 +55,20 @@ async function openSidebar(event) {
         dishItems.forEach((item) => {
             const orderItem = document.createElement("div");
             orderItem.className = "order-item";
-            orderItem.innerHTML = `
-                <span>${item.amount}</span>
-                <p>${item.dish.name}</p>
-                <p class="item-price">MX$${item.dish.normalPrice.toFixed(2)} C/U</p>
-            `;
-            orderDetailsContainer.appendChild(orderItem);
+
+            const amount = item.amount || "N/A";
+            const dishName = item.dish?.name || "Platillo desconocido";
+            const price = item.dish?.normalPrice != null ? `MX$${item.dish.normalPrice.toFixed(2)} C/U` : "Precio no disponible";
+
+            if(dishName !== "Platillo desconocido")
+            {
+                orderItem.innerHTML = `
+                    <span>${amount}</span>
+                    <p>${dishName}</p>
+                    <p class="item-price">${price}</p>
+                `;
+                orderDetailsContainer.appendChild(orderItem);
+            }
         });
 
         const sidebar = document.getElementById("sidebar2");
@@ -101,14 +105,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function cancelOrder(orderId) {
     if (confirm("¿Estás seguro de que deseas cancelar este pedido?")) {
-        // Aquí puedes enviar una solicitud para cancelar el pedido
         fetch(`/cancelOrder/${orderId}`, {
             method: "POST",
         })
             .then(response => response.json())
             .then(data => {
                 alert("Pedido cancelado con éxito");
-                // Opcional: recargar la página o actualizar la lista de pedidos
                 location.reload();
             })
             .catch(error => {
