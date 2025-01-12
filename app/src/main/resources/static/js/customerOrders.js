@@ -1,9 +1,7 @@
 function redirectToIndex() {
     window.location.href = "/";
 }
-
-let currentPedidoId = null;
-
+/*
 function openStatusForm(event, pedidoId) {
     event.stopPropagation();
     currentPedidoId = pedidoId;
@@ -23,13 +21,13 @@ async function changeStatus(newStatus) {
         if (id === currentPedidoId) {
             item.querySelector(".pedido-status").textContent = newStatus;
         }
-    });*/
+    });
     const response = await fetch(`http://localhost:8080/updateStatusOrder?idStatus=${newStatus}&idOrder=${currentPedidoId}`);
     if (!response.ok) {
         throw new Error(`Error en la solicitud: ${response.status}`);
     }
     location.reload();
-}
+}*/
 
 async function openSidebar(event) {
     const clickedElement = event.currentTarget;
@@ -105,13 +103,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function cancelOrder(orderId) {
     if (confirm("¿Estás seguro de que deseas cancelar este pedido?")) {
-        fetch(`/cancelOrder/${orderId}`, {
-            method: "POST",
-        })
-            .then(response => response.json())
-            .then(data => {
-                alert("Pedido cancelado con éxito");
-                location.reload();
+        console.log(orderId)
+        fetch(`http://localhost:8080/deliveryApp/customer/updateStatusOrder?idOrder=${orderId}`)
+            .then(response => {
+                if (response.ok) {
+                    alert("Pedido cancelado con éxito");
+                    location.reload();
+                }
             })
             .catch(error => {
                 alert("Error al cancelar el pedido");

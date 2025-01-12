@@ -33,9 +33,9 @@
     <section id="inicio" class="section active">
 
       <div class="restaurant-banner">
-        <img src="/images/Starbucks.jpg" alt="Restaurant Banner">
+        <img th:src="${restaurant.getImagePath()}" alt="Restaurant Banner">
         <div class="restaurant-image">
-          <img src="/images/Startbucks-Logo.png" alt="Subway Logo">
+          <img th:src="${restaurant.getImageLogoPath()}" alt="Subway Logo">
         </div>
       </div>
 
@@ -123,8 +123,9 @@
           <h2>Cambiar estado del pedido</h2>
           <div class="status-buttons">
             <button onclick="changeStatus(1)">Procesando</button>
-            <button onclick="changeStatus(2)">Pagado</button>
-            <button onclick="changeStatus(3)">Cancelado</button>
+            <button onclick="changeStatus(2)">Enviado</button>
+            <button onclick="changeStatus(3)">Entregado</button>
+            <button onclick="changeStatus(4)">Cancelado</button>
           </div>
           <button class="close-modal" onclick="closeStatusForm()">Cerrar</button>
         </div>
