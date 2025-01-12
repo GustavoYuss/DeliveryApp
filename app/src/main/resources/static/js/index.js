@@ -81,7 +81,6 @@ const adsData = [
     }
 ];
 
-console.log("Contenido recibido de authenticatedUser en bruto:", authenticatedUser);
 
 if (authenticatedUser && authenticatedUser.id && authenticatedUser.name) {
     localStorage.setItem('user', JSON.stringify(authenticatedUser));
@@ -162,24 +161,15 @@ function enableCarouselScroll(containerSelector, leftButtonSelector, rightButton
 
 enableCarouselScroll('#categoryList', '#leftArrow', '#rightArrow');
 enableCarouselScroll('.ads-carousel', '.arrow-left', '.arrow-right');
-enableCarouselScroll('#recentRestaurants', '#arrow1', '#arrow2');
-enableCarouselScroll('.recent-restaurants', '.left-arrow-rr', '.right-arrow-rr');
+enableCarouselScroll('#topRestaurants', '#arrow1', '#arrow2');
 enableCarouselScroll('#Cheap', '#leftArrow2', '#rightArrow2');
 
-document.addEventListener("DOMContentLoaded", function () {
-    fetch("/recent")
-        .then(response => response.json())
-        .then(data => {
-            const recentSection = document.querySelector(".recent-restaurants");
-            recentSection.innerHTML = data.map(restaurant => createRestaurantHTML(restaurant)).join('');
-        });
-});
 
 document.addEventListener("DOMContentLoaded", function () {
     fetch("/popular")
         .then(response => response.json())
         .then(data => {
-            const popularSection = document.querySelector("#recentRestaurants");
+            const popularSection = document.querySelector("#topRestaurants");
             popularSection.innerHTML = data.map(restaurant => createRestaurantHTML(restaurant)).join('');
         });
 });

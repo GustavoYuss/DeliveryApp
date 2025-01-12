@@ -1,0 +1,133 @@
+:root {
+    --primary-color: #000000;
+    --secondary-color: #1a1a1a;
+    --text-color: #ffffff;
+    --border-color: #555;
+    --button-bg: #ffffff;
+    --button-text: #000000;
+    --button-hover-bg: #e6e6e6;
+    --selected-bg: #333333;
+    --selected-text: #ffffff;
+    --selected-border: #555;
+    --delete-color: #ff4d4d;
+    --delete-hover-color: #ff1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("/images/restaurant.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-color);
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    background-color: var(--secondary-color);
+}
+
+.left-section {
+    flex: 1;
+    background: url('https://source.unsplash.com/800x600/?office') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--primary-color);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.right-section {
+    flex: 1;
+    padding: 40px;
+    background-color: var(--primary-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+form input,
+form select,
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+form button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 15px;
+}
+
+form button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+#selected-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.selected-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--selected-bg);
+    border: 1px solid var(--selected-border);
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--selected-text);
+}
+
+.selected-item button {
+    background: none;
+    border: none;
+    color: var(--delete-color);
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.selected-item button:hover {
+    color: var(--delete-hover-color);
+}
+
+p {
+    color: gray;
+}
+
+h1 {
+    color: white;
+}

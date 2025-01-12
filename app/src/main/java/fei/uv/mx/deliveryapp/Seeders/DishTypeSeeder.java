@@ -21,7 +21,7 @@ public class DishTypeSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-/*
+        /*
         DishType dishType = new DishType();
         dishType.setId(1);
         dishType.setDishType("Super Mercado");
@@ -121,7 +121,7 @@ public class DishTypeSeeder implements CommandLineRunner {
         dishType19.setId(20);
         dishType19.setDishType("Vegana");
         dishTypeRepository.createDishType(dishType19);
-*/
 
+         */
     }
 }

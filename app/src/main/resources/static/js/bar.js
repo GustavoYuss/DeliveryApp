@@ -255,18 +255,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         fetch(`/search?query=${encodeURIComponent(query)}`)
             .then((response) => {
+                console.log("Respuesta recibida:", response); // Depuración
                 if (!response.ok) {
                     throw new Error("Error al obtener los datos.");
                 }
                 return response.json();
             })
             .then((data) => {
+                console.log("Datos obtenidos:", data); // Depuración
                 resultsList.innerHTML = "";
-                data.forEach((restaurant) => {
-                    const li = document.createElement("li");
-                    li.textContent = restaurant.name;
-                    resultsList.appendChild(li);
-                });
+                if (data.length === 0) {
+                    resultsList.innerHTML = "<li>No se encontraron resultados.</li>";
+                } else {
+                    data.forEach((restaurant) => {
+                        const li = document.createElement("li");
+                        li.textContent = restaurant.nameRestaurant;
+                        li.addEventListener("click", () => {
+                            window.location.href = `/deliveryApp/restaurants/showDetails?id=${restaurant.id}`;
+                        });
+                        resultsList.appendChild(li);
+                    });
+                }
             })
             .catch((error) => {
                 console.error("Error:", error);

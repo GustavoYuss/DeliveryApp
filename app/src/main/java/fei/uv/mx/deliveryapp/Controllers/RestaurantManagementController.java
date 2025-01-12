@@ -1,24 +1,30 @@
 package fei.uv.mx.deliveryapp.Controllers;
 
+import fei.uv.mx.deliveryapp.DTOs.RestaurantRequestDTO;
 import fei.uv.mx.deliveryapp.Models.*;
 import fei.uv.mx.deliveryapp.Services.implementations.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class RestaurantManagementController {
@@ -46,26 +52,31 @@ public class RestaurantManagementController {
     @GetMapping("/restaurantManagement")
     public String restaurantManagementPage(HttpServletRequest request, Model model) {
         getIdRestaurant(request);
-        Dish newDish = new Dish();
-        newDish.setDishType(new DishType());
 
+        if(restaurant != null)
+        {
+            Dish newDish = new Dish();
+            newDish.setDishType(new DishType());
+            List<Dish> dishes = dishServices.getDishesByRestaurantId(restaurant.getId());
+            List<DishType> dishTypeList = restaurantServices.getDishesTypeByRestaurant(restaurant.getId());
+            orders = restaurantServices.getOrderRestaurantByRestaurant(restaurant.getId());
+            double earnings = getTotalEarnings(orders);
+            int finishedOrders = getCompleteOrders(orders);
 
-        List<Dish> dishes = dishServices.getDishesByRestaurantId(restaurant.getId());
-        List<DishType> dishTypeList = restaurantServices.getDishesTypeByRestaurant(restaurant.getId());
-        orders = restaurantServices.getOrderRestaurantByRestaurant(restaurant.getId());
+            model.addAttribute("dish", newDish);
+            model.addAttribute("dishesMenu", dishes);
+            model.addAttribute("dishTypeList", dishTypeList);
+            model.addAttribute("orders", orders);
+            model.addAttribute("restaurant", restaurant);
+            model.addAttribute("earnings", earnings);
+            model.addAttribute("finishedOrders", finishedOrders);
 
-        double earnings = getTotalEarnings(orders);
-        int finishedOrders = getCompleteOrders(orders);
+            return "restaurantManagement";
+        }
+        else {
+            return "createRestaurant";
+        }
 
-        model.addAttribute("dish", newDish);
-        model.addAttribute("dishesMenu", dishes);
-        model.addAttribute("dishTypeList", dishTypeList);
-        model.addAttribute("orders", orders);
-        model.addAttribute("restaurant", restaurant);
-        model.addAttribute("earnings", earnings);
-        model.addAttribute("finishedOrders", finishedOrders);
-
-        return "restaurantManagement";
     }
 
     @PostMapping("/addDishToMenu")
@@ -163,4 +174,22 @@ public class RestaurantManagementController {
         }
         return completeOrders;
     }
+
+    @PostMapping
+    public ResponseEntity<String> createRestaurant(@Valid @RequestBody RestaurantRequestDTO request, BindingResult result) {
+        if (result.hasErrors()) {
+            String errors = result.getAllErrors().stream()
+                    .map(ObjectError::getDefaultMessage)
+                    .collect(Collectors.joining(", "));
+            return ResponseEntity.badRequest().body("Errores: " + errors);
+        }
+
+        //restaurantService.saveRestaurant(request);
+        return ResponseEntity.ok("Restaurante registrado exitosamente");
+    }
+
+
+
+
+
 }

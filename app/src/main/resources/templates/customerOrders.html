@@ -4,39 +4,49 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <link rel="stylesheet" href="/styles/orderSectionStyles.css">
+    <link rel="stylesheet" href="/styles/customerOrdersStyles.css">
 </head>
 
 <body>
     <div class="pedidos-section">
+        <div id="imageBackPage">
+            <img src="/images/ICON-Back.png" alt="" onclick="redirectToIndex()">
+        </div>
         <div class="pedidos-header">
-            <h1 class="pedidos-title">Pedidos</h1>
+            <h1 class="pedidos-title">Mis historial de pedidos</h1>
             <div class="pedidos-filters">
-                <input type="date" class="filter-date" />
-                <input type="date" class="filter-date" />
-                <select class="filter-dropdown">
-                    <option>Ordena</option>
-                </select>
-                <select class="filter-dropdown">
-                    <option>Problema con el pedido...</option>
-                </select>
-                <button class="filter-eats-pass">Eats Pass</button>
+                <form action="/deliveryApp/customer/filter" method="get">
+                    <input type="date" class="filter-date" name="startDate"
+                           th:value="${startDate}"/>
+                    <input type="date" class="filter-date" name="endDate"
+                           th:value="${endDate}"/>
+                    <button class="filter-eats-pass">Filtar Pedidos</button>
+                </form>
             </div>
             <p class="last-update">Última actualización: 5 de ago. de 2021 13:00</p>
         </div>
         <div class="pedidos-list">
+            <div id="pedidos-header">
+                <div class="pedido-user"></div>
+                <div class="pedido-id">ID del Pedido</div>
+                <div class="pedido-status">Estado</div>
+                <div class="pedido-payment">Número de Tarjeta</div>
+                <div class="pedido-time">Fecha</div>
+                <div class="pedido-price">Total</div>
+            </div>
             <div class="pedido-item" th:each="order : ${orders}" onclick="openSidebar(event)">
                 <div class="pedido-user">
-                    <img src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="Mario F" class="user-avatar" />
-                    <span class="user-name" th:text="${order.idUser.name}"/>
+                    <img src="/images/online-order.png" alt=" " class="user-avatar" />
+                    <span class="user-name">Mi pedido</span>
                 </div>
-                <span class="pedido-id" th:text="${order.id}"/>
-                <span class="pedido-status" onclick="openStatusForm(event, 'C7E14')" th:text="${order.idStatus.status}" />
-                <span class="pedido-restaurant">Cevichi Bichi</span>
-                <span class="pedido-time" th:text="${order.date}" />
-                <span class="pedido-price" th:text="${order.total}"/>
+                <span class="pedido-id" th:text="${order.id}"></span>
+                <span class="pedido-status" onclick="openStatusForm(event, 'C7E14')" th:text="${order.status != null ? order.status.status : ''}"></span>
+                <span class="pedido-payment" th:text="${order.getIdPayment().getCardNumber()}"></span>
+                <span class="pedido-time" th:text="${order.date}"></span>
+                <span class="pedido-price" th:text="${order.total}"></span>
             </div>
         </div>
+
     </div>
 
     <div class="status-modal" id="statusModal">
@@ -99,6 +109,6 @@
         </div>
     </div>
 
-    <script src="/js/orderSection.js"></script>
+    <script src="/js/customerOrders.js"></script>
 </body>
 </html>

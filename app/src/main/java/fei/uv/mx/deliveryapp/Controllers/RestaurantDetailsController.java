@@ -49,14 +49,12 @@ public class RestaurantDetailsController {
     @PostMapping("/addDishToCar")
     public ResponseEntity<?> addDishToCart(@RequestBody CustomerCart customerCart) {
         try {
-            User user = userRepository.findById(1).orElseThrow(() -> new Exception("Usuario no encontrado"));
-            customerCart.setUser(user);
-            System.out.println("CustomerCart User ID: " + customerCart.getUser().getId());
-            CustomerCart savedCart = customerCartRepository.createOrder(customerCart);
-            return ResponseEntity.ok(savedCart);
+            //User user = userRepository.findById(1).orElseThrow(() -> new Exception("Usuario no encontrado"));
+            //customerCart.setUser(user);
+            customerCartRepository.createOrder(customerCart);
+            return ResponseEntity.ok("Registro correcto");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Error al agregar el plato al carrito: " + e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
     }
 

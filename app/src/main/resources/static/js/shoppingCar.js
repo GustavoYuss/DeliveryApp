@@ -13,13 +13,16 @@ function ShowAlertOK(title, menssage)
     });
 }
 
-function ShowAlertError()
-{
+function ShowAlertError() {
     Swal.fire({
         icon: "error",
         title: 'Error de red',
         text: 'No fue posible conectar con el servidor. Por favor, verifica tu conexión e inténtalo nuevamente.'
     });
+}
+
+function redirectToIndex() {
+    window.location.href = "/";
 }
 
 
@@ -49,6 +52,15 @@ document.addEventListener("DOMContentLoaded", async function () {
             totalProductCost += product.costByProduct;
             totalProductCount++;
         });
+
+        if (totalProductCount == 0) {
+            const button = document.getElementById("buttomConfirm");
+            button.disabled = true;
+        } else {
+            const button = document.getElementById("buttomConfirm");
+            button.disabled = false;
+        }
+
 
         const SHIPPING_COST_PER_PRODUCT = 50;
         totalShippingCost = totalProductCount * SHIPPING_COST_PER_PRODUCT;
@@ -177,34 +189,7 @@ function decreaseItemFromCar(item) {
         });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const checkoutButton = document.querySelector(".checkout-button");
-    checkoutButton.addEventListener("click", () => {
-        fetch(`/deliveryApp/shoppingCar/makeOrder`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error(`HTTP status ${response.status}`);
-                }
-            })
-            .then(result => {
-                if (result) {
-                    ShowAlertOK(
-                        'Producto Eliminado',
-                        'Se elimino correctamente el producto del carrito de compras');
-                } else {
-                    ShowAlertError();
-                }
-            })
-            .catch(error => {
-                ShowAlertError();
-            });
-    });
-});
+
+function redirectToPurchaseOrder(){
+    window.location.href = "/deliveryApp/purchaseOrder/"
+}

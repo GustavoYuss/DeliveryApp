@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrega | Uber Eats</title>
+  <link rel="stylesheet" href="/styles/purchaseOrderStyles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<header class="header">
+  <img src="/images/ICON-Back.png" alt="" onclick="redirectToShoppingCar()">
+  <h1 id="title">DeliveryApp Compra</h1>
+</header>
+
+<div class="container">
+    <main class="main-content">
+      <section class="delivery-section">
+        <h2>Detalles de la entrega</h2>
+        <div class="delivery-detail">
+          <div>
+            <p><strong>Dirección:  </strong><span id="locationLabel"></span></p>
+            <p>Nos vemos en la puerta</p>
+          </div>
+          <button class="edit-button" onclick="showMap()">Editar</button>
+        </div>
+      </section>
+
+      <!-- Opciones de entrega -->
+      <section class="delivery-options">
+        <h2>Opciones de entrega</h2>
+        <div class="option">
+          <input type="radio" id="prioritaria" name="delivery" checked>
+          <label for="prioritaria">
+            <div class="option-content">
+              <p><strong>Prioritaria</strong> <span class="tag">Más rápido</span></p>
+              <p>10-20 min · Entregado directamente a ti</p>
+              <p class="price">+ $49.00</p>
+            </div>
+          </label>
+        </div>
+        <div class="option">
+          <input type="radio" id="basica" name="delivery">
+          <label for="basica">
+            <div class="option-content">
+              <p><strong>Básica</strong></p>
+              <p>10-25 min</p>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="payment-section">
+        <h2>Pago</h2>
+        <button id="addPaymentButton" class="add-payment-button" onclick="showCardForm()">Agregar tarjeta de pago</button>
+
+        <div id="cardItem" class="card-item" style="display: none;">
+          <div>
+            <p><strong>Tarjeta: </strong><span id="cardNumberDisplay">**** **** **** 1234</span></p>
+            <p><strong>Nombre: </strong><span id="cardNameDisplay">Juan Pérez</span></p>
+          </div>
+          <button class="edit-button" onclick="editCard()">Editar</button>
+        </div>
+
+        <div id="cardForm" class="payment-form" style="display: none;">
+          <h3>Agrega una tarjeta</h3>
+          <form id="paymentForm" onsubmit="submitCardForm(event)">
+            <div class="form-group">
+              <label for="cardNumber">Número de tarjeta</label>
+              <input type="text" id="cardNumber" maxlength="16" placeholder="**** **** **** ****" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expirationDate">Fecha de vencimiento</label>
+                <input type="text" id="expirationDate" placeholder="MM/AA" maxlength="10" required>
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" maxlength="3" placeholder="123" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="nameOnCard">Nombre en la tarjeta</label>
+              <input type="text" id="nameOnCard" placeholder="Nombre completo" required>
+            </div>
+            <button type="submit" class="submit-button">Guardar tarjeta</button>
+            <button type="button" class="cancel-button" onclick="cancelCardForm()">Cancelar</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <aside class="order-summary">
+      <h3>Resumen del carrito</h3>
+      <p id="count">1 artículo</p>
+      <p class="promo-code">Agregar código promo<span>Ninguno</span></p>
+      <div class="totals">
+        <p>Subtotal: <span id="subtotal">$180.00</span></p>
+        <p>Costo de envío: <span id="costoEnvio">$16.00</span></p>
+        <p class="total">Total: <span id="Total">$206.80</span></p>
+      </div>
+      <button class="checkout-button">Realizar Compra</button>
+    </aside>
+
+    <div id="mapModal">
+      <div id="mapContainer">
+        <input id="searchInput" type="text" placeholder="Buscar lugares..." />
+        <ul id="searchSuggestions" style="display:none;"></ul>
+        <div id="map"></div>
+        <button id="closeMapBtn" onclick="closeMap()">Cerrar</button>
+      </div>
+    </div>
+
+
+</div>
+
+  <script src="/js/purchaseOrder.js"></script>
+</body>
+</html>
