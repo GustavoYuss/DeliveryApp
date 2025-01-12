@@ -67,7 +67,7 @@
             <div class="profile">
                 <img src="/images/userprofile.png" alt="Profile Picture" class="profile-img">
                 <div class="profile-info">
-                    <p class="profile-name">Miguel</p>
+                    <p id="userNameLabel" class="profile-name">Miguel</p>
                     <a class="manage-account" onclick="redirectToUserProfile()">Administra la cuenta</a>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                 <a class="route navitem" onclick="redirectToCustomerOrdersPage()">
                     <i class="fas fa-clipboard"></i> Mis Pedidos
                 </a>
-                <a href="#favorites" class="route navitem">
+                <a class="route navitem" onclick="goToRestaurant()">
                     <i class="fa-solid fa-business-time"></i> Mi Restauran
                 </a>
                 <a href="#help" class="route navitem">

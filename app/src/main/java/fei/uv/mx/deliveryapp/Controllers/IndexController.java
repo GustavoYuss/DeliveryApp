@@ -4,36 +4,50 @@ import fei.uv.mx.deliveryapp.Repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import fei.uv.mx.deliveryapp.Models.Restaurant;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/")
 public class IndexController {
     @Autowired
-    private final RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
-    public IndexController(RestaurantRepository restaurantRepository) {
-        this.restaurantRepository = restaurantRepository;
+    @GetMapping("/")
+    public String home(Model model) {
+        return "index";
     }
 
     @GetMapping("/recent")
-    public List<Restaurant> getRecentRestaurants() {
-        return restaurantRepository.getAllRestaurant();
+    public ResponseEntity<List<Restaurant>> getRecentRestaurants() {
+        try {
+            return ResponseEntity.ok(restaurantRepository.getAllRestaurant());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @GetMapping("/popular")
-    public List<Restaurant> getPopularRestaurants() {
-        return restaurantRepository.getAllRestaurant();
+    public ResponseEntity<List<Restaurant>> getPopularRestaurants() {
+        try {
+            return ResponseEntity.ok(restaurantRepository.getAllRestaurant());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @GetMapping("/cheap")
-    public List<Restaurant> getCheapRestaurants() {
-        return restaurantRepository.getAllRestaurant();
+    public ResponseEntity<List<Restaurant>> getCheapRestaurants() {
+        try {
+            return ResponseEntity.ok(restaurantRepository.getAllRestaurant());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @GetMapping("/restaurants")
@@ -58,6 +72,7 @@ public class IndexController {
             List<Restaurant> results = restaurantRepository.findByNameRestaurantContainingIgnoreCase(query);
             return ResponseEntity.ok(results);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

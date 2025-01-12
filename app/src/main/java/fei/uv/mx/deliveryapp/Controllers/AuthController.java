@@ -51,21 +51,28 @@ public class AuthController {
             if (optionalUser.isPresent()) {
                 User foundUser = optionalUser.get();
 
-                Cookie jwtCookie = new Cookie("jwtToken", token);
-                jwtCookie.setHttpOnly(true);
-                jwtCookie.setSecure(false);
-                jwtCookie.setPath("/");
-                jwtCookie.setMaxAge((int) authService.getJwtExpirationMs() / 1000);
-                response.addCookie(jwtCookie);
+                if(foundUser.isEnabled()) {
+                    Cookie jwtCookie = new Cookie("jwtToken", token);
+                    jwtCookie.setHttpOnly(true);
+                    jwtCookie.setSecure(false);
+                    jwtCookie.setPath("/");
+                    jwtCookie.setMaxAge((int) authService.getJwtExpirationMs() / 1000);
+                    response.addCookie(jwtCookie);
 
-                Map<String, Object> simpleUser = new HashMap<>();
-                simpleUser.put("id", foundUser.getId());
-                simpleUser.put("name", foundUser.getName());
-                simpleUser.put("email", foundUser.getEmail());
-                simpleUser.put("phoneNumber", foundUser.getPhoneNumber());
+                    Map<String, Object> simpleUser = new HashMap<>();
+                    simpleUser.put("id", foundUser.getId());
+                    simpleUser.put("name", foundUser.getName());
+                    simpleUser.put("email", foundUser.getEmail());
+                    simpleUser.put("phoneNumber", foundUser.getPhoneNumber());
 
-                model.addAttribute("authenticatedUser", simpleUser);
-                return "index";
+                    model.addAttribute("authenticatedUser", simpleUser);
+                    return "index";
+                }
+                else {
+                    model.addAttribute("Usuario no habilitado", "El usuario no ha sido habilitado aun");
+                    model.addAttribute("UserNew", new User());
+                    return "login";
+                }
 
             } else {
                 throw new RuntimeException("Usuario no encontrado");

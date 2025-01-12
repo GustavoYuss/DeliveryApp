@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+function redirectToIndex() {
+    window.location.href = "/";
+}
+
 const products = [
     {
         id: 1,

@@ -4,39 +4,58 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <link rel="stylesheet" href="/styles/orderSectionStyles.css">
+    <link rel="stylesheet" href="/styles/customerOrdersStyles.css">
 </head>
 
 <body>
     <div class="pedidos-section">
+        <div id="imageBackPage">
+            <img src="/images/ICON-Back.png" alt="" onclick="redirectToIndex()">
+        </div>
         <div class="pedidos-header">
-            <h1 class="pedidos-title">Pedidos</h1>
+            <h1 class="pedidos-title">Mis historial de pedidos</h1>
             <div class="pedidos-filters">
-                <input type="date" class="filter-date" />
-                <input type="date" class="filter-date" />
-                <select class="filter-dropdown">
-                    <option>Ordena</option>
-                </select>
-                <select class="filter-dropdown">
-                    <option>Problema con el pedido...</option>
-                </select>
-                <button class="filter-eats-pass">Eats Pass</button>
+                <form action="/deliveryApp/customer/filter" method="get">
+                    <input type="date" class="filter-date" name="startDate"
+                           th:value="${startDate}"/>
+                    <input type="date" class="filter-date" name="endDate"
+                           th:value="${endDate}"/>
+                    <button class="filter-eats-pass">Filtar Pedidos</button>
+                </form>
             </div>
             <p class="last-update">Última actualización: 5 de ago. de 2021 13:00</p>
         </div>
+
+
         <div class="pedidos-list">
+            <div id="pedidos-header">
+                <div class="pedido-user"></div>
+                <div class="pedido-status">Estado</div>
+                <div class="pedido-payment">Dirección</div>
+                <div class="pedido-time">Fecha</div>
+                <div class="pedido-price">Total</div>
+                <div class="pedido-cancel">Acciones</div> <!-- Nueva columna para las acciones -->
+            </div>
             <div class="pedido-item" th:each="order : ${orders}" onclick="openSidebar(event)">
                 <div class="pedido-user">
-                    <img src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="Mario F" class="user-avatar" />
-                    <span class="user-name" th:text="${order.idUser.name}"/>
+                    <img src="/images/online-order.png" alt=" " class="user-avatar" />
+                    <span class="user-name">Mi pedido</span>
                 </div>
-                <span class="pedido-id" th:text="${order.id}"/>
-                <span class="pedido-status" onclick="openStatusForm(event, 'C7E14')" th:text="${order.idStatus.status}" />
-                <span class="pedido-restaurant">Cevichi Bichi</span>
-                <span class="pedido-time" th:text="${order.date}" />
-                <span class="pedido-price" th:text="${order.total}"/>
+                <span class="pedido-status" th:text="${order.status != null ? order.status.status : ''}"></span>
+                <span class="pedido-payment" th:text="${order.getAddress()}"></span>
+                <span class="pedido-time" th:text="${order.date}"></span>
+                <span class="pedido-price" th:text="${order.total}"></span>
+
+                <!-- Nueva celda para el botón de cancelar, en la columna "Acciones" -->
+                <div class="pedido-cancel">
+                    <div th:if="${order.status != null && order.status.status != 1}">
+                        <button type="button" class="cancel-button" onclick="cancelOrder(${order.id})">Cancelar</button>
+                    </div>
+                </div>
             </div>
         </div>
+
+
     </div>
 
     <div class="status-modal" id="statusModal">
@@ -59,18 +78,13 @@
             <button class="close-sidebar2" onclick="closeSidebar()">✕</button>
             <div class="sidebar2-header">
                 <img src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png" alt="Avatar" class="user-avatar">
-                <div>
+                <div class="info">
                     <p class="user-name">Mario F</p>
-                    <p class="user-orders">1 pedido</p>
+                    <h2 class="sidebar2-title">Pedido C7E14</h2>
+                    <p class="sidebar2-date">Aug 1, 2021</p>
                 </div>
             </div>
-            <h2 class="sidebar2-title">Pedido C7E14</h2>
-            <p class="sidebar2-date">Aug 1, 2021</p>
-            <div class="timeline">
-                <p><strong>04:19 PM</strong> Pedido hecho por el cliente</p>
-                <p><strong>04:19 PM</strong> Pedido aceptado por el restaurante</p>
-                <p><strong>05:06 PM</strong> Pedido entregado al cliente</p>
-            </div>
+
             <div class="order-details">
                 <div class="order-item">
                     <span>1</span>
@@ -89,16 +103,9 @@
                     <p class="item-price">MX$60.00</p>
                 </div>
             </div>
-            <div class="order-summary">
-                <p><span>Venta de comida (con IVA):</span> MX$230.00</p>
-                <p><span>Impuesto sobre la renta retenido:</span> -MX$1.98</p>
-                <p><span>IVA retenido:</span> -MX$15.86</p>
-                <p><span>Tasa de servicio (con IVA):</span> MX$80.04</p>
-                <p><strong>Total:</strong> MX$292.20</p>
-            </div>
         </div>
     </div>
 
-    <script src="/js/orderSection.js"></script>
+    <script src="/js/customerOrders.js"></script>
 </body>
 </html>

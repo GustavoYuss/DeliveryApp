@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="/styles/createRestaurantStyles.css">
+</head>
+<body>
+<div class="container">
+    <div class="left-section">
+        <h1>Descubre una nueva fuente de ingresos</h1>
+        <p> La plataforma global de Uber te ofrece la flexibilidad, visibilidad y
+            conocimientos sobre los clientes que necesitas para conectar con más personas.
+            Únete a nosotros hoy mismo.
+        </p>
+    </div>
+    <div class="right-section">
+        <h2>Get started</h2>
+        <form id="signup-form">
+            <label for="floor-suite">Nombre del Restaurant</label>
+            <input type="text" id="restaurant-name" name="nameRestaurant" placeholder="Nombre del Restaurant" required
+                   pattern="[a-zA-Z\s]+"
+                   title="El nombre solo debe contener letras y espacios.">
+            <label for="store-name">Hora de apertura</label>
+            <input type="time" id="open-time" name="openTime" required>
+            <label for="brand-name">Hora de cierre</label>
+            <input type="time" id="close-time" name="closeTime" required>
+            <label for="store-address">Categoría</label>
+            <select id="categories" name="dishTypeId" required>
+                <option value="" disabled selected>Select...</option>
+                <th:block th:each="dishType : ${dishTypeList}">
+                    <option th:value="${dishType.getId()}" th:text="${dishType.getDishType()}"></option>
+                </th:block>
+            </select>
+            <div id="selected-items-container"></div>
+            <button type="button" id="add-category-btn">Agregar Categoría</button>
+            <label for="first-name">Imagen de fondo</label>
+            <input type="text" id="image-path" name="imagePath" placeholder="URL de la imagen de fondo" required>
+            <label for="last-name">Foto de perfil</label>
+            <input type="text" id="image-logo-path" name="imageLogoPath" placeholder="URL de la foto de perfil" required>
+            <button id="registerRestaurantButtom" type="submit">Registrar</button>
+        </form>
+    </div>
+</div>
+    <script src="/js/createRestaurant.js"></script>
+</body>
+</html>

@@ -26,9 +26,13 @@ public class Order {
     @JoinColumn(name = "IdUser")
     private User idUser;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdPayment")
     private Payment idPayment;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idStatus")
+    private Status status;
 
     public Integer getId() {
         return id;
@@ -68,5 +72,21 @@ public class Order {
 
     public void setIdPayment(Payment idPayment) {
         this.idPayment = idPayment;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

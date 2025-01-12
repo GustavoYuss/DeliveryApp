@@ -225,7 +225,6 @@ function ValidateJSON(userJSON)
 
 function addToCart(product) {
     const quantity = parseInt(document.querySelector(".dropdown-button").textContent.trim());
-    const specialInstructions = document.getElementById("special-instructions").value;
     let user = getUserID();
 
     const customerCart = {
@@ -244,21 +243,23 @@ function addToCart(product) {
         credentials: "include"
     })
         .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => {
-                    throw new Error(`Error: ${response.statusText}`);
-                });
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw new Error(`HTTP status ${response.status}`);
             }
-            return response.json();
         })
-        .then(data => {
-            ShowAlertOK("Producto agregado al carrito con éxito",
-                "Producto agregado al carrito: " + data)
-            reloadItemsCart();
-            modal.classList.add("hidden");
+        .then(result => {
+            if (result === "Registro correcto") {
+                ShowAlertOK("Producto agregado al carrito con éxito",
+                    "Producto agregado al carrito")
+                reloadItemsCart();
+                modal.classList.add("hidden");
+            } else {
+                ShowAlertError();
+            }
         })
         .catch(error => {
-            console.error(error);
             ShowAlertError();
         });
 }
@@ -280,7 +281,6 @@ async function reloadItemsCart() {
 
     } catch (error) {
         console.error("Failed to fetch products:", error);
-        ShowAlertError();
     }
 }
 

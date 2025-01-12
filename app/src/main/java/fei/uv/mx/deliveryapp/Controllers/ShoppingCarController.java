@@ -2,6 +2,7 @@ package fei.uv.mx.deliveryapp.Controllers;
 
 import fei.uv.mx.deliveryapp.DTOs.OrderDTO;
 import fei.uv.mx.deliveryapp.DTOs.OrderDishDTO;
+import fei.uv.mx.deliveryapp.DTOs.OrderRequestDTO;
 import fei.uv.mx.deliveryapp.Repositories.CustomerCarRepository;
 import fei.uv.mx.deliveryapp.Repositories.OrderAppRestaurantRepository;
 import fei.uv.mx.deliveryapp.Repositories.OrderRestaurantDishRepository;
@@ -11,6 +12,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -70,25 +72,47 @@ public class ShoppingCarController {
     }
 
     @PostMapping("/makeOrder")
-    public void makeOrder(HttpServletRequest request, Model model) {
-        getIdUser(request);
-        User user = new User();
-        user.setId(userID);
-        List<CustomerCart> customerCartList = orderServices.getCustomerCart(userID);
-        int totalOrder = getTotalOrder(customerCartList);
-        //int idUserAddress = locationServices.getAddressByUser(userID);
-        //Payment idUserPayment = paymentServices.getPaymentsByUserId(userID);
-        Order order = new Order();
-        order.address = "PUTOS TODOS";
-        Address address = new Address();
-        order.setDate(LocalDate.now());
-        order.setTotal(new BigDecimal(totalOrder));
-        //order.setIdPayment(idUserPayment);
-        order.setIdUser(user);
-        order = orderServices.createOrder(order);
-        List<Integer> idRestaurntsList = getIdRestaurant(customerCartList);
-        registerOrder(customerCartList, idRestaurntsList, order);
+    public ResponseEntity<String> makeOrder(@RequestBody OrderRequestDTO orderRequest) {
+        try {
+            System.out.println("Entro???");
+            //getIdUser(request);
+            userID = orderRequest.getUserID();
+            User user = new User();
+            user.setId(userID);
+            System.out.println("Pago: " + orderRequest.getPayment().getCardName() + " cvv" + orderRequest.getPayment().getCardNumber());
+            Payment payment = paymentServices.createPayment(orderRequest.getPayment());
+            List<CustomerCart> customerCartList = orderServices.getCustomerCart(userID);
+            int totalOrder = getTotalOrder(customerCartList);
+            Order order = new Order();
+            order.address = orderRequest.getAddress();
+            order.setDate(LocalDate.now());
+            order.setTotal(new BigDecimal(totalOrder));
+            order.setIdPayment(payment);
+            order.setIdUser(user);
+            order = orderServices.createOrder(order);
+            List<Integer> idRestaurntsList = getIdRestaurant(customerCartList);
+            registerOrder(customerCartList, idRestaurntsList, order);
+
+            return ResponseEntity.ok("Orden creada exitosamente");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear la orden");
+        }
     }
+
+    @DeleteMapping("/cleanShoppingCar")
+    @Transactional
+    protected ResponseEntity<?> cleanShoppingCar(@RequestParam("id") int idUser) {
+        try {
+            customerCarRepository.deleteAllByUserId(idUser);
+            return ResponseEntity.ok("Carrito Limpiado con éxito");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al limpiar carrito");
+        }
+    }
+
 
     private int getTotalOrder(List<CustomerCart> customerCartList) {
         int total = 0;

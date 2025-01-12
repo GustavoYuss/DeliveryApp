@@ -5,7 +5,9 @@ import fei.uv.mx.deliveryapp.Models.Order;
 import fei.uv.mx.deliveryapp.Models.OrderRestaurantDish;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
@@ -33,6 +35,8 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
         return false;
     }
 
+    List<Order> findByDateBetween(LocalDate startDate, LocalDate endDate);
+
     @Query("SELECT o FROM Order o WHERE o.idUser.id = ?1")
     List<Order> findByUserId(int userId);
 
@@ -41,4 +45,12 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     @Query("SELECT cc FROM CustomerCart cc WHERE cc.user.id = ?1")
     List<CustomerCart> getShoppingCarFromCustomer(int customerId);
+
+    @Query("SELECT o FROM Order o WHERE " +
+            "(:startDate IS NULL OR o.date >= :startDate) AND " +
+            "(:endDate IS NULL OR o.date <= :endDate) AND " +
+            "(:status IS NULL OR o.status = :status)")
+    List<Order> findFilteredOrders(@Param("startDate") LocalDate startDate,
+                                   @Param("endDate") LocalDate endDate,
+                                   @Param("status") String status);
 }

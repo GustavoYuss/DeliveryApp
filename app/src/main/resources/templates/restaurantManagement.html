@@ -14,7 +14,8 @@
 </head>
 <body>
 <header class="header">
-  <h1 id="title">Uber Eats para Restaurantes</h1>
+  <img src="/images/back.png" alt="" onclick="redirectToIndex()">
+  <h1 id="titlePrincipal">Uber Eats para Restaurantes</h1>
 </header>
 <div class="container">
   <aside class="sidebar">
@@ -42,32 +43,24 @@
         <div>
           <h1 th:text="${restaurant.getNameRestaurant()}"></h1>
         </div>
-        <div class="search-bar">
-          <input type="text" th:placeholder="${restaurant.getNameRestaurant()}">
-        </div>
       </div>
 
       <div class="actions-container">
 
         <div class="actions">
           <p class="restaurant-info-details">
-            <span class="rating">4.1 ★</span> (1,500+) • Costo de envío: $23 •
+            <span class="rating" th:text="${restaurant.getRating()}"></span> ★ (1,500+) • Costo de envío: $23 •
             <span class="uber-one">Uber One</span> • <a href="#">Información</a>
           </p>
         </div>
 
         <div class="delivery-info">
-          <div class="optionButtons-container">
-            <div class="optionButtons active">Entrega a domicilio</div>
-            <div class="optionButtons">Recolectar</div>
-            <div class="optionButtons">Pedido grupal</div>
-          </div>
           <div class="cost-info">
-            <p>Costo de envío: $23</p>
-            <span class="subtext">Precios y tarifas</span>
+            <p>Costo de envío: $50.00 MX</p>
+            <span class="subtext">Precios y tarifas Estandar</span>
           </div>
           <div class="time-info">
-            <p>10 min</p>
+            <p>10 min a 15 min</p>
             <span class="subtext">Llegada más temprana</span>
           </div>
         </div>
@@ -76,17 +69,17 @@
       <div class="container-Products">
         <h1>Subway productos</h1>
         <div id="product-container" class="product-grid" >
-          <div class="product-info" th:each="product : ${dishesMenu}">
-            <div class="text-content">
+          <div class="product-card" th:each="product : ${dishesMenu}">
+
+            <div class="product-info">
               <h2 th:text="${product.name}"></h2>
               <div class="price-rating">
                 <span class="price" th:text="${product.normalPrice}"></span>
-                <span class="rating">•</span>
+                <span class="rating">★★★★★</span>
               </div>
               <p th:text="${product.description}"></p>
             </div>
-            <img th:src="${product.getImagePath()}" alt="image">
-            <button class="add-to-cart">+</button>
+            <img th:src="${product.getImagePath()}" th:alt="${product.getImagePath()}">
           </div>
         </div>
       </div>
