@@ -27,6 +27,5 @@ services:
     command: ["sh", "-c", "./wait-for-it.sh db:1433 -- java -jar app.jar"]
     ports:
       - "8080:8080"
-
 volumes:
   sql_data:
