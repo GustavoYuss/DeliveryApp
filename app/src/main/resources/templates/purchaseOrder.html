@@ -52,7 +52,7 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="expirationDate">Fecha de vencimiento</label>
-                <input type="text" id="expirationDate" placeholder="MM/AA" maxlength="10" required>
+                <input type="text" id="expirationDate" placeholder="YYYY-MM-DD" maxlength="10" required>
               </div>
               <div class="form-group">
                 <label for="cvv">CVV</label>
@@ -79,7 +79,7 @@
         <p>Costo de envío: <span id="costoEnvio">$16.00</span></p>
         <p class="total">Total: <span id="Total">$206.80</span></p>
       </div>
-      <button class="checkout-button">Realizar Compra</button>
+      <button  id="checkoutButton" class="checkout-button" disabled>Realizar Compra</button>
     </aside>
 
     <div id="mapModal">

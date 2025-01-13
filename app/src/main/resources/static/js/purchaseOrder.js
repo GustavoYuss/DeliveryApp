@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(result => {
                 if (result === "Orden creada exitosamente") {
                     ShowAlertOK(
-                        'Producto Eliminado',
-                        'Se elimino correctamente el producto del carrito de compras');
+                        'Orden creada exitosamente',
+                        'Se registro correctamente la orden');
                 } else {
                     ShowAlertError();
                 }
@@ -298,6 +298,11 @@ function submitCardForm(event) {
     const cvv = document.getElementById("cvv").value;
     const nameOnCard = document.getElementById("nameOnCard").value;
 
+    if(validateDateFormat(expirationDate) === 2) {
+        alert("Fecha incorrecta, sigaa el formato YYYY-MM-DD");
+        return;
+    }
+
     if (cardNumber && expirationDate && cvv && nameOnCard) {
 
         cardDetails = {
@@ -314,6 +319,8 @@ function submitCardForm(event) {
         document.getElementById("cardForm").style.display = "none";
         document.getElementById("cardItem").style.display = "flex";
 
+        const checkoutButton = document.getElementById("checkoutButton");
+        checkoutButton.disabled = false;
         alert("Tarjeta guardada correctamente");
     }
 }
@@ -357,4 +364,21 @@ function cleanShoppingCar(userId)
         });
 }
 
+function validateDateFormat(input) {
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/; // Regex para validar formato YYYY-MM-DD
+    const errorMessage = document.getElementById("error-message");
+
+    if (dateRegex.test(input)) {
+        const [year, month, day] = input.split('-').map(Number);
+        const date = new Date(year, month - 1, day);
+        if (
+            date.getFullYear() === year &&
+            date.getMonth() === month - 1 &&
+            date.getDate() === day
+        ) {
+            return 1;
+        }
+    }
+    return 2;
+}
 
