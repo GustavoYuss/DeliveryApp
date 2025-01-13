@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify(data),
             });
             if (response.ok) {
-                alert("Vete alv");
+                alert("Restaurante Creado Correctamente");
                 window.location.href = "/restaurantManagement"
             } else {
                 const errorData = await response.json();
