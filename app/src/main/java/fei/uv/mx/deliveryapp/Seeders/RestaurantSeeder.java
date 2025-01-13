@@ -23,8 +23,9 @@ public class RestaurantSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        /*
+
         Restaurant restaurant1 = new Restaurant();
+        restaurant1.setId(1);
         restaurant1.setNameRestaurant("Starbucks");
         restaurant1.setOpenTime(LocalTime.of(9, 0));
         restaurant1.setCloseTime(LocalTime.of(22, 0));
@@ -32,6 +33,7 @@ public class RestaurantSeeder implements CommandLineRunner {
         restaurant1.setImageLogoPath("/images/Startbucks-Logo.png");
 
         Restaurant restaurant2 = new Restaurant();
+        restaurant2.setId(2);
         restaurant2.setNameRestaurant("Freshi");
         restaurant2.setOpenTime(LocalTime.of(10, 0));
         restaurant2.setCloseTime(LocalTime.of(23, 0));
@@ -39,27 +41,31 @@ public class RestaurantSeeder implements CommandLineRunner {
         restaurant2.setImageLogoPath("/images/Freshi-Logo.png");
 
         Restaurant restaurant3 = new Restaurant();
+        restaurant3.setId(3);
         restaurant3.setNameRestaurant("McDonalds");
         restaurant3.setOpenTime(LocalTime.of(8, 0));
         restaurant3.setCloseTime(LocalTime.of(20, 0));
-        restaurant3.setImagePath("/images/macdonals.jpg");
+        restaurant3.setImagePath("/images/macdonals.jpeg");
         restaurant3.setImageLogoPath("/images/McDonalds-Logo.jpg");
 
         Restaurant restaurant4 = new Restaurant();
+        restaurant4.setId(2);
         restaurant4.setNameRestaurant("Bola de Oro");
         restaurant4.setOpenTime(LocalTime.of(9, 0));
         restaurant4.setCloseTime(LocalTime.of(22, 0));
-        restaurant4.setImagePath("/images/BolaDeOro.jpg");
+        restaurant4.setImagePath("/images/BolaDeOro.jpeg");
         restaurant4.setImageLogoPath("/images/BolaOro-Logo.png");
 
         Restaurant restaurant5 = new Restaurant();
+        restaurant5.setId(5);
         restaurant5.setNameRestaurant("Bubba");
         restaurant5.setOpenTime(LocalTime.of(10, 0));
         restaurant5.setCloseTime(LocalTime.of(23, 0));
-        restaurant5.setImagePath("/images/Bubba.jpg");
+        restaurant5.setImagePath("/images/Bubba.jpeg");
         restaurant5.setImageLogoPath("/images/Bubba-Logo.jpg");
 
         Restaurant restaurant6 = new Restaurant();
+        restaurant2.setId(6);
         restaurant6.setNameRestaurant("Little Caesars");
         restaurant6.setOpenTime(LocalTime.of(8, 0));
         restaurant6.setCloseTime(LocalTime.of(20, 0));
@@ -72,7 +78,5 @@ public class RestaurantSeeder implements CommandLineRunner {
         restaurantRepository.save(restaurant4);
         restaurantRepository.save(restaurant5);
         restaurantRepository.save(restaurant6);
-
-         */
     }
 }
