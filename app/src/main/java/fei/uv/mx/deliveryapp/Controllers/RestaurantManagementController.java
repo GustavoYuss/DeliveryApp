@@ -111,6 +111,7 @@ public class RestaurantManagementController {
                 requestDTO.getCategories().forEach(category -> {
                     RestaurantDishType restaurantDishType = new RestaurantDishType();
                     restaurantDishType.setIdRestaurant(restaurantConfirm.getId());
+                    System.out.println("id " + category.getId() + " name " + category.getDishType());
                     restaurantDishType.setIdDishType(category);
                     restaurantDishTypeRepository.createRestaurantDishType(restaurantDishType);
                 });
