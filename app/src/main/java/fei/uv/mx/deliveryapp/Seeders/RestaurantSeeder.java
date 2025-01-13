@@ -3,10 +3,12 @@ package fei.uv.mx.deliveryapp.Seeders;
 import fei.uv.mx.deliveryapp.Models.Restaurant;
 import fei.uv.mx.deliveryapp.Repositories.RestaurantRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
 
+@Order(3)
 @Component
 public class RestaurantSeeder implements CommandLineRunner {
 

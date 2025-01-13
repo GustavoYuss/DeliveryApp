@@ -3,8 +3,10 @@ package fei.uv.mx.deliveryapp.Seeders;
 import fei.uv.mx.deliveryapp.Models.DishType;
 import fei.uv.mx.deliveryapp.Repositories.DishTypeRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+@Order(1)
 @Component
 public class DishTypeSeeder implements CommandLineRunner {
 

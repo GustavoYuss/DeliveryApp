@@ -125,7 +125,7 @@ public class ShoppingCarController {
     private List<Integer> getIdRestaurant(List<CustomerCart> customerCartList) {
         List<Integer> idRestaurantList = new ArrayList<>();
         for (CustomerCart customerCart : customerCartList) {
-            if(!idRestaurantList.contains(customerCart.getDish().getId())){
+            if(!idRestaurantList.contains(customerCart.getDish().getRestaurant().getId())){
                 idRestaurantList.add(customerCart.getDish().getRestaurant().getId());
             }
         }
