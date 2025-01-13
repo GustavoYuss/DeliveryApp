@@ -110,6 +110,7 @@ categories.forEach(category => {
 });
 
 function handleCategoryClick(categoryId) {
+    console.log("id: " + categoryId);
     fetch(`/restaurants?category=${categoryId}`, {
         method: "GET",
         credentials: "include",

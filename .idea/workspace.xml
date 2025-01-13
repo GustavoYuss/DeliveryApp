@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ef88890-09bc-4867-b534-b26ff1e036d0" name="Changes" comment="" />
+    <list default="true" id="6ef88890-09bc-4867-b534-b26ff1e036d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,18 +66,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.DeliveryAppApplication.executor": "Run",
-    "git-widget-placeholder": "aaa",
+    "git-widget-placeholder": "MigCamo",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/yusgu/Documents/UV/7to Semestre/web/DeliveryApp",
+    "last_opened_file_path": "D:/Migue/University/WebSystemsDevelopment_Workspace/Project/DeliveryApp/app",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "advanced.settings",
     "vue.rearranger.settings.migration": "true"
   },
@@ -101,13 +100,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DeliveryAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="fei.uv.mx.DeliveryApp.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="fei.uv.mx.deliveryapp.DeliveryAppApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="DeliveryApp" />
+      <option name="filePath" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
       <deployment type="dockerfile">
@@ -115,14 +111,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -218,7 +206,10 @@
       <workItem from="1736711786421" duration="36000" />
       <workItem from="1736711834420" duration="15000" />
       <workItem from="1736711862699" duration="1621000" />
-      <workItem from="1736718901254" duration="38000" />
+      <workItem from="1736719183248" duration="222000" />
+      <workItem from="1736719419820" duration="153000" />
+      <workItem from="1736719607422" duration="253000" />
+      <workItem from="1736719864565" duration="159000" />
     </task>
     <servers />
   </component>

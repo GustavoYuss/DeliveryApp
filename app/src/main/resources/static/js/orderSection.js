@@ -29,7 +29,7 @@ async function openSidebar(event) {
 
     // Actualiza los datos de la cabecera de la sidebar
     document.querySelector(".sidebar2-title").textContent = `Pedido ${idOrder}`;
-    document.querySelector(".user-name").textContent = userName;
+    document.getElementById("usernameLB").textContent = userName;
     document.querySelector(".sidebar2-date").textContent = orderDate;
 
     console.log(idOrder);
