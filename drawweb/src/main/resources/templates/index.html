@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pantalla de pruebas</title>
+    <script src="/Js/index.js"></script>
+    <link rel="stylesheet" href="/Styles/index.css">
+</head>
+<body>
+<header>
+    <div class="Logo">
+        <?xml version="1.0" encoding="iso-8859-1"?>
+        <svg fill="#000000" height="50px" width="45px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 0 512 512" xml:space="preserve">
+                <g>
+                    <g>
+                        <path d="M355.568,319.865l-53.95-282.144C296.635,11.664,275.116,0,256,0s-40.635,11.664-45.618,37.722l-53.95,282.144
+                            c-5.039,26.36,1.878,53.34,18.98,74.023c17.103,20.682,42.303,32.544,69.14,32.544h1.248v75.369
+                            c0,5.633,4.567,10.199,10.199,10.199c5.632,0,10.199-4.566,10.199-10.199v-75.369h1.248c26.837,0,52.037-11.862,69.14-32.544
+                            C353.69,373.205,360.607,346.225,355.568,319.865z M307.832,178.839l-41.633,41.634v-9.406l40.124-40.125L307.832,178.839z
+                             M245.801,406.033h-1.248c-20.735,0-40.206-9.165-53.42-25.144c-13.214-15.98-18.558-36.826-14.664-57.193l4.97-25.99
+                            l64.363,64.364V406.033z M245.801,333.222l-59.6-59.6c-0.043-0.043-0.091-0.08-0.135-0.122l30.599-160.022l28.096,28.096
+                            c0.329,0.328,0.68,0.62,1.04,0.896V333.222z M256,95.974c-5.632,0-10.199,4.566-10.199,10.199v7.59l-23.862-23.862
+                            c-0.21-0.21-0.429-0.402-0.653-0.59l9.132-47.76c2.985-15.614,15.647-21.154,25.582-21.154c9.935,0,22.596,5.54,25.582,21.154
+                            l20.111,105.173l-35.493,35.493v-76.045C266.199,100.541,261.632,95.974,256,95.974z M320.868,380.889
+                            c-13.214,15.979-32.685,25.144-53.42,25.144h-1.248V249.322l46.265-46.265l23.069,120.639
+                            C339.426,344.063,334.082,364.909,320.868,380.889z"/>
+                    </g>
+                </g>
+            <g>
+                    <g>
+                        <path d="M256,45.891c-5.632,0-10.199,4.566-10.199,10.199v6.545c0,5.633,4.567,10.199,10.199,10.199
+                            c5.632,0,10.199-4.566,10.199-10.199v-6.545C266.199,50.458,261.632,45.891,256,45.891z"/>
+                    </g>
+                </g>
+            S</svg>
+        <span id="AppName"> DrawApp </span>
+    </div>
+    <div class="ButtonGroup">
+        <button class="MainMenuButton" onclick="drawRectangle()">Rectángulo</button>
+        <button class="MainMenuButton" onclick="drawStart()">Estrella</button>
+        <button class="MainMenuButton" onclick="drawTriangle()">Triángulo</button>
+        <button class="MainMenuButton" onclick="drawLine()">Línea</button>
+        <button class="MainMenuButton" onclick="writeText()">Texto</button>
+        <button class="MainMenuButton" onclick="activeRotate()">Rotar 90</button>
+        <button class="MainMenuButton" onclick="activeDeleteFigure()">Borrar</button>
+    </div>
+    <div class="MainMenuButton" onclick="saveCanvas()">Save Canvas</div>
+    <div class="MainMenuButton">
+        <input type="file" id="openCanvasFile" accept=".html" style="display: none;" onchange="loadCanvas(event)">
+        <label for="openCanvasFile" style="cursor: pointer;">Open Canvas</label>
+    </div>
+</header>
+<div id="CanvasContainer">
+    <svg id="Canvas" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 600 '>
+    </svg>
+</div>
+</body>
+</html>

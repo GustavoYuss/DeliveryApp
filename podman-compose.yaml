@@ -27,5 +27,14 @@ services:
     command: ["sh", "-c", "./wait-for-it.sh db:1433 -- java -jar app.jar"]
     ports:
       - "8080:8080"
+
+  drawweb:
+    build:
+      context: ./drawweb
+      dockerfile: Dockerfile
+    container_name: drawwebaplication
+    ports:
+      - "8085:80"
+
 volumes:
   sql_data:
