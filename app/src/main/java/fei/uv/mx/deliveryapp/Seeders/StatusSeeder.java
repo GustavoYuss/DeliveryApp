@@ -3,8 +3,10 @@ package fei.uv.mx.deliveryapp.Seeders;
 import fei.uv.mx.deliveryapp.Models.Status;
 import fei.uv.mx.deliveryapp.Repositories.StatusRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+@Order(2)
 @Component
 public class StatusSeeder implements CommandLineRunner {
 
@@ -25,13 +27,13 @@ public class StatusSeeder implements CommandLineRunner {
         status.setId(1);
         status.setStatus("Procesando");
         Status status2 = new Status();
-        status2.setId(1);
+        status2.setId(2);
         status2.setStatus("enviado");
         Status status3 = new Status();
-        status3.setId(1);
+        status3.setId(3);
         status3.setStatus("completado");
         Status status4 = new Status();
-        status4.setId(1);
+        status4.setId(4);
         status4.setStatus("cancelado");
         statusRepository.save(status);
         statusRepository.save(status2);

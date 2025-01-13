@@ -5,10 +5,12 @@ import fei.uv.mx.deliveryapp.Models.DishType;
 import fei.uv.mx.deliveryapp.Models.Restaurant;
 import fei.uv.mx.deliveryapp.Repositories.DishRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+@Order(4)
 @Component
 public class DishSeeder implements CommandLineRunner {
     private DishRepository dishRepository;
@@ -24,7 +26,6 @@ public class DishSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        /*
         Restaurant restaurant1 = new Restaurant();
         restaurant1.setId(1);
 
@@ -32,6 +33,7 @@ public class DishSeeder implements CommandLineRunner {
         dishType.setId(1);
 
         Dish dish1 = new Dish();
+        dish1.setId(1);
         dish1.setName("Classic Burger");
         dish1.setDescription("Una jugosa hamburguesa de res con lechuga, tomate y queso, servida con papas fritas.");
         dish1.setNormalPrice(new BigDecimal("120.00"));
@@ -41,6 +43,7 @@ public class DishSeeder implements CommandLineRunner {
         dish1.setDishType(dishType);
 
         Dish dish2 = new Dish();
+        dish2.setId(2);
         dish2.setName("Margarita Pizza");
         dish2.setDescription("Pizza italiana tradicional con salsa de tomate fresca, mozzarella y albahaca.");
         dish2.setNormalPrice(new BigDecimal("150.00"));
@@ -50,6 +53,7 @@ public class DishSeeder implements CommandLineRunner {
         dish2.setDishType(dishType);
 
         Dish dish3 = new Dish();
+        dish3.setId(3);
         dish3.setName("Caesar Salad");
         dish3.setDescription("Lechuga romana crujiente con aderezo César, crutones y queso parmesano.");
         dish3.setNormalPrice(new BigDecimal("90.00"));
@@ -59,6 +63,7 @@ public class DishSeeder implements CommandLineRunner {
         dish3.setDishType(dishType);
 
         Dish dish4 = new Dish();
+        dish4.setId(4);
         dish4.setName("Spaghetti Carbonara");
         dish4.setDescription("Pasta mezclada en una salsa cremosa con panceta y queso parmesano.");
         dish4.setNormalPrice(new BigDecimal("130.00"));
@@ -67,7 +72,15 @@ public class DishSeeder implements CommandLineRunner {
         dish4.setRestaurant(restaurant1);
         dish4.setDishType(dishType);
 
+        dishRepository.createDish(dish1);
+        dishRepository.createDish(dish2);
+        dishRepository.createDish(dish3);
+        dishRepository.createDish(dish4);
+
+        restaurant1.setId(2);
+
         Dish dish5 = new Dish();
+        dish5.setId(5);
         dish5.setName("Grilled Salmon");
         dish5.setDescription("Filete de salmón a la parrilla con espárragos y salsa de mantequilla al limón.");
         dish5.setNormalPrice(new BigDecimal("200.00"));
@@ -77,6 +90,7 @@ public class DishSeeder implements CommandLineRunner {
         dish5.setDishType(dishType);
 
         Dish dish6 = new Dish();
+        dish6.setId(6);
         dish6.setName("Tacos al Pastor");
         dish6.setDescription("Tacos mexicanos tradicionales con carne de cerdo marinada, piña y cilantro fresco.");
         dish6.setNormalPrice(new BigDecimal("85.00"));
@@ -86,6 +100,7 @@ public class DishSeeder implements CommandLineRunner {
         dish6.setDishType(dishType);
 
         Dish dish7 = new Dish();
+        dish7.setId(7);
         dish7.setName("Chicken Curry");
         dish7.setDescription("Curry indio picante con trozos de pollo tierno y arroz basmati.");
         dish7.setNormalPrice(new BigDecimal("140.00"));
@@ -94,7 +109,14 @@ public class DishSeeder implements CommandLineRunner {
         dish7.setRestaurant(restaurant1);
         dish7.setDishType(dishType);
 
+        dishRepository.createDish(dish5);
+        dishRepository.createDish(dish6);
+        dishRepository.createDish(dish7);
+
+        restaurant1.setId(3);
+
         Dish dish8 = new Dish();
+        dish8.setId(8);
         dish8.setName("Sushi Platter");
         dish8.setDescription("Una variedad de rollos de sushi y sashimi frescos, servidos con salsa de soya y wasabi.");
         dish8.setNormalPrice(new BigDecimal("250.00"));
@@ -104,6 +126,7 @@ public class DishSeeder implements CommandLineRunner {
         dish8.setDishType(dishType);
 
         Dish dish9 = new Dish();
+        dish9.setId(9);
         dish9.setName("Vegan Bowl");
         dish9.setDescription("Un bowl saludable con quinoa, vegetales asados, aguacate y aderezo de tahini.");
         dish9.setNormalPrice(new BigDecimal("110.00"));
@@ -113,6 +136,7 @@ public class DishSeeder implements CommandLineRunner {
         dish9.setDishType(dishType);
 
         Dish dish10 = new Dish();
+        dish10.setId(10);
         dish10.setName("BBQ Ribs");
         dish10.setDescription("Costillas de cerdo cocinadas a fuego lento con salsa barbacoa, servidas con ensalada de col.");
         dish10.setNormalPrice(new BigDecimal("180.00"));
@@ -121,7 +145,14 @@ public class DishSeeder implements CommandLineRunner {
         dish10.setRestaurant(restaurant1);
         dish10.setDishType(dishType);
 
+        dishRepository.createDish(dish8);
+        dishRepository.createDish(dish9);
+        dishRepository.createDish(dish10);
+
+        restaurant1.setId(4);
+
         Dish dish11 = new Dish();
+        dish11.setId(11);
         dish11.setName("Pad Thai");
         dish11.setDescription("Fideos tailandeses salteados con camarones, tofu, cacahuates y una salsa de tamarindo.");
         dish11.setNormalPrice(new BigDecimal("120.00"));
@@ -131,6 +162,7 @@ public class DishSeeder implements CommandLineRunner {
         dish11.setDishType(dishType);
 
         Dish dish12 = new Dish();
+        dish12.setId(12);
         dish12.setName("Cheesecake");
         dish12.setDescription("Pastel de queso cremoso con base de galleta, cubierto con frutas frescas.");
         dish12.setNormalPrice(new BigDecimal("80.00"));
@@ -139,7 +171,13 @@ public class DishSeeder implements CommandLineRunner {
         dish12.setRestaurant(restaurant1);
         dish12.setDishType(dishType);
 
+        dishRepository.createDish(dish11);
+        dishRepository.createDish(dish12);
+
+        restaurant1.setId(5);
+
         Dish dish13 = new Dish();
+        dish13.setId(13);
         dish13.setName("Beef Stroganoff");
         dish13.setDescription("Plato ruso clásico con tiras de carne en una salsa cremosa de champiñones.");
         dish13.setNormalPrice(new BigDecimal("150.00"));
@@ -149,6 +187,7 @@ public class DishSeeder implements CommandLineRunner {
         dish13.setDishType(dishType);
 
         Dish dish14 = new Dish();
+        dish14.setId(14);
         dish14.setName("Ramen Bowl");
         dish14.setDescription("Ramen japonés con panceta de cerdo, huevo cocido y un caldo sabroso.");
         dish14.setNormalPrice(new BigDecimal("140.00"));
@@ -157,20 +196,8 @@ public class DishSeeder implements CommandLineRunner {
         dish14.setRestaurant(restaurant1);
         dish14.setDishType(dishType);
 
-        dishRepository.createDish(dish1);
-        dishRepository.createDish(dish2);
-        dishRepository.createDish(dish3);
-        dishRepository.createDish(dish4);
-        dishRepository.createDish(dish5);
-        dishRepository.createDish(dish6);
-        dishRepository.createDish(dish7);
-        dishRepository.createDish(dish8);
-        dishRepository.createDish(dish9);
-        dishRepository.createDish(dish10);
-        dishRepository.createDish(dish11);
-        dishRepository.createDish(dish12);
         dishRepository.createDish(dish13);
         dishRepository.createDish(dish14);
-        */
+
     }
 }
